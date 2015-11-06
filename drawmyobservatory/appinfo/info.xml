@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<info>
+    <id>drawmyobservatory</id>
+    <name>Draw My Observatory</name>
+    <description>WebGraphic Sensor Editor for Marine Observation, This application enables ownCloud users to open, save and edit Observatories</description>
+    <licence>AGPL</licence>
+    <author>Arnaud THOREL</author>
+    <version>1.0</version>
+    <namespace>DrawMyObservatory</namespace>
+    <shipped>true</shipped>
+    <category>editor</category>
+    <dependencies>
+        <owncloud min-version="8.1" />
+    </dependencies>
+</info>
