@@ -23,13 +23,14 @@ In the settings select "Activate experimentales apps" and Activate DrawMyObserva
 
 ![alt tag](https://raw.githubusercontent.com/ifremer/snanny-drawmyobservatory/master/doc/install_02.PNG)
 
-## graphical editor for observatories
+## Graphical Editor for observatories
 Draw, save and export in sensorML
 
 Done with Rappid (http://jointjs.com/about-rappid)
 	
-	
-## Development 
+![alt tag](https://raw.githubusercontent.com/ifremer/snanny-drawmyobservatory/master/doc/draw_my_observatory.PNG)
+
+## Development Environment
 
 - Install VirtualBox and download the provided OVA
  https://owncloud.org/install/#instructions-server
@@ -37,24 +38,31 @@ Done with Rappid (http://jointjs.com/about-rappid)
 - Import OVA into VirtualBox
 
 - Mount external disk from local disk 
+
 	Configuration > Shared Folders
 	Add the path to your local folder and name unix mount to owncloud_plugins
 	Select autoMount and permanent configuration
 	
 - Launch VM and connect as Admin
+
     Default keybord has english locale
 
 - Follow the wizard of installation to change the local, and passwords
 
 - Mount the disk by using theses commands 
+
    cd /mnt
    sudo mkdir plugins
    sudo mount -t vboxsf owncloud_plugins /mnt/plugins
    
 - Change the folders permissions 
+
 chmod 777 /var/www/owncloud
+
 chmod 777 /var/www/owncloud/apps
 
 - Create a symbolic Link to your development apps 
+
 cd /var/www/owncloud/apps/
+
 sudo ln -s /mnt/plugins/yourapp yourapp
