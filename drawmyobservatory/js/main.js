@@ -1192,7 +1192,6 @@ var Rappid = Backbone.Router.extend({
                             }
                         },
                         open: function(ev, ui) {
-                            debugger;
                             $('#myIframe').attr('src', webdavPath);
                         }
                     });
@@ -1453,7 +1452,6 @@ var Rappid = Backbone.Router.extend({
 
                                 if(shape != null){
                                     //Create owncloud link
-                                    debugger;
                                     var link = shape.documentation.link;
                                     var fileName = link.substr(link.lastIndexOf("/")+1);
                                     shape.documentation.link = OC.filePath('drawmyobservatory', 'models',filename);
