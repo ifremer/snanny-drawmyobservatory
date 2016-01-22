@@ -215,111 +215,7 @@ Stencil.shapes = {
           }
         }
       }),
-    new joint.shapes.basic.Sensor({
-      "documentation": {
-        "link": imageSensorPath('infrared_sensor.png'),
-        "name": "infrared_sensor.png"
-      },
-
-      attrs: {
-        image: {
-          width: 50,
-          height: 50,
-          'xlink:href': imageSensorPath('infrared_sensor.png')
-        },
-        text: {
-          text: '',
-          'font-size': 9,
-          display: '',
-          stroke: '#000000',
-          'stroke-width': 0
-        }
-      }
-    }),
-    new joint.shapes.basic.Sensor({
-      "documentation": {
-        "link": imageSensorPath('gps.png'),
-        "name": "gps.png"
-    },
-
-      attrs: {
-        image: {
-          width: 50,
-          height: 50,
-          'xlink:href': imageSensorPath('gps.png')
-        },
-        text: {
-          text: '',
-          'font-size': 9,
-          display: '',
-          stroke: '#000000',
-          'stroke-width': 0
-        }
-      }
-    }),
-    new joint.shapes.basic.Sensor({
-      "documentation": {
-        "link": imageSensorPath('sensor3.png'),
-        "name": "sensor3.png"
-      },
-
-      attrs: {
-        image: {
-          width: 50,
-          height: 50,
-          'xlink:href': imageSensorPath('sensor3.png')
-        },
-        text: {
-          text: '',
-          'font-size': 9,
-          display: '',
-          stroke: '#000000',
-          'stroke-width': 0
-        }
-      }
-    }),
-    new joint.shapes.basic.Sensor({
-      "documentation": {
-        "link": imageSensorPath('pressure_sensor.png'),
-        "name": "pressure_sensor.png"
-      },
-
-      attrs: {
-        image: {
-          width: 50,
-          height: 50,
-          'xlink:href': imageSensorPath('pressure_sensor.png')
-        },
-        text: {
-          text: '',
-          'font-size': 9,
-          display: '',
-          stroke: '#000000',
-          'stroke-width': 0
-        }
-      }
-    }),
-    new joint.shapes.basic.Sensor({
-      "documentation": {
-        "link": imageSensorPath('weather_station.png'),
-        "name": "weather_station.png"
-      },
-
-      attrs: {
-        image: {
-          width: 50,
-          height: 50,
-          'xlink:href': imageSensorPath('weather_station.png')
-        },
-        text: {
-          text: '',
-          'font-size': 9,
-          display: '',
-          stroke: '#000000',
-          'stroke-width': 0
-        }
-      }
-    }),
+   
     new joint.shapes.basic.Sensor({
       "documentation": {
         "link": imageSensorPath('camera.png'),
@@ -341,27 +237,7 @@ Stencil.shapes = {
         }
       }
     }),
-    new joint.shapes.basic.Sensor({
-      "documentation": {
-        "link": imageSensorPath('sensor_seamon_west.png'),
-        "name": "sensor_seamon_west.png"
-      },
-
-      attrs: {
-        image: {
-          width: 50,
-          height: 50,
-          'xlink:href': imageSensorPath('sensor_seamon_west.png')
-        },
-        text: {
-          text: '',
-          'font-size': 9,
-          display: '',
-          stroke: '#000000',
-          'stroke-width': 0
-        }
-      }
-    }),
+   
     new joint.shapes.basic.Sensor({
       "documentation": {
         "link": imageSensorPath('electronicBoard.png'),
@@ -392,15 +268,15 @@ Stencil.shapes = {
 
     new joint.shapes.basic.Platform({
       "documentation": {
-        "link": imageSensorPath('platform.png'),
-        "name": "platform.png"
+        "link": imageSensorPath('fixed-autonaumous-moored-surface-platform.png'),
+        "name": "fixed-autonaumous-moored-surface-platform.png"
       },
 
       attrs: {
         image: {
           width: 50,
           height: 50,
-          'xlink:href': imageSensorPath('platform.png')
+          'xlink:href': imageSensorPath('fixed-autonaumous-moored-surface-platform.png')
         },
         text: {
           text: '',
@@ -413,37 +289,15 @@ Stencil.shapes = {
     }),
     new joint.shapes.basic.Platform({
       "documentation": {
-        "link": imageSensorPath('buoy.png'),
-        "name": "buoy.png"
+        "link": imageSensorPath('fixed-autonomous-seafloor-platform.png'),
+        "name": "fixed-autonomous-seafloor-platform.png"
       },
 
       attrs: {
         image: {
           width: 50,
           height: 50,
-          'xlink:href': imageSensorPath('buoy.png')
-        },
-        text: {
-          text: '',
-          'font-size': 9,
-          display: '',
-          stroke: '#000000',
-          'stroke-width': 0
-        }
-      }
-    }),
-
-    new joint.shapes.basic.Platform({
-      "documentation": {
-        "link": imageSensorPath('platform_seamon.png'),
-        "name": "platform_seamon.png"
-      },
-
-      attrs: {
-        image: {
-          width: 50,
-          height: 50,
-          'xlink:href': imageSensorPath('platform_seamon.png')
+          'xlink:href': imageSensorPath('fixed-autonomous-seafloor-platform.png')
         },
         text: {
           text: '',
@@ -457,15 +311,37 @@ Stencil.shapes = {
 
     new joint.shapes.basic.Platform({
       "documentation": {
-        "link": imageSensorPath('deep_sea_platform.png'),
-        "name": "deep_sea_platform.png"
+        "link": imageSensorPath('mobile-autonomous-submarine-platform.png'),
+        "name": "mobile-autonomous-submarine-platform.png"
+      },
+
+      attrs: {
+        image: {
+          width: 50,
+          height: 50,
+          'xlink:href': imageSensorPath('mobile-autonomous-submarine-platform.png')
+        },
+        text: {
+          text: '',
+          'font-size': 9,
+          display: '',
+          stroke: '#000000',
+          'stroke-width': 0
+        }
+      }
+    }),
+
+    new joint.shapes.basic.Platform({
+      "documentation": {
+        "link": imageSensorPath('mobile-autonomous-surface-platform.png'),
+        "name": "mobile-autonomous-surface-platform.png"
       },
 
       attrs: {
         image: {
           width: 80,
           height: 80,
-          'xlink:href': imageSensorPath('deep_sea_platform.png')
+          'xlink:href': imageSensorPath('mobile-autonomous-surface-platform.png')
         },
         text: {
           text: '',
@@ -479,15 +355,15 @@ Stencil.shapes = {
 
     new joint.shapes.basic.Platform({
       "documentation": {
-        "link": imageSensorPath('ship.png'),
-        "name": "ship.png"
+        "link": imageSensorPath('mobile-manned-surface-platform.png'),
+        "name": "mobile-manned-surface-platform.png"
       },
 
       attrs: {
         image: {
           width: 50,
           height: 50,
-          'xlink:href': imageSensorPath('ship.png')
+          'xlink:href': imageSensorPath('mobile-manned-surface-platform.png')
         },
         text: {
           text: '',
@@ -498,29 +374,7 @@ Stencil.shapes = {
         }
       }
     }),
-    new joint.shapes.basic.Platform({
-      "documentation": {
-        "link": imageSensorPath('submarine.png'),
-        "name": "submarine.png"
-      },
-
-      attrs: {
-        image: {
-          width: 50,
-          height: 30,
-          'xlink:href': imageSensorPath('submarine.png')
-        },
-        text: {
-          text: '',
-          'font-size': 9,
-          display: '',
-          stroke: '#000000',
-          'stroke-width': 0
-        }
-      }
-    }),
-
-
+  
 
   ],
   Imported: [],
