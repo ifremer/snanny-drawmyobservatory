@@ -1,0 +1,459 @@
+var Stencil = {};
+
+
+Stencil.groups = {
+
+  basicSensors: {
+    index: 2,
+    label: 'Sensors'
+  },
+  basicPlatforms: {
+    index: 1,
+    label: 'Platforms'
+  },
+  Imported: {
+    index: 3,
+    label: 'Imported'
+  },
+
+  ADCP: {
+    index: 4,
+    label: 'EMSO_ADCP'
+  },
+  CO2_ANALYSER: {
+    index: 5,
+    label: 'EMSO_CO2_ANALYSER'
+  },
+  CONDUCTIVITY: {
+    index: 6,
+    label: 'EMSO_CONDUCTIVITY'
+  },
+  CTD: {
+    index: 7,
+    label: 'EMSO_CTD'
+  },
+  CURRENT_METER: {
+    index: 8,
+    label: 'EMSO_CURRENT_METER'
+  },
+  DEPTH: {
+    index: 9,
+    label: 'EMSO_DEPTH'
+  },
+  DO_SENSOR: {
+    index: 10,
+    label: 'EMSO_DO_SENSOR'
+  },
+  FLOW_METER: {
+    index: 11,
+    label: 'EMSO_FLOW_METER'
+  },
+  FLUOROMETER: {
+    index: 12,
+    label: 'EMSO_FLUOROMETER'
+  },
+  GEOPHONE: {
+    index: 13,
+    label: 'EMSO_GEOPHONE'
+  },
+  HYDROPHONE: {
+    index: 14,
+    label: 'EMSO_HYDROPHONE'
+  },
+  MAGNETOMETER: {
+    index: 15,
+    label: 'EMSO_MAGNETOMETER'
+  },
+  MULTIPARAMETER: {
+    index: 16,
+    label: 'EMSO_MULTIPARAMETER'
+  },
+  PAH: {
+    index: 17,
+    label: 'EMSO_PAH'
+  },
+  PAR_SENSOR: {
+    index: 18,
+    label: 'EMSO_PAR_SENSOR'
+  },
+  PARTICLE_SIZER: {
+    index: 19,
+    label: 'EMSO_PARTICLE_SIZER'
+  },
+  PH_SENSOR: {
+    index: 20,
+    label: 'EMSO_PH_SENSOR'
+  },
+  PRESSURE_SENSOR: {
+    index: 21,
+    label: 'EMSO_PRESSURE_SENSOR'
+  },
+  REDOX: {
+    index: 22,
+    label: 'EMSO_REDOX'
+  },
+  SALINOMETER: {
+    index: 23,
+    label: 'EMSO_SALINOMETER'
+  },
+  SEDIMENT_TRAP: {
+    index: 24,
+    label: 'EMSO_SEDIMENT_TRAP'
+  },
+  TEMPERATURE: {
+    index: 25,
+    label: 'EMSO_TEMPERATURE'
+  },
+  TILTMETER: {
+    index: 26,
+    label: 'EMSO_TILTMETER'
+  },
+  TURBIDITY: {
+    index: 27,
+    label: 'EMSO_TURBIDITY'
+  },
+  WATER_SAMPLER: {
+    index: 28,
+    label: 'EMSO_WATER_SAMPLER'
+  },
+  ACOUSTIC_MODEM: {
+    index: 29,
+    label: 'EMSO_ACOUSTIC_MODEM'
+  },
+  ACOUSTIC_RELEASE: {
+    index: 30,
+    label: 'EMSO_ACOUSTIC_RELEASE'
+  },
+  CAMERA: {
+    index: 31,
+    label: 'EMSO_CAMERA'
+  },
+  CONNECTOR: {
+    index: 32,
+    label: 'EMSO_CONNECTOR'
+  },
+  LOGGER: {
+    index: 33,
+    label: 'EMSO_LOGGER'
+  },
+  FLOAT: {
+    index: 34,
+    label: 'EMSO_FLOAT'
+  },
+  HOUSING: {
+    index: 35,
+    label: 'EMSO_HOUSING'
+  },
+  LASER: {
+    index: 36,
+    label: 'EMSO_LASER'
+  },
+  LIGHT: {
+    index: 37,
+    label: 'EMSO_LIGHT'
+  },
+  MOORING_SYSTEM: {
+    index: 38,
+    label: 'EMSO_MOORING_SYSTEM'
+  },
+  POSITIONING_EQUIPMENT: {
+    index: 39,
+    label: 'EMSO_POSITIONING_EQUIPMENT'
+  },
+  UNDERWATER_BATTERY: {
+    index: 40,
+    label: 'EMSO_UNDERWATER_BATTERY'
+  },
+  UNDERWATER_CABLE: {
+    index: 41,
+    label: 'EMSO_UNDERWATER_CABLE'
+  },
+  UNDERWATER_SWITCH: {
+    index: 42,
+    label: 'EMSO_UNDERWATER_SWITCH'
+  },
+  IFREMER_RVESSEL: {
+    index: 43,
+    label: 'IFREMER_RV'
+  },
+
+
+};
+
+var dir = "models";
+
+function imageSensorPath(imageName){
+  return OC.imagePath('drawmyobservatory', 'models/'+imageName);
+}
+
+Stencil.shapes = {
+
+
+  basicSensors: [
+
+
+    new joint.shapes.basic.Sensor(
+
+      {
+        "documentation": {
+          "link": imageSensorPath('sensor.png'),
+          "name": "sensor.png"
+        },
+
+        attrs: {
+          image: {
+            width: 50,
+            height: 50,
+            'xlink:href': imageSensorPath('sensor.png')
+          },
+          text: {
+            text: '',
+            'font-size': 9,
+            display: '',
+            stroke: '#000000',
+            'stroke-width': 0
+          }
+        }
+      }),
+   
+    new joint.shapes.basic.Sensor({
+      "documentation": {
+        "link": imageSensorPath('camera.png'),
+        "name": "camera.png"
+      },
+
+      attrs: {
+        image: {
+          width: 50,
+          height: 50,
+          'xlink:href': imageSensorPath('camera.png')
+        },
+        text: {
+          text: '',
+          'font-size': 9,
+          display: '',
+          stroke: '#000000',
+          'stroke-width': 0
+        }
+      }
+    }),
+   
+    new joint.shapes.basic.Sensor({
+      "documentation": {
+        "link": imageSensorPath('electronicBoard.png'),
+        "name": "electronicBoard.png"
+      },
+      attrs: {
+        image: {
+          width: 50,
+          height: 50,
+          'xlink:href': imageSensorPath('electronicBoard.png')
+        },
+        text: {
+          text: '',
+          'font-size': 9,
+          display: '',
+          stroke: '#000000',
+          'stroke-width': 0
+        }
+
+      }
+    }),
+
+
+
+  ],
+
+  basicPlatforms: [
+
+    new joint.shapes.basic.Platform({
+      "documentation": {
+        "link": imageSensorPath('fixed-autonaumous-moored-surface-platform.png'),
+        "name": "fixed-autonaumous-moored-surface-platform.png"
+      },
+
+      attrs: {
+        image: {
+          width: 50,
+          height: 50,
+          'xlink:href': imageSensorPath('fixed-autonaumous-moored-surface-platform.png')
+        },
+        text: {
+          text: '',
+          'font-size': 9,
+          display: '',
+          stroke: '#000000',
+          'stroke-width': 0
+        }
+      }
+    }),
+    new joint.shapes.basic.Platform({
+      "documentation": {
+        "link": imageSensorPath('fixed-autonomous-seafloor-platform.png'),
+        "name": "fixed-autonomous-seafloor-platform.png"
+      },
+
+      attrs: {
+        image: {
+          width: 50,
+          height: 50,
+          'xlink:href': imageSensorPath('fixed-autonomous-seafloor-platform.png')
+        },
+        text: {
+          text: '',
+          'font-size': 9,
+          display: '',
+          stroke: '#000000',
+          'stroke-width': 0
+        }
+      }
+    }),
+
+    new joint.shapes.basic.Platform({
+      "documentation": {
+        "link": imageSensorPath('mobile-autonomous-submarine-platform.png'),
+        "name": "mobile-autonomous-submarine-platform.png"
+      },
+
+      attrs: {
+        image: {
+          width: 50,
+          height: 50,
+          'xlink:href': imageSensorPath('mobile-autonomous-submarine-platform.png')
+        },
+        text: {
+          text: '',
+          'font-size': 9,
+          display: '',
+          stroke: '#000000',
+          'stroke-width': 0
+        }
+      }
+    }),
+
+    new joint.shapes.basic.Platform({
+      "documentation": {
+        "link": imageSensorPath('mobile-autonomous-surface-platform.png'),
+        "name": "mobile-autonomous-surface-platform.png"
+      },
+
+      attrs: {
+        image: {
+          width: 80,
+          height: 80,
+          'xlink:href': imageSensorPath('mobile-autonomous-surface-platform.png')
+        },
+        text: {
+          text: '',
+          'font-size': 9,
+          display: '',
+          stroke: '#000000',
+          'stroke-width': 0
+        }
+      }
+    }),
+
+    new joint.shapes.basic.Platform({
+      "documentation": {
+        "link": imageSensorPath('mobile-manned-surface-platform.png'),
+        "name": "mobile-manned-surface-platform.png"
+      },
+
+      attrs: {
+        image: {
+          width: 50,
+          height: 50,
+          'xlink:href': imageSensorPath('mobile-manned-surface-platform.png')
+        },
+        text: {
+          text: '',
+          'font-size': 9,
+          display: '',
+          stroke: '#000000',
+          'stroke-width': 0
+        }
+      }
+    }),
+  
+
+  ],
+  Imported: [],
+  ADCP: [],
+  CO2_ANALYSER: [],
+  CONDUCTIVITY: [],
+  CTD: [],
+  CURRENT_METER: [],
+  DEPTH: [],
+  DO_SENSOR: [],
+  FLOW_METER: [],
+  FLUOROMETER: [],
+  GEOPHONE: [],
+  HYDROPHONE: [],
+  MAGNETOMETER: [],
+  MULTIPARAMETER: [],
+  PAH: [],
+  PAR_SENSOR: [],
+  PARTICLE_SIZER: [],
+  PH_SENSOR: [],
+  PRESSURE_SENSOR: [],
+  REDOX: [],
+  SALINOMETER: [],
+  SEDIMENT_TRAP: [],
+  TEMPERATURE: [],
+  TILTMETER: [],
+  TURBIDITY: [],
+  WATER_SAMPLER: [],
+  ACOUSTIC_MODEM: [],
+  ACOUSTIC_RELEASE: [],
+  CAMERA: [],
+  CONNECTOR: [],
+  LOGGER: [],
+  FLOAT: [],
+  HOUSING: [],
+  LASER: [],
+  LIGHT: [],
+  MOORING_SYSTEM: [],
+  POSITIONING_EQUIPMENT: [],
+  UNDERWATER_BATTERY: [],
+  UNDERWATER_CABLE: [],
+  UNDERWATER_SWITCH: [],
+  IFREMER_RVESSEL: [
+    new joint.shapes.basic.IFREMER_RVESSEL({
+      "documentation": {
+        "link": imageSensorPath('ifremer_rv-thalassa.png'),
+        "name": "ifremer_rv-thalassa.png"
+      },
+      attrs: {
+        image: {
+          width: 50,
+          height: 50,
+          'xlink:href': imageSensorPath('ifremer_rv-thalassa.png')
+        },
+        text: {
+          text: '',
+          'font-size': 9,
+          display: '',
+          stroke: '#000000',
+          'stroke-width': 0
+        }
+
+      },
+      "custom": {
+        "classifier": [{
+          "name": "model",
+          "URI": "Thalassa",
+          "Ref": "modelData"
+        }, {
+          "name": "manufacturer",
+          "URI": "GENAVIR",
+          "Ref": "modelData",
+          "definition": "http://www.ifremer.fr/tematres/vocab/index.php?tema=52",
+          "codespace": "http://www.ifremer.fr/tematres/vocab/xml.php?skosTema=40"
+        }]
+      }
+    }),
+
+  ],
+
+
+};
