@@ -1,0 +1,16 @@
+.navigator-container {
+    border: 1px solid hsla(220,11%,97%,.95);;
+    border-left-color: lightgray;
+    padding: 0px 20px 0px 20px;
+    background-color: hsla(220,11%,97%,.95);
+}
+.navigator > .paper {
+    background-color: #ffffff;
+}
+.navigator {
+    background-color: hsla(220,11%,97%,.95);
+}
+/* disable zooming via navigator */
+.navigator .current-view-control {
+    display: none;
+}

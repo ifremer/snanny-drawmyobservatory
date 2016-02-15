@@ -1,0 +1,20 @@
+.save-dialog input{
+	width: 300px;
+}
+
+.save-dialog .directory, .save-dialog .fileNameChooser{
+	padding:10px;
+}
+
+.save-dialog .bold{
+	font-weight: bold;
+}
+
+.save-dialog .error{
+	color: #ff0000;
+}
+
+.save-dialog .hidden{
+	display: none;
+}
+

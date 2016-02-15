@@ -1,0 +1,17 @@
+.icon-obs{
+	background-image: url('../../img/view.svg');
+}
+
+.popovermenu .supMenuItem {
+    opacity: 0.5;
+}
+
+.popovermenu .supMenuItem:hover{
+    opacity: 1;
+}
+
+.popovermenu .supMenuItem .icon, .popovermenu .supMenuItem .no-icon {
+    display: inline-block;
+    width: 16px;
+    margin-right: 10px;
+}
