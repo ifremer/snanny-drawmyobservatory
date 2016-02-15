@@ -183,7 +183,7 @@ Stencil.groups = {
 var dir = "models";
 
 function imageSensorPath(imageName){
-  return OC.imagePath('drawmyobservatory', 'models/'+imageName);
+  return OC.imagePath('snannydrawmyobservatory', 'models/'+imageName);
 }
 
 Stencil.shapes = {
