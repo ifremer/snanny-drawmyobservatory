@@ -77,6 +77,15 @@
 				});
 			});
 			return dialogId;
+		},
+
+		showNotificationMessage:function(text, title) {;
+			var dialog = OCdialogs.info(
+				text,
+				title,
+				function(){},
+				true
+			);
 		}
 	};
 

@@ -6,10 +6,7 @@
    <sml:keywords>
       <sml:KeywordList>
          <sml:keyword>Oceanography</sml:keyword>
-         <sml:keyword>Meteorology</sml:keyword>
          <sml:keyword>Observatory</sml:keyword>
-         <sml:keyword>Wind speed</sml:keyword>
-         <sml:keyword>Currents</sml:keyword>
       </sml:KeywordList>
    </sml:keywords>
    <sml:outputs>

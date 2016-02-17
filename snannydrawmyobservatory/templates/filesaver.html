@@ -1,8 +1,13 @@
 <div id="{dialog_name}" title="Save your observatory" class="save-dialog">
 	<br/>
 	<div class="form">
-		<p><span class="bold">Directory : </span>{dir}<input type="hidden" name="dir"></p>
+		<p><span class="bold">Directory : </span>{dir}<input type="hidden" name="dir" value="{dir}"></p>
 		<p><span class="bold">Filename : </span><input type="text" name="filename"></p>
 	</div>
 	<div><span class="error hidden" id="errorMsg"></span></div>
+	<div class="waiting hidden" id="waitingDialog">
+		<br/>
+		<p>Save in progress...</p>
+		<p><div class="loading"/></p>
+	</div>
 </div>

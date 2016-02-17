@@ -35,7 +35,7 @@
 
 		save: function(item){
 			if (item.filename) {
-				item.callback(item);
+				item.callback(item)
 			} else {
 				OCA.DrawMyObservatory.FileSave.showSaveDialog(item);
 			}
@@ -47,22 +47,25 @@
 				{
 					filename: item.filename,
 					icon: OC.imagePath('core','filetypes/folder'),
-					dir:'/',
+					dir:item.dir,
 					buttonList:[
 					{
 						text: 'Save',
 						click: function(){
 							var dialog = $(this);
 							var errorMsg = dialog.find('#errorMsg');
+							var waitingMessage = dialog.find("#waitingDialog");
 							var data = OCA.TemplateUtil.extractData(dialog);
+							waitingMessage.toggleClass('hidden', false);
 							errorMsg.toggleClass('hidden', true);
 							$.when(item.callback(data)).then(function(result){
-								debugger;
 								if (result.status === 'error') {
 									//Display error
 									errorMsg.html(result.message);
+									waitingMessage.toggleClass('hidden', true);
 									errorMsg.toggleClass('hidden', false);
 								} else {
+									waitingMessage.toggleClass('hidden', true);
 									dialog.ocdialog('close');
 								}
 
@@ -74,6 +77,7 @@
 
 			});
 			this._dialog = $(dialogId);
+			return $(dialogId);
 		}
 	};
 

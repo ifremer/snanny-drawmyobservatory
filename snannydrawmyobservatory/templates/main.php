@@ -17,6 +17,9 @@
 	</div>
 	<div class="paper-container"></div>
 	<div class="toolbar-container">
+	<ul class="myMenu">
+		<li style="width: 280px"><p id="fileName" class="displayableFileName">&nbsp;</p></li>
+	</ul>
 	<ul class="myMenu"><li class="save"><span>Save </span></li></ul>
 	<ul class="myMenu">
 		<li><span>Export  </span>
@@ -28,7 +31,7 @@
 			</ul>
 		</li>
 	</ul>
-	<ul class="myMenu">
+	<ul class="myMenu btn-container">
 		<button id="btn-undo" class="btn" data-tooltip="Undo"><img src="<?php print_unescaped(
 		image_path('snannydrawmyobservatory', 'undo.png'));?>" alt="Undo"/></button>
 		<button id="btn-redo" class="btn" data-tooltip="Redo"><img src="<?php print_unescaped(
@@ -41,15 +44,13 @@
 		image_path('snannydrawmyobservatory', 'zoomin.png'));?>" alt="Zoom in"/></button>
 		<button id="btn-zoom-out" class="btn" data-tooltip="Zoom Out"><img src="<?php print_unescaped(
 		image_path('snannydrawmyobservatory', 'zoomout.png'));?>" alt="Zoom out"/></button>
-		<input id="fileName" type="text" value="MarineObservation-1" style="width: 400px" />
+
 		<div class="panel">
 		<span id="zoom-level">100</span>
 		<span>%</span>
 		</div>
 		<button id="btn-zoom-to-fit" class="btn" data-tooltip="Zoom To Fit"><img src="<?php print_unescaped(
 		image_path('snannydrawmyobservatory', 'zoomtofit.png'));?>" alt="Zoom To Fit"/></button>
-		<button id="btn-fullscreen" class="btn" data-tooltip="Toggle Fullscreen Mode"><img src="<?php print_unescaped(
-		image_path('snannydrawmyobservatory', 'fullscreen.png'));?>" alt="Fullscreen"/></button>
 		<button id="btn-layout" class="btn" data-tooltip="Auto-layout Graph">layout</button>
 		<label data-tooltip="Change Grid Size">Grid size:</label>
 		<input type="range" value="10" min="1" max="50" step="1" id="input-gridsize" />

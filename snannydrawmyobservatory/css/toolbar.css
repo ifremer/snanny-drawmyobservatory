@@ -4,6 +4,8 @@
    text-shadow: 0 -1px 0 #000;
 }
 
+
+
 .toolbar-container .btn {
    background-color: #fafafa;
    background-image: -webkit-linear-gradient(top,#fff,#f2f2f2);
@@ -17,12 +19,16 @@
 }
 
 .toolbar-container .btn-container{
-  margin-left: 435px;
+  margin-left: 5px;
 }
 
 .toolbar-container label,
 .toolbar-container output {
    font-size: .8em;
+}
+
+.toolbar-container .displayableFileName{
+   color: white;
 }
 
 .toolbar-container label {

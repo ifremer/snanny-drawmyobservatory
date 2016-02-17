@@ -8,34 +8,30 @@
     <sml:keywords>
         <sml:KeywordList>
             <sml:keyword>Oceanography</sml:keyword>
-            <sml:keyword>Meteorology</sml:keyword>
             <sml:keyword>Observatory</sml:keyword>
-            <sml:keyword>Wind speed</sml:keyword>
-            <sml:keyword>Currents</sml:keyword>
         </sml:KeywordList>
     </sml:keywords>
     
     <!-- Identification--> 
        <sml:identification>
         <sml:IdentifierList>
-    <sml:identifier>
-        
-        <sml:Term definition="http://www.ifremer.fr/tematres/vocab/index.php?tema=66">
-            <sml:label>UUID</sml:label>
-            <sml:value>{{id}}</sml:value>
-        </sml:Term>
-    </sml:identifier>
-    {{#custom}} {{#identifier}}
-    {{^Ref}} 
-    <sml:identifier>
-        <sml:Term definition="http://www.ifremer.fr/tematres/vocab/index.php?tema=66">
-            <sml:label>{{name}}</sml:label>
-            <sml:value>{{URI}}</sml:value>
-        </sml:Term>
-    </sml:identifier>
-    {{/Ref}} 
-    {{/identifier}}  {{/custom}}
-    </sml:IdentifierList>
+            <sml:identifier>
+                <sml:Term definition="http://www.ifremer.fr/tematres/vocab/index.php?tema=66">
+                    <sml:label>UUID</sml:label>
+                    <sml:value>{{id}}</sml:value>
+                </sml:Term>
+            </sml:identifier>
+            {{#custom}} {{#identifier}}
+            {{^Ref}} 
+            <sml:identifier>
+                <sml:Term definition="http://www.ifremer.fr/tematres/vocab/index.php?tema=66">
+                    <sml:label>{{name}}</sml:label>
+                    <sml:value>{{URI}}</sml:value>
+                </sml:Term>
+            </sml:identifier>
+            {{/Ref}} 
+            {{/identifier}}  {{/custom}}
+        </sml:IdentifierList>
     </sml:identification>
     
     <!-- Classification -->
@@ -45,13 +41,11 @@
       {{/if}}{{/custom}}    
             {{#custom}} {{#classifier}}  {{^Ref}} 
             <sml:classifier>
-              
                 <sml:Term definition="http://www.ifremer.fr/tematres/vocab/index.php?tema=129">
                     <sml:label>{{name}}</sml:label>
                     <sml:codeSpace xlink:href="http://vocab.nerc.ac.uk/collection/L11/current/D08" />
                     <sml:value>{{URI}}</sml:value>
                 </sml:Term>
-              
             </sml:classifier>
             {{/Ref}}  {{/classifier}} {{/custom}}
             {{#custom}} {{#if classifier}} 
@@ -67,7 +61,6 @@
       {{#custom}} {{#contact}}
            <sml:contact>
                 <gmd:CI_ResponsibleParty uuid="{{URI}}">
-                    
                     <gmd:organisationName><gco:CharacterString>IFREMER</gco:CharacterString></gmd:organisationName>
                     <gmd:contactInfo>
                         <gmd:CI_Contact>
@@ -90,7 +83,6 @@
      {{/if}}{{/custom}} 
    
     <!-- history -->
-    
      {{#custom}} {{#if event}}  
     <sml:history>
         <sml:EventList>
@@ -107,8 +99,7 @@
                 </sml:Event>
             </sml:event>
             {{/each}}{{/custom}}
-            
-              {{#custom}} {{#if event}}
+            {{#custom}} {{#if event}}
         </sml:EventList>        
     </sml:history>
     {{/if}} {{/custom}}
@@ -132,7 +123,7 @@
         </sml:OutputList>
     </sml:outputs>
    {{/if}}  {{/custom}} 
-   
+
    <!-- position -->
     {{#custom}} 
     <sml:position>        
@@ -150,11 +141,7 @@
             <sml:component name="{{.}}" xlink:href="{{.}}.xml" />
             {{/ref}}
            {{#if ref}}
-           
         </sml:ComponentList>
     </sml:components>
    {{/if}}
-   
-
-    
 </sml:PhysicalSystem>

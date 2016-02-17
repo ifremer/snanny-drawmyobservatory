@@ -18,3 +18,29 @@
 	display: none;
 }
 
+
+.save-dialog .waiting{
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(255,255,255, 0.85);
+    z-index: 3;
+    margin-left: -15px;
+    cursor: wait;
+}
+
+.save-dialog .waiting p{
+    font-style: italic;
+    padding: 15px;
+    
+}
+
+
+
+.save-dialog .waiting .loading{
+	height: 30px;
+    width: 100%;
+    margin: 0 auto;
+}
+

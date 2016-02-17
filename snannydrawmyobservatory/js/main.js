@@ -1,3 +1,6 @@
+var APP_NAME = 'snannydrawmyobservatory';
+var APPS_URL = '/apps/'+APP_NAME;
+
 var choice = -1;
 var pathChoosen = "";
 var typedName = "";
@@ -10,24 +13,13 @@ function getParameterByName(name) {
     name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
     var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
         results = regex.exec(location.search);
-    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    return results === null ? undefined : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
-var filename = undefined;
-if (getParameterByName('filename') != null)
-    filename = getParameterByName('filename');
-
+var filename = getParameterByName('filename');
 var filecontents = undefined;
-
-var user = undefined;
-if (getParameterByName('user') != null)
-    user = getParameterByName('user');
-
-var dir = undefined;
-if (getParameterByName('dir') != null)
-    dir = getParameterByName('dir');
-
-
+var action = getParameterByName('action');
+var directory = getParameterByName('dir');
 
 function showStatus(message, type) {
 
@@ -63,8 +55,6 @@ $(document).ready(function() {
         routes: {
             '': 'home'
         },
-
-
 
         initialize: function(options) {
             this.options = options || {};
@@ -102,11 +92,9 @@ $(document).ready(function() {
         initializePaper: function() {
 
 
-            $.get(OC.filePath('snannydrawmyobservatory', 'forms', 'model'), function(data) {
+            $.get(OC.filePath(APP_NAME, 'forms', 'model'), function(data) {
                 ajaxTemplate = data;
             });
-
-
 
             this.graph = new joint.dia.Graph;
 
@@ -180,16 +168,18 @@ $(document).ready(function() {
 
 
             var graphInstance = this.graph;
-            $.ajax({
-                url: OC.generateUrl('/apps/snannydrawmyobservatory/ajax/filecontents.php?file=' + filename + '&dir=' + dir + '&user=' + user),
-                success: function(result) {
-                    filecontents = result.data.filecontents;
-                    if (filecontents != undefined && filecontents != "") {
-                        graphInstance.fromJSON(jQuery.parseJSON(filecontents));
-                    }
-                },
-                async: true
-            });
+            if(action === 'edit'){
+                $.ajax({
+                    url: OC.generateUrl(APPS_URL+'/get?file=' + filename + '&dir=' + directory),
+                    success: function(result) {
+                        filecontents = result.data.filecontents;
+                        if (filecontents != undefined && filecontents != "") {
+                            graphInstance.fromJSON(jQuery.parseJSON(filecontents));
+                        }
+                    },
+                    async: true
+                });
+            }
         },
 
         initializeLinkTooltips: function(cell) {
@@ -632,21 +622,14 @@ $(document).ready(function() {
                 }
 
                 if (link.type == 'link') {
-
-
                     var sourceId = link.source.id,
                         targetId = link.target.id;
 
 
                     if (sourceId && targetId) {
-
-
                         this.graph.getCell(targetId).get('ref').push(sourceId);
                         this.graph.getCell(targetId).get('ref');
                         this.graph.getCell(targetId);
-
-
-
                     }
 
 
@@ -728,68 +711,14 @@ $(document).ready(function() {
                 });
             }, this));
             $("li.sensorml").on('click', _.bind(function() {
-
-
-
                 var zip = new JSZip();
-                var name = document.getElementById('fileName').value;
-
+                var name = (fileName)?filename:'draw-my-observatory-sml';
                 var model = this.graph.toJSON();
+                var items = OCA.SMLConverter.transform(ajaxTemplate, this.graph, model.cells);
 
-
-                for (var i in model.cells) {
-
-                    if (model.cells[i].type != "link") {
-
-                        var elem = model.cells[i].id;
-                        if (this.graph.getCell(elem).attr('text').text == '') {
-                            this.graph.getCell(elem).attr('text').text = "UNNAMEDElement" + i;
-                            model.cells[i].attrs.text.text = "UNNAMEDElement" + i;
-
-                        }
-                        for (var j in model.cells[i].ref) {
-                            var ref = model.cells[i].ref[j];
-
-                            if (this.graph.getCell(ref) != null)
-                                model.cells[i].ref[j] = this.graph.getCell(ref).attr('text').text;
-                        }
-
-
-
-                    }
-
-
+                for(var i in items){
+                    zip.file(items[i].filename, items[i].data);
                 }
-
-                for (var i in model.cells) {
-
-                    if (model.cells[i].type != "link") {
-
-                        model.cells[i].modelType = "plop";
-                        if (model.cells[i].modelType = model.cells[i].custom.classifier[0] && model.cells[i].custom.classifier[0].name === "model")
-
-                            model.cells[i].modelType = model.cells[i].custom.classifier[0].URI;
-
-
-                        model.cells[i].custom.classifier = model.cells[i].custom.classifier.filter(function(el) {
-                            return el.Ref !== "modelData";
-                        });
-
-
-                        var template = Handlebars.compile(ajaxTemplate);
-                        var generated = template(model.cells[i]);
-
-                        //console.log(generated); 
-                        var generatedDecode = $('<textarea />').html(generated).text();
-
-                        zip.file(model.cells[i].attrs.text.text + ".xml", generatedDecode);
-
-                    }
-
-                }
-
-
-
                 var content = zip.generate({
                     type: "blob"
                 });
@@ -807,7 +736,6 @@ $(document).ready(function() {
                     maxScale: 5
                 });
             }, this));
-            $('#btn-fullscreen').on('click', _.bind(this.toggleFullscreen, this));
             $('#btn-print').on('click', _.bind(this.paper.print, this.paper));
             $('#btn-exportJSON').on('click', _.bind(this.toJSON, this));
             $('li.odt').on('click', _.bind(function() {
@@ -903,48 +831,53 @@ $(document).ready(function() {
                 
                 var toImport = [];
 
-
                 $.each(model.cells, function(i, v) {
                     if (v.type != "link") {
                         if (v.custom.imported) {
                             toImport.push(v);
+                            OCA.Preferences.add(v.attrs.text.text);
+                        }else{
+                            OCA.Preferences.remove(v.attrs.text.text);
                         }
                     }
-
                 });
 
-                var dataToSend = {
-                    graphic:graphicData,
-                    cells:toImport
-                };
+                var smls = OCA.SMLConverter.transform(ajaxTemplate, this.graph, model.cells);
 
                 OCA.DrawMyObservatory.FileSave.save({
-                    dir:dir, 
-                    fileName:fileName, 
+                    dir:directory, 
+                    filename:filename, 
                     callback:function(data){
                         //Envoi des données à un service qui créer le .moe et met en place un tar
                         var defer = $.Deferred();
                         if(data) {
                             var self = this;
-                            var saveUrl = OC.generateUrl('/apps/snannydrawmyobservatory/save');
+                            var saveUrl = OC.generateUrl(APPS_URL+'/save');
                             var dataToSend =  {
                                     "graphic":graphicData,
-                                    "cells":toImport,
+                                    "smls": JSON.stringify(smls),
+                                    "cells":JSON.stringify(toImport),
                                     "filename":data.filename,
                                     "dir":data.dir
                                 };
+
+
+
                             $.ajax({
                                 url:saveUrl,
                                 type:'POST',
                                 dataType: 'json',
                                 data: dataToSend,
                                 success: function(response){
-                                    debugger;
-                                    defer.resolve(response)
+                                    defer.resolve(response);
+                                    OCA.Preferences.save();
+                                    if(response.status === 'success'){
+                                        OCA.TemplateUtil.showNotificationMessage('File saved', 'Confirmation');
+                                        filename = response.filename;
+                                    }
                                 },
                                 error: function(jqXHR, textStatus, errorThrown){
-                                    debugger;
-                                    defer.resolve({status:'error', message:'errorThrown'});
+                                    defer.resolve({status:'error', message:'An error occured : '+errorThrown});
                                 }
                             });
                         }
@@ -1100,7 +1033,7 @@ $(document).ready(function() {
             var reqModel = $.ajax({
 
                 //This will retrieve the contents of the folder if the folder is configured as 'browsable'
-                url: OC.filePath('snannydrawmyobservatory', 'models', ''),
+                url: OC.filePath(APP_NAME, 'models', ''),
                 success: function(data) {
 
                     //Lsit all png file names in the page
@@ -1122,7 +1055,7 @@ $(document).ready(function() {
                         }
                         var typeName = type.join("_");
                         if (filename.substr(filename.lastIndexOf('.') + 1) === "json") {
-                            var urlModel = OC.filePath('snannydrawmyobservatory', 'models', filename);
+                            var urlModel = OC.filePath(APP_NAME, 'models', filename);
                             reqModels[index] = $.ajax({
                                 url: urlModel,
                                 success: function(a) {
@@ -1138,11 +1071,11 @@ $(document).ready(function() {
                                         //Create owncloud link
                                         var link = shape.documentation.link;
                                         var fileName = link.substr(link.lastIndexOf("/") + 1);
-                                        shape.documentation.link = OC.filePath('snannydrawmyobservatory', 'models', filename);
+                                        shape.documentation.link = OC.filePath(APP_NAME, 'models', filename);
 
                                         var image = shape.attrs.image['xlink:href'];
                                         var imageFileName = image.substr(image.lastIndexOf("/") + 1);
-                                        shape.attrs.image['xlink:href'] = OC.imagePath('snannydrawmyobservatory', 'models/' + imageFileName);
+                                        shape.attrs.image['xlink:href'] = OC.imagePath(APP_NAME, 'models/' + imageFileName);
 
                                         Stencil.shapes[typeName].push(new joint.shapes.basic.ACOUSTIC_RELEASE(shape));
                                     }
@@ -1180,116 +1113,49 @@ $(document).ready(function() {
             if (location.search != "") {
 
                 var importedData = [];
-                var req1 = $.ajax({
-                    url: webdavPath + '.sensorNannyDraw'
-
-                    ,
-                    xhrFields: {
-                        withCredentials: true
-                    },
-                    success: function(result) {
-
-                        userPreferences = result;
-
-                    },
-
-                    error: function() {
-                        $(".se-pre-con").fadeOut("fast");
-                    }
-
-                });
                 var req = [];
 
-
-
-                $.when(req1).done(function() {
-
-
-                    if (userPreferences === "") {
+                $.when(OCA.Preferences.load()).done(function() {
+                    var prefs = OCA.Preferences.get();
+                    if (prefs.length === 0) {
                         $(".se-pre-con").fadeOut("fast");
                     } else {
-                        var arr = userPreferences.split(';');
-
-                        for (var i in arr) {
-                            if (arr[i] !== "") {
+                        for (var i in prefs) {
+                            if (prefs[i] !== "") {
                                 req[i] = $.ajax({
-                                    url: webdavPath + arr[i],
-
-
+                                    url: OC.generateUrl(APPS_URL+'/model/'+ prefs[i]),
                                     success: function(a) {
-
                                         importedData.push($.parseJSON(a));
-
-
                                     },
-                                    xhrFields: {
-                                        withCredentials: true
-                                    },
-                                    crossDomain: true,
+    
                                     error: function() {
-
                                         importedData.push("fail");
                                     }
 
 
                                 });
                             } else {
-
-                                req[i] = $.ajax({
-                                    url: webdavPath + '/fail',
-
-                                    xhrFields: {
-                                        withCredentials: true
-                                    },
-                                    crossDomain: true,
-
-                                    error: function() {
-
-                                        importedData.push("fail");
-                                    }
-
-
-                                });
-
-
-
+                                importedData.push("fail");
                             }
                         }
 
 
 
                         $.when.apply($, req).done(function() {
-                            for (var i in arr) {
-
-
-                                importedData[i].cells[0].custom.imported = false;
+                            for (var i in prefs) {
+                                importedData[i].cells.custom.imported = false;
                             }
-                            for (var i in arr) {
-
-
-                                Stencil.shapes.Imported.push(new joint.shapes.basic.Platform(importedData[i].cells[0]));
-
+                            for (var i in prefs) {
+                                Stencil.shapes.Imported.push(new joint.shapes.basic.Platform(importedData[i].cells));
                             }
-
                             rappid.initializeStencil();
-
                             $(".se-pre-con").fadeOut("fast");
                         });
 
                         $.when.apply($, req).fail(function() {
-
-
-
                             $(".se-pre-con").fadeOut("fast");
-
                         });
-
-
-
                     }
-
-
-
                 })
             } else {
 

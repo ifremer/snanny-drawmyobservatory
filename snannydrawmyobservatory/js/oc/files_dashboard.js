@@ -36,7 +36,7 @@
 					//get dir
 					var dir = OCA.DrawMyObservatory.FileList.getDir();
 					//get
-					var url = OC.generateUrl('/apps/snannydrawmyobservatory/?action=edit&dir='+dir+'&filename='+fileName);
+					var url = OC.generateUrl('/apps/snannydrawmyobservatory/?action=edit&dir='+encodeURIComponent(dir)+'&filename='+encodeURIComponent(fileName));
 					window.open(url, "_blank");
 				},
 				render: function(actionSpec, isDefault, context) {
@@ -100,7 +100,7 @@
 		_onCreateObservatory:function(){
 			var dir = OCA.DrawMyObservatory.FileList.getDir();
 			//get
-			var url = OC.generateUrl('/apps/snannydrawmyobservatory/?action=create&dir='+dir);
+			var url = OC.generateUrl('/apps/snannydrawmyobservatory/?action=create&dir='+encodeURIComponent(dir));
 			window.open(url, "_blank");
 		},
 
