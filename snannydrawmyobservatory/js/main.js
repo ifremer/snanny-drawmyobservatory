@@ -1117,7 +1117,7 @@ $(document).ready(function() {
 
                 $.when(OCA.Preferences.load()).done(function() {
                     var prefs = OCA.Preferences.get();
-                    if (prefs.length === 0) {
+                    if (prefs === null || prefs.length === 0) {
                         $(".se-pre-con").fadeOut("fast");
                     } else {
                         for (var i in prefs) {
