@@ -743,10 +743,7 @@ $(document).ready(function() {
                 //console.log(model.cells);
                 for (var i = 0; i < model.cells.length; i++) {
                     if (model.cells[i].type == 'link') {
-                        //      console.log(model.cells[i]);
                         model.cells.splice(i, 1);
-
-                        //    console.log(i);
                         i--;
                     }
 
@@ -759,14 +756,9 @@ $(document).ready(function() {
                     var imageExtension = model.cells[i].attrs.image["xlink:href"];
                     imageExtension = imageExtension.split(".");
                     if (imageExtension[1] === "png") {
-
-                        convertImgToBase64URL(model.cells[i].attrs.image["xlink:href"], function(base64Img) {
-                            // Base64DataURL
-                            //        console.log(base64Img)
-                        });
-
+                        model.cells[i].attrs.image["xlink:href"] = imageExternalHost+model.cells[i].attrs.image["xlink:href"];
+                        model.cells[i].documentation["link"] = imageExternalHost+model.cells[i].documentation["link"];
                     }
-
                 }
 
 
@@ -810,11 +802,6 @@ $(document).ready(function() {
                     $("#overallImage").val(overallImage[1]);
                     $('#birtForm').attr("action", birtserverLink);
                     $('#birtForm').submit();
-
-                    //  console.log($('#birtForm'));
-
-
-
                 }
 
 
