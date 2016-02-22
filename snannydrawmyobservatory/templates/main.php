@@ -15,6 +15,7 @@
 		<button class="btn-expand" title="Expand all">+</button>
 		<button class="btn-collapse" title="Collapse all">-</button>
 	</div>
+	<div class="tooltip-container"></div>
 	<div class="paper-container"></div>
 	<div class="toolbar-container">
 	<ul class="myMenu">

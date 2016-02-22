@@ -37906,7 +37906,7 @@ joint.ui.Tooltip = Backbone.View.extend({
 			this.$rootTarget = $(this.options.rootTarget);
 
 			this.$rootTarget.on('mouseover', this.options.target, this.render);
-			this.$rootTarget.on('mouseout', this.options.target, this.hide);
+			//this.$rootTarget.on('mouseout', this.options.target, this.hide);
 			this.$rootTarget.on('mousedown', this.options.target, this.hide);
 
 		} else {
@@ -37914,7 +37914,7 @@ joint.ui.Tooltip = Backbone.View.extend({
 			this.$target = $(this.options.target);
 
 			this.$target.on('mouseover', this.render);
-			this.$target.on('mouseout', this.hide);
+			//this.$target.on('mouseout', this.hide);
 			this.$target.on('mousedown', this.hide);
 		}
 

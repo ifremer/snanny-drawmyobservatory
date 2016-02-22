@@ -15,6 +15,27 @@
     text-shadow: 0 -1px 0 #000;
 }
 
+.tooltip-container{
+    position: absolute;
+    z-index: 1;
+    color: white;
+    background-color: hsla(65,37%,0%,0.75);
+    padding: 10px;
+    width: 200px;
+    left: 170px;
+    border-radius: 15px;
+    display: none;
+}
+
+.tooltip-container > h3{
+    font-weight: bold;
+}
+
+.tooltip-container a{
+    color: lightskyblue;
+    float: right;
+}
+
 .stencil-container > .btn-expand,
 .stencil-container > .btn-collapse {
     position: absolute;

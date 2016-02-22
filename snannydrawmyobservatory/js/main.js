@@ -7,7 +7,7 @@ var typedName = "";
 
 var userPreferences = "";
 var rendered = false;
-var webdavPath = OC.filePath('', '', 'remote.php/webdav') + '/';
+var tooltipManager;
 
 function getParameterByName(name) {
     name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
@@ -58,6 +58,7 @@ $(document).ready(function() {
 
         initialize: function(options) {
             this.options = options || {};
+            tooltipManager = new TooltipManager();
         },
 
         home: function() {
@@ -80,6 +81,7 @@ $(document).ready(function() {
             // Intentionally commented out. See the `initializeValidator()` method for reasons.
             // Uncomment for demo purposes.
             this.initializeValidator();
+
             // Commented out by default. You need to run `node channelHub.js` in order to make
             // channels working. See the documentation to the joint.com.Channel plugin for details.
             //this.initializeChannel('ws://jointjs.com:4141');
@@ -184,8 +186,9 @@ $(document).ready(function() {
 
         initializeLinkTooltips: function(cell) {
 
-            if (cell instanceof joint.dia.Link) {
 
+
+            if (cell instanceof joint.dia.Link) {
                 var linkView = this.paper.findViewByModel(cell);
                 new joint.ui.Tooltip({
                     className: 'tooltip small',
@@ -217,6 +220,7 @@ $(document).ready(function() {
             this.stencil.$el.on('contextmenu', function(evt) {
                 evt.preventDefault();
             });
+
             $('.stencil-paper-drag').on('contextmenu', function(evt) {
                 evt.preventDefault();
             });
@@ -251,21 +255,25 @@ $(document).ready(function() {
 
         initializeStencilTooltips: function() {
 
+
+
             // Create tooltips for all the shapes in stencil.
             _.each(this.stencil.graphs, function(graph) {
 
                 graph.get('cells').each(function(cell) {
                     var content = "";
-                    if (cell.get('custom').classifier[1])
-                        content = cell.get('attrs').text.name + "\n" + cell.get('custom').classifier[1].URI;
-
-
-                    new joint.ui.Tooltip({
-                        target: '.stencil [model-id="' + cell.id + '"]',
-                        content: content,
-                        left: '.stencil',
-                        direction: 'left'
-                    });
+                   
+                    if(cell.get('attrs').text.name){
+                        content += "<h3>"+cell.get('attrs').text.name+"</h3>";
+                    }
+                    if (cell.get('custom').classifier[1]){
+                        content += "<p>"+cell.get('custom').classifier[1].URI+"</p>";
+                        
+                    }
+                    if(cell.get('custom').identifier[0]){
+                            content += '<a href="'+emsoYellowPage+'/sensor.php?id='+cell.get('custom').identifier[0].URI+'" target="_blank">more information...</a>';
+                    }
+                    tooltipManager.register('.stencil [model-id="' + cell.id + '"]', cell.id, content);
                 });
             });
         },
