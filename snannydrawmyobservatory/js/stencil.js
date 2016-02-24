@@ -376,6 +376,29 @@ Stencil.shapes = {
     }),
   
 
+   new joint.shapes.basic.Platform({
+      "documentation": {
+        "link": imageSensorPath('platform-network.png'),
+        "name": "platform-network.png"
+      },
+
+      attrs: {
+        image: {
+          width: 50,
+          height: 50,
+          'xlink:href': imageSensorPath('platform-network.png')
+        },
+        text: {
+          text: '',
+          'font-size': 9,
+          display: '',
+          stroke: '#000000',
+          'stroke-width': 0
+        }
+      }
+    }),
+
+
   ],
   Imported: [],
   ADCP: [],
