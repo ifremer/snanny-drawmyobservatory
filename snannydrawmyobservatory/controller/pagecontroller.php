@@ -85,7 +85,7 @@ class PageController extends Controller
         \OCP\Util::addScript('core', 'jquery.ocdialog');
          
         \OC_Util::addVendorScript('core', 'jquery/jquery');
-        \OC_Util::addVendorScript('core', 'jquery.datetimepicker');
+        \OC_Util::addVendorScript('core', 'jquery.datetimepicker.min');
         \OC_Util::addVendorScript('core', 'handlebars/handlebars');
         return new TemplateResponse($this->appName, 'main', []);
     }
