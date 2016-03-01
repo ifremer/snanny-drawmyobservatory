@@ -36655,7 +36655,7 @@ joint.ui.Inspector = Backbone.View.extend({
 		if ($attr) {
 			// We are updating only one specific attribute
 
-			//console.log("-------"+attrPath);
+			console.log("-------"+attrPath);			
 			if (attrPath == "custom/classifier/0/name") {
 				$attr.on('focus', _.bind(function() {
 
@@ -36691,7 +36691,7 @@ joint.ui.Inspector = Backbone.View.extend({
 					$attr.datetimepicker({
 
 						timepicker: true,
-						format: 'd-m-Y H:i'
+						format: 'Y-m-d H:i:00.0
 
 					});
 
@@ -36895,14 +36895,13 @@ joint.ui.Inspector = Backbone.View.extend({
 			var path = 'custom/event/' + index + '/date';
 			var $auto = this._byPath['custom/event/' + index + '/date'];
 
-
 			$auto.datetimepicker(
 
 				{
 
 
 					timepicker: true,
-					format: 'd-m-Y H:i'
+					format: 'Y-m-d H:i:00.0'
 
 				}
 			);
