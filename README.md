@@ -4,9 +4,19 @@ Packaged as an owncloud plugin for edition of file in native json format.
 Compliant with sensorML (import for single component description, export for complex systems).
 
 
-## Build and Deploy
+## Requirements
 
 Tested with Owncloud 8.1
+
+Extend it with jquery-datetimepickerplugin 
+Download jquery-datetimepicker from github: https://github.com/xdan/datetimepicker
+
+Copy file jquery.datetimepicker.js in {owncloud_home}/core/vendor
+
+
+## Build and Deploy
+
+
 
 Copy the drawmyobservatory folder into your owncloud product in the folder apps
 
