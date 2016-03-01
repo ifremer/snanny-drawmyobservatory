@@ -11,7 +11,7 @@ Tested with Owncloud 8.1
 Extend it with jquery-datetimepickerplugin 
 Download jquery-datetimepicker from github: https://github.com/xdan/datetimepicker
 
-Copy file jquery.datetimepicker.js in {owncloud_home}/core/vendor
+Copy file jquery.datetimepicker.min.js in {owncloud_home}/core/vendor
 
 
 ## Build and Deploy
