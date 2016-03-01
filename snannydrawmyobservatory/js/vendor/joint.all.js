@@ -36691,7 +36691,7 @@ joint.ui.Inspector = Backbone.View.extend({
 					$attr.datetimepicker({
 
 						timepicker: true,
-						format: 'Y-m-d H:i:00.0
+						format: 'Y-m-d H:i:00.0'
 
 					});
 
