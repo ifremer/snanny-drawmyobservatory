@@ -49,12 +49,12 @@ class PageController extends Controller
                 'style', 'preLoading', 'oc/oc_drawmyobservatory'));
 
         ScriptUtil::loadVendorStyles($this->appName,
-            array('joint.all', 'inspector'));
+            array('jquery.datetimepicker', 'joint.all', 'inspector'));
 
         ScriptUtil::loadScripts($this->appName,
             array('vendor/modernizr-2.8.2.min',
                 'vendor/mustache.min', 'vendor/jszip-2.4.0-3.min', 'vendor/FileSaver.min',
-                'vendor/Blob', 'vendor/joint', 'vendor/joint.all', 'inspector',)
+                'vendor/Blob', 'vendor/joint', 'vendor/joint.all',  'inspector',)
         );
 
         ScriptUtil::loadScriptsFromRep($this->appName, 'types',
@@ -79,11 +79,13 @@ class PageController extends Controller
 
         \OCP\Util::addScript('core', 'placeholder');
         \OCP\Util::addScript('core', 'jquery.avatar');
-        \OCP\Util::addScript('core', 'octemplate');
-
+        \OCP\Util::addScript('core', 'octemplate');                
         \OC_Util::addVendorScript('core', 'jquery-ui/ui/jquery-ui.custom');
+        \OC_Util::addVendorScript('core', 'jquery-ui/ui/jquery-ui.custom');      
         \OCP\Util::addScript('core', 'jquery.ocdialog');
-
+         
+        \OC_Util::addVendorScript('core', 'jquery/jquery');
+        \OC_Util::addVendorScript('core', 'jquery.datetimepicker');
         \OC_Util::addVendorScript('core', 'handlebars/handlebars');
         return new TemplateResponse($this->appName, 'main', []);
     }
