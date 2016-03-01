@@ -43,15 +43,15 @@ var CommonInspectorGroups = {
 
     text: {
         label: 'Text',
-        index: 8
+        index: 9
     },
     presentation: {
         label: 'Presentation',
-        index: 7
+        index: 8
     },
     geometry: {
         label: 'Geometry',
-        index: 6
+        index: 7
     },
     data: {
         label: 'System description',
@@ -75,7 +75,7 @@ var CommonInspectorGroups = {
     },
     event: {
         label: 'event',
-        index: 7
+        index: 6
     }
 
 
@@ -279,7 +279,7 @@ var dataType = {
             group: 'position',
             attrs: {
                 label: {
-                    'data-tooltip': 'role'
+                    'data-tooltip': 'latitude in decimal'
                 }
             }
         },
@@ -291,7 +291,7 @@ var dataType = {
             index: 2,
             attrs: {
                 label: {
-                    'data-tooltip': 'email'
+                    'data-tooltip': 'longitude in decimal'
                 }
             }
         }, 
