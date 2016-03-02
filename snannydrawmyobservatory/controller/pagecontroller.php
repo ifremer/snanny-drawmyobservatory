@@ -39,6 +39,7 @@ class PageController extends Controller
     {
         \OC_Util::addVendorScript('core', 'jquery-migrate/jquery-migrate.min');
 
+
         ScriptUtil::loadStyles('core',
             array('icons'));
 
@@ -77,16 +78,18 @@ class PageController extends Controller
             'oc/files_save', 'oc/browser', 'oc/templateutil', 'oc/smlgenerator', 'oc/preference','stencil', 'oc/tooltip'));
 
 
-        \OCP\Util::addScript('core', 'placeholder');
-        \OCP\Util::addScript('core', 'jquery.avatar');
-        \OCP\Util::addScript('core', 'octemplate');                
+       
+	/** JQUERY modules, beware of the order, general jquery first **/
+	//\OC_Util::addVendorScript('core', 'jquery/jquery');        
         \OC_Util::addVendorScript('core', 'jquery-ui/ui/jquery-ui.custom');
-        \OC_Util::addVendorScript('core', 'jquery-ui/ui/jquery-ui.custom');      
-        \OCP\Util::addScript('core', 'jquery.ocdialog');
-         
-        \OC_Util::addVendorScript('core', 'jquery/jquery');
-        \OC_Util::addVendorScript('core', 'jquery.datetimepicker.full.min');
+        \OC_Util::addVendorScript('core', 'jquery-ui/ui/jquery-ui.custom'); 
+        \OCP\Util::addScript('core', 'placeholder'); 
+        \OCP\Util::addScript('core', 'jquery.avatar');              
+        \OCP\Util::addScript('core', 'jquery.ocdialog');         
+        \OCP\Util::addScript('core', 'octemplate');            
+        \OC_Util::addScript($this->appName, 'vendor/jquery.datetimepicker.full.min');
         \OC_Util::addVendorScript('core', 'handlebars/handlebars');
+
         return new TemplateResponse($this->appName, 'main', []);
     }
 
