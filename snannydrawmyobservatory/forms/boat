@@ -50,8 +50,11 @@
    </sml:identification>
    <sml:components>
       <sml:ComponentList>
+         {{#refname}}            
+            <sml:component name="{{.}}" 
+            {{/refname}}
          {{#ref}}
-         <sml:component name="{{.}}" xlink:href="{{.}}.xml" />
+           xlink:href="{{.}}" />
          {{/ref}}
       </sml:ComponentList>
    </sml:components>

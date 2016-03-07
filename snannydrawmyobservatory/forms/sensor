@@ -96,17 +96,16 @@
         </sml:OutputList>
     </sml:outputs>
    {{/if}}  {{/custom}} 
-     
-    <!-- components list --> 
+    
+ <!-- components list --> 
       {{#if ref}}
     <sml:components>
         <sml:ComponentList>
-        {{/if}} 
-            {{#ref}}
-            <sml:component name="{{.}}" xlink:href="{{.}}.xml" />
-            {{/ref}}
-           {{#if ref}}
-           
+        {{/if}}
+            {{#each refStruct}}                       
+            <sml:component name="{{name}}"  xlink:href="{{uri}}" />
+            {{/each}}
+           {{#if ref}}           
         </sml:ComponentList>
     </sml:components>
    {{/if}}
