@@ -23,7 +23,6 @@
 		 * @param {OCA.Files.FileList} fileList file list to be extended
 		 */
 		attach: function(fileList) {
-			var id = 0;
 			var fileActions = fileList.fileActions;
 			fileActions.registerAction({
 				name: 'Visualize',
@@ -40,16 +39,16 @@
 					window.open(url, "_blank");
 				},
 				render: function(actionSpec, isDefault, context) {
-					var fileArray = context.fileList.files;
-					var file = fileArray[id];
-					id = (id+1)%fileArray.length;
-
-					if(file != undefined){
-						if(file.name.substr(file.name.lastIndexOf('.') + 1) === "moe"){
-							return fileActions._defaultRenderAction.call(fileActions, actionSpec, isDefault, context);
-						}
+					var file = context.$file;
+					if(file != undefined && file.length>0) {
+					    var attr = file[0].attributes;
+                        var dataType = attr['data-type'].nodeValue;
+                        var dataFile = attr['data-File'].nodeValue;
+                        if(dataType === 'file' && dataFile.substr(dataFile.lastIndexOf('.') + 1) === 'moe' ) {
+                            return fileActions._defaultRenderAction.call(fileActions, actionSpec, isDefault, context);
+                        }
 					}
-					return null;
+                    return null;
 				}
 			});
 
