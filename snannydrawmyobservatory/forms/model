@@ -105,9 +105,9 @@
     {{/if}} {{/custom}}
     <!-- type OF -->
     {{#if modelType}}
-    <sml:typeOf xlink:href="{{modelType}}.xml"/>
+    <sml:typeOf xlink:href="{{smlTypeOfUrl}}{{modelType}}.xml"/>
     {{else}}
-    <sml:typeOf xlink:href="{{type}}.xml"/>
+    <sml:typeOf xlink:href="{{smlTypeOfUrl}}{{type}}.xml"/>
     {{/if}}
    
     <!-- output -->
