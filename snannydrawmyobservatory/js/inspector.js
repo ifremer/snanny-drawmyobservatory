@@ -36,6 +36,18 @@ var CommonInspectorInputs = {
             index: 4
         }
     },
+    id: {
+        type: 'text',
+        label: 'UUID',
+        group: 'identifier',
+        index: 1,
+        attrs: {
+            input: {
+                'readonly': true,
+                'class': 'uuid'
+            }
+        }
+    }
 
 };
 
@@ -93,8 +105,8 @@ var dataType = {
             label: {
                 'data-tooltip': 'Description of the element'
             },
-            textarea:{
-                'style':'min-height:120px'
+            textarea: {
+                'style': 'min-height:120px'
             }
         }
     },
@@ -128,7 +140,7 @@ var dataType = {
                         type: 'text',
                         inlined: true,
                         label: 'URI',
-                        index: 2,
+                        index: 3,
                         attrs: {
                             label: {
                                 'data-tooltip': 'identifier'
@@ -143,8 +155,6 @@ var dataType = {
             index: 1,
             label: 'Output'
         },
-
-
 
         identifier: {
             type: 'list',
@@ -294,7 +304,7 @@ var dataType = {
                     'data-tooltip': 'longitude in decimal'
                 }
             }
-        }, 
+        },
         event: {
             type: 'list',
             item: {
@@ -335,13 +345,10 @@ var dataType = {
         }
 
 
-
     },
 
 
-
 };
-
 
 
 var CommonInspectorTextInputs = {
@@ -534,7 +541,7 @@ var InputDefs = {
 
 function inp(defs) {
     var ret = {};
-    _.each(defs, function(def, attr) {
+    _.each(defs, function (def, attr) {
 
         ret[attr] = _.extend({}, InputDefs[attr], def);
     });
@@ -645,7 +652,6 @@ var InspectorDefs = {
             }
         }
     },
-
 
 
 };
