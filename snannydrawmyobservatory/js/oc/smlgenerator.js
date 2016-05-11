@@ -45,6 +45,7 @@
                 if (cells[i].type != "link") {
 
                     cells[i].modelType = "plop";
+                    cells[i].smlTypeOfUrl = smlTypeOfUrl;
                     if (cells[i].modelType = cells[i].custom.classifier[0] && cells[i].custom.classifier[0].name === "model"){
 						cells[i].modelType = cells[i].custom.classifier[0].URI;
                     }
