@@ -20,9 +20,8 @@
       <sml:ClassifierList>
          {{#custom}} {{#classifier}}
          <sml:classifier>
-            <sml:Term definition="http://www.ifremer.fr/tematres/vocab/index.php?tema=129">
+            <sml:Term>
                <sml:label>{{name}}</sml:label>
-               <sml:codeSpace xlink:href="http://vocab.nerc.ac.uk/collection/L11/current/D08" />
                <sml:value>{{URI}}</sml:value>
             </sml:Term>
          </sml:classifier>
@@ -33,14 +32,14 @@
       <sml:IdentifierList>
          {{#custom}}
          <sml:identifier>
-            <sml:Term definition="http://www.ifremer.fr/tematres/vocab/index.php?tema=66">
+            <sml:Term  definition="http://www.ifremer.fr/tematres/vocab/index.php?tema=66">
                <sml:label>UUID</sml:label>
                <sml:value>{{id}}</sml:value>
             </sml:Term>
          </sml:identifier>
          {{#identifier}}
          <sml:identifier>
-            <sml:Term definition="http://www.ifremer.fr/tematres/vocab/index.php?tema=66">
+            <sml:Term>
                <sml:label>{{name}}</sml:label>
                <sml:value>{{URI}}</sml:value>
             </sml:Term>

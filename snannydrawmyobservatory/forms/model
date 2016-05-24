@@ -24,7 +24,7 @@
             {{#custom}} {{#identifier}}
             {{^Ref}} 
             <sml:identifier>
-                <sml:Term definition="http://www.ifremer.fr/tematres/vocab/index.php?tema=66">
+                <sml:Term>
                     <sml:label>{{name}}</sml:label>
                     <sml:value>{{URI}}</sml:value>
                 </sml:Term>
@@ -41,9 +41,8 @@
       {{/if}}{{/custom}}    
             {{#custom}} {{#classifier}}  {{^Ref}} 
             <sml:classifier>
-                <sml:Term definition="http://www.ifremer.fr/tematres/vocab/index.php?tema=129">
+                <sml:Term>
                     <sml:label>{{name}}</sml:label>
-                    <sml:codeSpace xlink:href="http://vocab.nerc.ac.uk/collection/L11/current/D08" />
                     <sml:value>{{URI}}</sml:value>
                 </sml:Term>
             </sml:classifier>
@@ -89,7 +88,7 @@
       {{/if}} {{/custom}}         
             {{#custom}}    {{#each event}}
             <sml:event>
-                <sml:Event definition="http://www.ifremer.fr/tematres/vocab/index.php?tema=90">
+                <sml:Event>
                     <swe:description>{{description}}</swe:description>
                     <sml:time>
                         <gml:TimeInstant gml:id="Call{{@index}}">
