@@ -50,8 +50,20 @@
             {{#custom}} {{#if classifier}} 
         </sml:ClassifierList>
     </sml:classification>
-    {{/if}}{{/custom}}  
-    
+    {{/if}}{{/custom}}
+
+    {{#if times}}
+    <sml:validTime>
+        {{/if}}
+        {{#custom}}
+        <gml:TimePeriod gml:id="validTime">
+            <gml:beginPosition>{{startTime}}</gml:beginPosition>
+            <gml:endPosition>{{endTime}}</gml:endPosition>
+        </gml:TimePeriod>
+        {{/custom}}
+    </sml:validTime>
+
+
     <!-- Contacts -->
     {{#custom}} {{#if contact}}  
      <sml:contacts>

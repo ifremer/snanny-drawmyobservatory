@@ -36497,6 +36497,22 @@ joint.ui.Inspector = Backbone.View.extend({
 
 			$el.append($field);
 		}
+
+		if(path == "custom/startTime" || path == "custom/endTime") {
+		var $attr = $($input[2]);
+			$attr.on('focus', _.bind(function() {
+
+
+					$attr.datetimepicker({
+
+						timepicker: true,
+						format: 'Y-m-d H:i:00.0'
+
+					});
+
+					console.log("datepicker");
+				}, this));
+		}
 	},
 
 	updateInputPosition: function() {
@@ -36684,7 +36700,7 @@ joint.ui.Inspector = Backbone.View.extend({
 
 
 			}
-			if (attrPath == "custom/event/0/date") {
+			if (attrPath == "custom/event/0/date" || attrPath == "custom/startTime" || attrPath == "custom/endTime") {
 				$attr.on('focus', _.bind(function() {
 
 
@@ -36894,6 +36910,7 @@ joint.ui.Inspector = Backbone.View.extend({
 		if (path == 'custom/event') {
 			var path = 'custom/event/' + index + '/date';
 			var $auto = this._byPath['custom/event/' + index + '/date'];
+
 
 			$auto.datetimepicker(
 

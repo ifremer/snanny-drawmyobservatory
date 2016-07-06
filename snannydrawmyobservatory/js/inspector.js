@@ -55,15 +55,15 @@ var CommonInspectorGroups = {
 
     text: {
         label: 'Text',
-        index: 9
+        index: 10
     },
     presentation: {
         label: 'Presentation',
-        index: 8
+        index: 9
     },
     geometry: {
         label: 'Geometry',
-        index: 7
+        index: 8
     },
     data: {
         label: 'System description',
@@ -87,6 +87,10 @@ var CommonInspectorGroups = {
     },
     event: {
         label: 'event',
+        index: 7
+    },
+    validPeriod: {
+        label: 'Valid period',
         index: 6
     }
 
@@ -340,6 +344,28 @@ var dataType = {
             attrs: {
                 label: {
                     'data-tooltip': 'Events'
+                }
+            }
+        },
+        startTime: {
+            type: 'text',
+            label: 'from',
+            index: 1,
+            group: 'validPeriod',
+            attrs: {
+                label: {
+                    'data-tooltip': 'from validity date'
+                }
+            }
+        },
+        endTime: {
+            type: 'text',
+            label: 'to',
+            group: 'validPeriod',
+            index: 2,
+            attrs: {
+                label: {
+                    'data-tooltip': 'to validity date'
                 }
             }
         }
