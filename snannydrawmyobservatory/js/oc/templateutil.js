@@ -4,6 +4,8 @@
  *
  */
 (function() {
+
+	var $smlDialog = undefined;
 	/**
 	 * @namespace
 	 */
@@ -57,17 +59,54 @@
 
 		createDialog: function(template, item){
 			var dialogName = 'oc-dialog-' + OCdialogs.dialogsCounter + '-'+template;
+			item.dialog_name = dialogName;
 			var dialogId = '#' + dialogName;
 			$.when(OCA.TemplateUtil.getTemplate('snannydrawmyobservatory', template)).then(function($tmpl) {
 				
-				var $dlg = $tmpl.octemplate({
+				var $dlg = $tmpl.octemplate(/*{
 					dialog_name: dialogName,
 					filename: item.filename,
 					dir:(item.dir)?item.dir:'/',
 					icon:item.icon
-				});
+				}*/item);
 				$('body').append($dlg);
 				$dlg.ocdialog({
+					closeOnEscape: true,
+					modal: true,
+					buttons: item.buttonList,
+					close:function(){
+						$(dialogId).remove();
+					}
+				});
+			});
+			return dialogId;
+		},
+
+		createSmlDialog: function(item, elements){
+			var template = 'smlError.html';
+			var dialogName = 'oc-dialog-' +template;
+			item.dialog_name = dialogName;
+			var dialogId = '#' + dialogName;
+
+			$.when(OCA.TemplateUtil.getTemplate('snannydrawmyobservatory', template)).then(function($tmpl) {
+				if($smlDialog !== undefined) {
+					$($smlDialog).remove();
+				}
+
+				$smlDialog = $tmpl.octemplate(item);
+				$('body').append($smlDialog);
+				if (elements.length > 0) {
+					var templateIndex = 0;
+					for(var i in elements) {
+						$.when(OCA.TemplateUtil.getTemplate('snannydrawmyobservatory', 'smlErrorElement.html')).then(function($tmpl) {
+							var element = elements[templateIndex];
+							var $errorElement = $tmpl.octemplate(element);
+							$('#smlErrorContent').append($errorElement);
+							templateIndex++;
+						});
+					}
+				}
+				$smlDialog.ocdialog({
 					closeOnEscape: true,
 					modal: true,
 					buttons: item.buttonList,

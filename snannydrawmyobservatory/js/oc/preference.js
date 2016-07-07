@@ -1,5 +1,5 @@
 /**
- * 
+ *
  * Enable Preferences storage
  *
  */
@@ -39,7 +39,9 @@
 			return $.ajax({
                 url: OC.generateUrl('/apps/snannydrawmyobservatory/preferences/get'),
                 success: function(result) {
-                    Preferences._prefs = result;
+                    if($.isArray(result)) {
+                        Preferences._prefs = result;
+                    }
                 },
                 error: function() {
                     $(".se-pre-con").fadeOut("fast");

@@ -54,7 +54,6 @@
 
     {{#if times}}
     <sml:validTime>
-        {{/if}}
         {{#custom}}
         <gml:TimePeriod gml:id="validTime">
             <gml:beginPosition>{{startTime}}</gml:beginPosition>
@@ -62,6 +61,7 @@
         </gml:TimePeriod>
         {{/custom}}
     </sml:validTime>
+    {{/if}}
 
 
     <!-- Contacts -->

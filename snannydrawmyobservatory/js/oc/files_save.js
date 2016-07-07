@@ -47,7 +47,7 @@
 				{
 					filename: item.filename,
 					icon: OC.imagePath('core','filetypes/folder'),
-					dir:item.dir,
+					dir:(item.dir)?item.dir:'/',
 					buttonList:[
 					{
 						text: 'Save',

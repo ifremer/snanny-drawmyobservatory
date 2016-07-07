@@ -75,7 +75,7 @@ class PageController extends Controller
 
         ScriptUtil::loadScripts($this->appName, array('configuration', 'main',
             'drawmyobservatory', 'keyboard',
-            'oc/files_save', 'oc/browser', 'oc/templateutil', 'oc/smlgenerator', 'oc/preference','stencil', 'oc/tooltip'));
+            'oc/files_save', 'oc/browser', 'oc/templateutil', 'oc/smldateformat', 'oc/smlvalidator', 'oc/smlgenerator', 'oc/preference','stencil', 'oc/tooltip'));
 
 
        

@@ -11,6 +11,7 @@
 
         transform: function (handlebarTemplate, graph, cells) {
             var result = [];
+            var validPeriodByUuid = {};
             for (var i in cells) {
                 if (cells[i].type != "link") {
                     var elem = cells[i].id;
@@ -27,6 +28,17 @@
 
                     cells[i].refStruct = [];
                     var nameString;
+
+
+                    var startTime = cells[i].custom.startTime;
+                    var endTime = cells[i].custom.endTime;
+                    if (startTime.length > 0 && endTime.length > 0) {
+                        validPeriodByUuid[cells[i].id] = {};
+                        validPeriodByUuid[cells[i].id].startTime = startTime;
+                        validPeriodByUuid[cells[i].id].endTime = endTime;
+                    }
+
+
                     for (var j in cells[i].ref) {
                         var ref = cells[i].ref[j];
                         if (graph.getCell(ref) != null) {
@@ -36,6 +48,11 @@
                             // name is used as reference
                             nameStr = graph.getCell(ref).attr('text').text;
                             cells[i].refStruct[j].name = nameStr.replace(/[^A-Za-z0-9\.\-\_]/gm, '_');
+                        }
+                        if (validPeriodByUuid[ref] == undefined) {
+                            validPeriodByUuid[ref] = {};
+                            validPeriodByUuid[ref].startTime = startTime;
+                            validPeriodByUuid[ref].endTime = endTime;
                         }
                     }
                 }
@@ -54,14 +71,20 @@
                         return el.Ref !== "modelData";
                     });
 
-                    var startTime = cells[i].custom.startTime;
-                    var endTime = cells[i].custom.endTime;
-                    if (startTime.length > 0 && endTime.length > 0) {
-                        cells[i].times = isTimesValid(startTime, endTime);
-                        if(cells[i].times) {
-                            cells[i].custom.startTime = getFormattedTime(startTime, true);
-                            cells[i].custom.endTime = getFormattedTime(endTime, false);
-                        }
+                    if (validPeriodByUuid[cells[i].id] != undefined) {
+                        var startTime = validPeriodByUuid[cells[i].id].startTime;
+                        var endTime = validPeriodByUuid[cells[i].id].endTime;
+                        cells[i].times = true;
+                        var formattedStartTime = OCA.SMLDateFormat.getFormattedTime(startTime, true);
+                        var formattedEndTime = OCA.SMLDateFormat.getFormattedTime(endTime, false);
+
+                        cells[i].custom.startTime = formattedStartTime;
+                        cells[i].custom.endTime = formattedEndTime;
+
+                        var startDate = new Date(formattedStartTime);
+                        var endDate = new Date(formattedEndTime);
+                        cells[i].from = startDate.getTime() / 1000;
+                        cells[i].to = endDate.getTime() / 1000;
                     }
 
                     var template = Handlebars.compile(handlebarTemplate);
@@ -71,46 +94,8 @@
                     var filename = cells[i].attrs.text.text + ".xml";
                     result.push({'filename': filename, 'data': generatedDecode});
                 }
-
             }
             return result;
-
-            function isTimesValid(start, end) {
-                var formattedStart = getFormattedTime(start, true);
-                var formattedEnd = getFormattedTime(end, false);
-
-                var isValid = formattedStart != undefined && formattedEnd != undefined;
-                if (isValid) {
-                    var startDate = new Date(formattedStart);
-                    var endDate = new Date(formattedEnd);
-                    isValid = endDate.getTime() > startDate.getTime();
-                }
-                return isValid;
-            }
-
-            function getFormattedTime(time, start) {
-                var result = undefined;
-                if (time != undefined) {
-                    var dateComplement = undefined;
-                    if (time.match(/^[\d]{4}$/)) {
-                        if (start) {
-                            dateComplement = '-01-01T00:00:00Z';
-                        } else {
-                            dateComplement = '-12-31T00:00:00Z';
-                        }
-                        result = time + dateComplement;
-                    } else if (time.match(/^[\d]{4}-[\d]{2}-[\d]{2}$/)) {
-                        dateComplement = 'T00:00:00Z';
-                        result = time + dateComplement;
-                    } else if (time.match(/^[\d]{4}-[\d]{2}-[\d]{2}T[\d]{2}:[\d]{2}:[\d]{2}[Z]{0,1}$/)) {
-                        dateComplement = time.indexOf('Z', time.length - 1) !== -1 ? "" : "Z";
-                        result = time + dateComplement;
-                    } else if (time.match(/^[\d]{4}-[\d]{2}-[\d]{2} [\d]{2}:[\d]{2}:[\d]{2}\.[\d]{1}$/)) {
-                        result = time.replace(/([\d]{4}-[\d]{2}-[\d]{2}) ([\d]{2}:[\d]{2}:[\d]{2})\.[\d]{1}/, "$1T$2Z");
-                    }
-                }
-                return result;
-            }
         }
     };
 
