@@ -32,7 +32,7 @@
 
                     var startTime = cells[i].custom.startTime;
                     var endTime = cells[i].custom.endTime;
-                    if (startTime.length > 0 && endTime.length > 0) {
+                    if (startTime !== undefined && startTime.length > 0 && endTime !== undefined && endTime.length > 0) {
                         validPeriodByUuid[cells[i].id] = {};
                         validPeriodByUuid[cells[i].id].startTime = startTime;
                         validPeriodByUuid[cells[i].id].endTime = endTime;
