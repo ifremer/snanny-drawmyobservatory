@@ -20,8 +20,14 @@
                 if (cells[i].type != "link") {
                     var startTime = cells[i].custom.startTime;
                     var endTime = cells[i].custom.endTime;
+                    if (startTime === undefined) {
+                        startTime = "";
+                    }
+                    if (endTime === undefined) {
+                        endTime = "";
+                    }
                     result.valid = startTime.length > 0 && endTime.length > 0 || startTime.length === 0 && endTime.length === 0;
-                    if(!result.valid) {
+                    if (!result.valid) {
                         result.message = 'Both or none of the dates of the period must be filled';
                     }
                     if (startTime.length > 0 && endTime.length > 0) {
@@ -41,7 +47,7 @@
                     var startDate = new Date(formattedStart);
                     var endDate = new Date(formattedEnd);
                     isValid = endDate.getTime() > startDate.getTime();
-                    if(!isValid) {
+                    if (!isValid) {
                         result.message = 'To date must be after from date';
                     }
                 } else {
