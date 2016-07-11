@@ -36499,19 +36499,30 @@ joint.ui.Inspector = Backbone.View.extend({
 		}
 
 		if(path == "custom/startTime" || path == "custom/endTime") {
-		var $attr = $($input[2]);
+			var $attr = $($input[2]);
+			$attr.datetimepicker({
+
+						timepicker: true,
+						format: 'Y-m-d H:i:00.0'
+
+					});
 			$attr.on('focus', _.bind(function() {
 
 
 					$attr.datetimepicker({
 
 						timepicker: true,
-						format: 'Y-m-d H:i:00.0'
+						format: 'Y-m-d H:i:00.0',
+						onChangeYear: function(currentTime, $input) {
+							var formattedDate = currentTime.getUTCFullYear() + '-' + currentTime.getUTCMonth() + '-' + currentTime.getUTCDate() + ' ' + currentTime.getUTCHours() + ':' + currentTime.getMinutes() + ':00.0';
+							$input.val(formattedDate);
+						}
 
 					});
 
 					console.log("datepicker");
 				}, this));
+
 		}
 	},
 
@@ -36707,7 +36718,11 @@ joint.ui.Inspector = Backbone.View.extend({
 					$attr.datetimepicker({
 
 						timepicker: true,
-						format: 'Y-m-d H:i:00.0'
+						format: 'Y-m-d H:i:00.0',
+						onChangeYear: function(currentTime, $input) {
+							var formattedDate = currentTime.getUTCFullYear() + '-' + currentTime.getUTCMonth() + '-' + currentTime.getUTCDate() + ' ' + currentTime.getUTCHours() + ':' + currentTime.getMinutes() + ':00.0';
+							$input.val(formattedDate);
+						}
 
 					});
 
@@ -36918,7 +36933,11 @@ joint.ui.Inspector = Backbone.View.extend({
 
 
 					timepicker: true,
-					format: 'Y-m-d H:i:00.0'
+					format: 'Y-m-d H:i:00.0',
+					onChangeYear: function(currentTime, $input) {
+							var formattedDate = currentTime.getUTCFullYear() + '-' + currentTime.getUTCMonth() + '-' + currentTime.getUTCDate() + ' ' + currentTime.getUTCHours() + ':' + currentTime.getMinutes() + ':00.0';
+							$input.val(formattedDate);
+						}
 
 				}
 			);
