@@ -36508,13 +36508,17 @@ joint.ui.Inspector = Backbone.View.extend({
 					});
 			$attr.on('focus', _.bind(function() {
 
-
+					var dateFormatter = this.getFormattedDate;
 					$attr.datetimepicker({
 
 						timepicker: true,
 						format: 'Y-m-d H:i:00.0',
 						onChangeYear: function(currentTime, $input) {
-							var formattedDate = currentTime.getUTCFullYear() + '-' + currentTime.getUTCMonth() + '-' + currentTime.getUTCDate() + ' ' + currentTime.getUTCHours() + ':' + currentTime.getMinutes() + ':00.0';
+							var formattedDate = dateFormatter(currentTime);
+							$input.val(formattedDate);
+						},
+						onChangeMonth: function(currentTime, $input) {
+							var formattedDate = dateFormatter(currentTime);
 							$input.val(formattedDate);
 						}
 
@@ -36714,13 +36718,18 @@ joint.ui.Inspector = Backbone.View.extend({
 			if (attrPath == "custom/event/0/date" || attrPath == "custom/startTime" || attrPath == "custom/endTime") {
 				$attr.on('focus', _.bind(function() {
 
+				var dateFormatter = this.getFormattedDate;
 
 					$attr.datetimepicker({
 
 						timepicker: true,
 						format: 'Y-m-d H:i:00.0',
 						onChangeYear: function(currentTime, $input) {
-							var formattedDate = currentTime.getUTCFullYear() + '-' + currentTime.getUTCMonth() + '-' + currentTime.getUTCDate() + ' ' + currentTime.getUTCHours() + ':' + currentTime.getMinutes() + ':00.0';
+							var formattedDate = dateFormatter(currentTime);
+							$input.val(formattedDate);
+						},
+						onChangeMonth: function(currentTime, $input) {
+							var formattedDate = dateFormatter(currentTime);
 							$input.val(formattedDate);
 						}
 
@@ -36830,6 +36839,27 @@ joint.ui.Inspector = Backbone.View.extend({
 
 		this.stopBatchCommand();
 	},
+	
+	getFormattedDate: function(currentTime) {
+		var formattedMonth = '' + currentTime.getUTCMonth();
+		if (formattedMonth.length === 1) {
+			formattedMonth = '0' + formattedMonth;
+		}
+		var formattedDay = '' + currentTime.getUTCDate();
+		if (formattedDay.length === 1) {
+			formattedDay = '0' + formattedDay;
+		}
+		var formattedHour = '' + currentTime.getUTCHours();
+		if (formattedHour.length === 1) {
+			formattedHour = '0' + formattedHour;
+		}
+		var formattedMinute = '' + currentTime.getMinutes();
+		if (formattedMinute.length === 1) {
+			formattedMinute = '0' + formattedMinute;
+		}
+		var formattedDate = currentTime.getUTCFullYear() + '-' + formattedMonth + '-' + formattedDay + ' ' + formattedHour + ':' + formattedMinute + ':00.0';
+		return formattedDate;
+	},
 
 	setProperty: function(path, value, opt) {
 
@@ -36926,7 +36956,7 @@ joint.ui.Inspector = Backbone.View.extend({
 			var path = 'custom/event/' + index + '/date';
 			var $auto = this._byPath['custom/event/' + index + '/date'];
 
-
+			var dateFormatter = this.getFormattedDate;
 			$auto.datetimepicker(
 
 				{
@@ -36935,9 +36965,13 @@ joint.ui.Inspector = Backbone.View.extend({
 					timepicker: true,
 					format: 'Y-m-d H:i:00.0',
 					onChangeYear: function(currentTime, $input) {
-							var formattedDate = currentTime.getUTCFullYear() + '-' + currentTime.getUTCMonth() + '-' + currentTime.getUTCDate() + ' ' + currentTime.getUTCHours() + ':' + currentTime.getMinutes() + ':00.0';
+							var formattedDate = dateFormatter(currentTime);
 							$input.val(formattedDate);
-						}
+					},
+					onChangeMonth: function(currentTime, $input) {
+						var formattedDate = dateFormatter(currentTime);
+						$input.val(formattedDate);
+					}
 
 				}
 			);
