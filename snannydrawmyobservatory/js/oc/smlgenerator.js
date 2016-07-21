@@ -12,6 +12,7 @@
         transform: function (handlebarTemplate, graph, cells) {
             var result = [];
             var validPeriodByUuid = {};
+            var hierarchy = {};
             for (var i in cells) {
                 if (cells[i].type != "link") {
                     var elem = cells[i].id;
@@ -49,11 +50,7 @@
                             nameStr = graph.getCell(ref).attr('text').text;
                             cells[i].refStruct[j].name = nameStr.replace(/[^A-Za-z0-9\.\-\_]/gm, '_');
                         }
-                        if (validPeriodByUuid[ref] == undefined) {
-                            validPeriodByUuid[ref] = {};
-                            validPeriodByUuid[ref].startTime = startTime;
-                            validPeriodByUuid[ref].endTime = endTime;
-                        }
+                        hierarchy[ref] = cells[i].id;
                     }
                 }
             }
@@ -71,21 +68,33 @@
                         return el.Ref !== "modelData";
                     });
 
-                    if (validPeriodByUuid[cells[i].id] != undefined) {
-                        var startTime = validPeriodByUuid[cells[i].id].startTime;
-                        var endTime = validPeriodByUuid[cells[i].id].endTime;
+                    var startTime = validPeriodByUuid[cells[i].id] != undefined ? validPeriodByUuid[cells[i].id].startTime : undefined;
+                    var endTime = validPeriodByUuid[cells[i].id] != undefined ? validPeriodByUuid[cells[i].id].endTime : undefined;
+
+                    if (startTime == undefined) {
+                        startTime = findDateFromParent(cells[i].id, true);
+                    }
+
+                    if (endTime == undefined) {
+                        endTime = findDateFromParent(cells[i].id, false);
+                    }
+
+                    if (startTime != undefined) {
                         cells[i].times = true;
                         var formattedStartTime = OCA.SMLDateFormat.getFormattedTime(startTime, true);
-                        var formattedEndTime = OCA.SMLDateFormat.getFormattedTime(endTime, false);
-
                         cells[i].custom.startTime = formattedStartTime;
-                        cells[i].custom.endTime = formattedEndTime;
-
                         var startDate = new Date(formattedStartTime);
-                        var endDate = new Date(formattedEndTime);
                         cells[i].from = startDate.getTime() / 1000;
+                    }
+
+                    if (endTime != undefined) {
+                        cells[i].times = true;
+                        var formattedEndTime = OCA.SMLDateFormat.getFormattedTime(endTime, false);
+                        cells[i].custom.endTime = formattedEndTime;
+                        var endDate = new Date(formattedEndTime);
                         cells[i].to = endDate.getTime() / 1000;
                     }
+
 
                     var template = Handlebars.compile(handlebarTemplate);
                     var generated = template(cells[i]);
@@ -96,6 +105,19 @@
                 }
             }
             return result;
+
+            function findDateFromParent(uuid, start) {
+                var resultDate = undefined;
+                var parentUuid = hierarchy[uuid];
+                if (parentUuid != undefined) {
+                    if (validPeriodByUuid[parentUuid] != undefined) {
+                        resultDate = start ? validPeriodByUuid[parentUuid].startTime : validPeriodByUuid[parentUuid].endTime;
+                    } else {
+                        resultDate = findDateFromParent(parentUuid, start);
+                    }
+                }
+                return resultDate;
+            }
         }
     };
 
