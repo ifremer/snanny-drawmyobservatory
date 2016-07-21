@@ -36841,7 +36841,7 @@ joint.ui.Inspector = Backbone.View.extend({
 	},
 	
 	getFormattedDate: function(currentTime) {
-		var formattedMonth = '' + currentTime.getUTCMonth();
+		var formattedMonth = '' + (currentTime.getUTCMonth() + 1);
 		if (formattedMonth.length === 1) {
 			formattedMonth = '0' + formattedMonth;
 		}
