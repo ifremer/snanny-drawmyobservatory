@@ -52,46 +52,49 @@ var CommonInspectorInputs = {
 };
 
 var CommonInspectorGroups = {
-
-    text: {
-        label: 'Text',
-        index: 10
-    },
-    presentation: {
-        label: 'Presentation',
-        index: 9
-    },
-    geometry: {
-        label: 'Geometry',
-        index: 8
-    },
     data: {
-        label: 'System description',
+        label: 'Name / description',
         index: 1
     },
     identifier: {
-        label: 'identifier',
+        label: 'Identifiers',
         index: 2
-    },
-    classifier: {
-        label: 'other tags',
-        index: 3
-    },
-    contact: {
-        label: 'Contact',
-        index: 4
-    },
-    position: {
-        label: 'Position',
-        index: 5
-    },
-    event: {
-        label: 'event',
-        index: 7
     },
     validPeriod: {
         label: 'Valid period',
+        index: 3
+    },
+    classifier: {
+        label: 'Other tags',
+        index: 4
+    },
+    contact: {
+        label: 'Contact',
+        index: 5
+    },
+    outputs: {
+        label: 'Outputs',
         index: 6
+    },
+    position: {
+        label: 'Location',
+        index: 7
+    },
+    event: {
+        label: 'event',
+        index: 8
+    },
+    geometry: {
+        label: 'Geometry',
+        index: 9
+    },
+    presentation: {
+        label: 'Presentation',
+        index: 10
+    },
+    text: {
+        label: 'Text',
+        index: 11
     }
 
 
@@ -133,7 +136,7 @@ var dataType = {
                         type: 'text',
                         'readOnly': true,
                         label: 'name',
-                        index: 1,
+                        index: 6,
                         attrs: {
                             label: {
                                 'data-tooltip': 'label of the output channel'
@@ -155,8 +158,8 @@ var dataType = {
 
                 }
             },
-            group: 'data',
-            index: 1,
+            group: 'outputs',
+            index: 6,
             label: 'Output'
         },
 
