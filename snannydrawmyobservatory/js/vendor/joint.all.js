@@ -36115,6 +36115,7 @@ var inspector = new joint.ui.Inspector({
 
 $('.inspector-container').append(inspector.render().el);
 */
+var lastIndexUse;
 
 joint.ui.Inspector = Backbone.View.extend({
 
@@ -36912,6 +36913,12 @@ joint.ui.Inspector = Backbone.View.extend({
 
 		var lastIndex = $lastListItem.length === 0 ? -1 : parseInt($lastListItem.attr('data-index'), 10);
 		var index = lastIndex + 1;
+
+        if(lastIndexUse !== undefined){
+            index = lastIndexUse + 1;
+        }
+
+        lastIndexUse = index;
 
 		var $listItem = $(joint.templates.inspector['list-item.html']({
 			index: index
