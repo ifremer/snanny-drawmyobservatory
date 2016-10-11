@@ -36930,7 +36930,6 @@ joint.ui.Inspector = Backbone.View.extend({
 		$target.parent().children('.list-items').prepend($listItem);
 
 
-
 		$listItem.find('input:first').focus();
 
 		this.trigger('render');
