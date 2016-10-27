@@ -34,24 +34,6 @@ function showStatus(message, type) {
 
 var ajaxTemplate;
 
-function convertImgToBase64URL(url, callback, outputFormat) {
-    var img = new Image();
-    img.crossOrigin = 'Anonymous';
-    img.onload = function () {
-        var canvas = document.createElement('CANVAS'),
-            ctx = canvas.getContext('2d'),
-            dataURL;
-        canvas.height = this.height;
-        canvas.width = this.width;
-        ctx.drawImage(this, 0, 0);
-        dataURL = canvas.toDataURL(outputFormat);
-        callback(dataURL);
-        canvas = null;
-    };
-    img.src = url;
-}
-
-
 $(document).ready(function () {
     var Rappid = Backbone.Router.extend({
 
@@ -177,10 +159,7 @@ $(document).ready(function () {
                 $.ajax({
                     url: OC.generateUrl(APPS_URL + '/get?file=' + filename + '&dir=' + directory),
                     success: function (result) {
-                        filecontents = result.data.filecontents;
-                        if (filecontents != undefined && filecontents != "") {
-                            graphInstance.fromJSON(jQuery.parseJSON(filecontents));
-                        }
+                        graphInstance.fromJSON(jQuery.parseJSON(result));
                     },
                     async: true
                 });
@@ -799,12 +778,49 @@ $(document).ready(function () {
 
                 var callback = function (dataURL) {
 
-                    var overallImage = dataURL.split(",");
+                    var imageURL = DL_APPS_URL + '?dir=' + directory + '&files=' + filename + '.png';
+                    OCA.DrawMyObservatory.FileSave.save({
+                        dir: directory,
+                        filename: filename + '.png',
+                        callback: function (data) {
+                            //Envoi des données à un service qui créer le .moe et met en place un tar
+                            var defer = $.Deferred();
+                            if (data) {
+                                var self = this;
+
+                                $.ajax({
+                                    url: OC.generateUrl(APPS_URL + '/save'),
+                                    type: 'POST',
+                                    dataType: 'json',
+                                    data: {
+                                        "graphic": dataURL,
+                                        "filename": data.filename,
+                                        "dir": data.dir
+                                    },
+                                    success: function (response) {
+                                        defer.resolve(response);
+                                        OCA.Preferences.save();
+                                        if (response.status === 'success') {
+                                            OCA.TemplateUtil.showNotificationMessage('File export to ODT', 'Confirmation');
+                                            filename = response.filename;
+                                        }
+                                    },
+                                    error: function (jqXHR, textStatus, errorThrown) {
+                                        defer.resolve({
+                                            status: 'error',
+                                            message: 'An error occured : ' + errorThrown
+                                        });
+                                    }
+                                });
+                            }
+                            return defer.promise();
+                        }
+                    });
 
 
-                    $("#json").val(model);
-                    $("#projectName").val($("#fileName").val());
-                    $("#overallImage").val(overallImage[1]);
+                    $("#json").attr("value", model);
+                    $("#projectName").attr("value", filename);l
+                    $("#overallImage").attr("value", imageURL);
                     $('#birtForm').attr("action", birtserverLink);
                     $('#birtForm').submit();
                 }
@@ -1133,7 +1149,7 @@ $(document).ready(function () {
                 var importedData = [];
                 var req = [];
 
-                $.when(OCA.Preferences.load()).done(function () {
+                $.when(OCA.Preferences.load(filename)).done(function () {
                     var prefs = OCA.Preferences.get();
                     if (prefs === null || prefs.length === 0) {
                         $(".se-pre-con").fadeOut("fast");
@@ -1172,6 +1188,9 @@ $(document).ready(function () {
                         $.when.apply($, req).fail(function () {
                             $(".se-pre-con").fadeOut("fast");
                         });
+                    }
+                    if(OCA.Preferences.getPermission()) {
+                        document.getElementsByClassName("save")[0].style.display= "none";
                     }
                 })
             } else {

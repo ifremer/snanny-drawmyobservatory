@@ -1,0 +1,104 @@
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:map="http://www.w3c.rl.ac.uk/2003/11/21-skos-mapping#" xmlns:dct="http://purl.org/dc/terms/" xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <skos:ConceptScheme rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/">
+        <dc:title>ifremer</dc:title>
+        <dc:creator>thomas loubrieu</dc:creator>
+        <dc:contributor/>
+        <dc:publisher/>
+        <dc:rights/>
+        <dc:subject/>
+        <dc:description>
+            <![CDATA[ ]]>
+        </dc:description>
+        <dc:date>2014-01-28</dc:date>
+        <dct:modified>2014-01-29 11:53:41</dct:modified>
+        <dc:language>en</dc:language>
+    </skos:ConceptScheme>
+    <skos:Collection rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=67">
+        <skos:prefLabel xml:lang="en">observation system contact role</skos:prefLabel>
+        <dc:title>observation system contact role</dc:title>
+        <skos:notation>systemContactRole</skos:notation>
+        <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=68">
+                <skos:prefLabel xml:lang="en">chief scientist</skos:prefLabel>
+                <skos:notation>chiefScientist</skos:notation>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=67"/>
+                <dct:created>2014-02-20 14:32:05</dct:created>
+                <dct:modified>2014-03-03 11:49:50</dct:modified>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=95">
+                <skos:prefLabel xml:lang="en">coordinator</skos:prefLabel>
+                <skos:notation>coordinator</skos:notation>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=67"/>
+                <dct:created>2014-03-12 11:02:57</dct:created>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=102">
+                <skos:prefLabel xml:lang="en">operator</skos:prefLabel>
+                <skos:notation>operator</skos:notation>
+                <skos:scopeNote xml:lang="en">For example ship operator of Thalassa is GENAVIR</skos:scopeNote>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=67"/>
+                <dct:created>2014-07-16 14:33:55</dct:created>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=103">
+                <skos:prefLabel xml:lang="en">owner</skos:prefLabel>
+                <skos:notation>owner</skos:notation>
+                <skos:scopeNote xml:lang="en">
+                    For example the owner of research vessel Thalassa is IFREMER.
+                </skos:scopeNote>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=67"/>
+                <dct:created>2014-07-16 14:35:28</dct:created>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=71">
+                <skos:prefLabel xml:lang="en">pilot</skos:prefLabel>
+                <skos:notation>pilot</skos:notation>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=67"/>
+                <dct:created>2014-02-20 14:35:16</dct:created>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=69">
+                <skos:prefLabel xml:lang="en">principal investigator</skos:prefLabel>
+                <skos:notation>principalInvestigator</skos:notation>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=67"/>
+                <dct:created>2014-02-20 14:32:32</dct:created>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=70">
+                <skos:prefLabel xml:lang="en">scientific crew member</skos:prefLabel>
+                <skos:notation>scientificCrewMember</skos:notation>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=67"/>
+                <dct:created>2014-02-20 14:33:41</dct:created>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=177">
+                <skos:prefLabel xml:lang="en">technical coordinator</skos:prefLabel>
+                <skos:notation>technicalCoordinator</skos:notation>
+                <skos:scopeNote xml:lang="en">
+                    Coordinate development and operation of components on-board.
+                </skos:scopeNote>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=67"/>
+                <dct:created>2016-02-03 16:51:04</dct:created>
+            </skos:Concept>
+        </skos:member>
+        <dct:created>2014-02-20 14:31:23</dct:created>
+        <dct:modified>2014-02-28 16:08:35</dct:modified>
+    </skos:Collection>
+</rdf:RDF>

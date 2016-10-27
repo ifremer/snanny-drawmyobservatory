@@ -1,0 +1,377 @@
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:map="http://www.w3c.rl.ac.uk/2003/11/21-skos-mapping#" xmlns:dct="http://purl.org/dc/terms/" xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <skos:ConceptScheme rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/">
+        <dc:title>ifremer</dc:title>
+        <dc:creator>thomas loubrieu</dc:creator>
+        <dc:contributor/>
+        <dc:publisher/>
+        <dc:rights/>
+        <dc:subject/>
+        <dc:description>
+            <![CDATA[ ]]>
+        </dc:description>
+        <dc:date>2014-01-28</dc:date>
+        <dct:modified>2014-01-29 11:53:41</dct:modified>
+        <dc:language>en</dc:language>
+    </skos:ConceptScheme>
+    <skos:Collection rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=46">
+        <skos:prefLabel xml:lang="en">sensorML roles</skos:prefLabel>
+        <dc:title>sensorML roles</dc:title>
+        <skos:notation>sensorMLRoles</skos:notation>
+        <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=57">
+                <skos:prefLabel xml:lang="en">argosProgram</skos:prefLabel>
+                <skos:notation>hasArgosProgram</skos:notation>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=46"/>
+                <dct:created>2014-02-04 18:00:03</dct:created>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=56">
+                <skos:prefLabel xml:lang="en">argosPtt</skos:prefLabel>
+                <skos:notation>hasArgosPtt</skos:notation>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=46"/>
+                <dct:created>2014-02-04 18:00:03</dct:created>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=160">
+                <skos:prefLabel xml:lang="en">batteryLife</skos:prefLabel>
+                <skos:notation>hasBatteryLife</skos:notation>
+                <skos:scopeNote xml:lang="en">
+                    battery life as defined for acoustic release in emso yellow pages (http://www.esonetyellowpages.com/).
+                </skos:scopeNote>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=46"/>
+                <dct:created>2015-06-23 15:01:18</dct:created>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=61">
+                <skos:prefLabel xml:lang="en">callSign</skos:prefLabel>
+                <skos:notation>hasCallSign</skos:notation>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=46"/>
+                <dct:created>2014-02-19 16:16:12</dct:created>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=140">
+                <skos:prefLabel xml:lang="en">deploymentStatus</skos:prefLabel>
+                <skos:notation>hasDeploymentStatus</skos:notation>
+                <skos:scopeNote xml:lang="en">
+                    Created for JERICO sensorML template. Used for Poseidon/Pylos mooring description.
+                </skos:scopeNote>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=46"/>
+                <dct:created>2015-01-06 09:23:31</dct:created>
+                <dct:modified>2015-01-06 09:23:58</dct:modified>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=158">
+                <skos:prefLabel xml:lang="en">depthRating</skos:prefLabel>
+                <skos:notation>hasDepthRating</skos:notation>
+                <skos:scopeNote xml:lang="en">
+                    depth rating for acoustic release  as defined in emso yellow pages (http://www.esonetyellowpages.com/)
+                </skos:scopeNote>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=46"/>
+                <dct:created>2015-06-23 14:57:16</dct:created>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=84">
+                <skos:prefLabel xml:lang="en">diveNumber</skos:prefLabel>
+                <skos:notation>hasDiveNumber</skos:notation>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=46"/>
+                <dct:created>2014-02-20 17:12:54</dct:created>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=126">
+                <skos:prefLabel xml:lang="en">EDIOSSeriesReference</skos:prefLabel>
+                <skos:notation>hasEDIOSSeriesReference</skos:notation>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=46"/>
+                <dct:created>2014-09-29 16:37:43</dct:created>
+                <dct:modified>2014-09-29 16:39:26</dct:modified>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=51">
+                <skos:prefLabel xml:lang="en">family</skos:prefLabel>
+                <skos:notation>hasFamily</skos:notation>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=46"/>
+                <dct:created>2014-02-04 18:00:03</dct:created>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=63">
+                <skos:prefLabel xml:lang="en">flag</skos:prefLabel>
+                <skos:notation>hasFlag</skos:notation>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=46"/>
+                <dct:created>2014-02-19 16:27:15</dct:created>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=159">
+                <skos:prefLabel xml:lang="en">frequencyRange</skos:prefLabel>
+                <skos:notation>hasFrequencyRange</skos:notation>
+                <skos:scopeNote xml:lang="en">
+                    frequency range as defined for acoustic release in emso yellow pages (http://www.esonetyellowpages.com/)
+                </skos:scopeNote>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=46"/>
+                <dct:created>2015-06-23 14:59:09</dct:created>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=127">
+                <skos:prefLabel xml:lang="en">GEOSSId</skos:prefLabel>
+                <skos:notation>hasGEOSSId</skos:notation>
+                <skos:scopeNote xml:lang="en">
+                    GEOSS registry id as found in, for example http://geossregistries.info/geosspub/resource_details.jsp?compId=urn:geoss:csr:resource:urn:uuid:1d580c6c-0eff-96df-0f07-175a432472f3
+                </skos:scopeNote>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=46"/>
+                <dct:created>2014-12-05 09:50:57</dct:created>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=54">
+                <skos:prefLabel xml:lang="en">location</skos:prefLabel>
+                <skos:notation>hasLocation</skos:notation>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=46"/>
+                <dct:created>2014-02-04 18:00:03</dct:created>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=60">
+                <skos:prefLabel xml:lang="en">manager</skos:prefLabel>
+                <skos:notation>hasManager</skos:notation>
+                <skos:historyNote xml:lang="en">
+                    deprecated use http://ubisi54.ifremer.fr/tematres/vocab/index.php?tema=68&/scientific-manager instead
+                </skos:historyNote>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=46"/>
+                <dct:created>2014-02-17 12:07:45</dct:created>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=52">
+                <skos:prefLabel xml:lang="en">manufacturer</skos:prefLabel>
+                <skos:notation>hasManufacturer</skos:notation>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=46"/>
+                <dct:created>2014-02-04 18:00:03</dct:created>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=157">
+                <skos:prefLabel xml:lang="en">maximumLoad</skos:prefLabel>
+                <skos:notation>hasMaximumLoad</skos:notation>
+                <skos:scopeNote xml:lang="en">
+                    Maximum load as defined for acoustic release in EMSO yellow pages (http://www.esonetyellowpages.com/).
+                </skos:scopeNote>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=46"/>
+                <dct:created>2015-06-23 14:53:17</dct:created>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=66">
+                <skos:prefLabel xml:lang="en">metadataUUID</skos:prefLabel>
+                <skos:notation>hasMetadataUUID</skos:notation>
+                <skos:scopeNote xml:lang="en">
+                    in sensorML description use thie role to identify universally unquely information flows with uuid (e.g. 18f16aca-4bb0-465b-9dcc-2861496bb99f)
+                </skos:scopeNote>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=46"/>
+                <skos:relatedMatch>
+                    <skos:Concept rdf:about="http://en.wikipedia.org/wiki/Universally_unique_identifier"/>
+                </skos:relatedMatch>
+                <dct:created>2014-02-20 13:48:25</dct:created>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=62">
+                <skos:prefLabel xml:lang="en">MMSI</skos:prefLabel>
+                <skos:notation>hasMMSI</skos:notation>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=46"/>
+                <dct:created>2014-02-19 16:17:09</dct:created>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=49">
+                <skos:prefLabel xml:lang="en">model</skos:prefLabel>
+                <skos:notation>hasModel</skos:notation>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=46"/>
+                <dct:created>2014-02-04 18:00:03</dct:created>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=53">
+                <skos:prefLabel xml:lang="en">owner</skos:prefLabel>
+                <skos:notation>hasOwner</skos:notation>
+                <skos:scopeNote xml:lang="en">
+                    deprecated use principal investigator http://ubisi54.ifremer.fr/tematres/vocab/xml.php?skosTema=69 instead.
+                </skos:scopeNote>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=46"/>
+                <dct:created>2014-02-04 18:00:03</dct:created>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=155">
+                <skos:prefLabel xml:lang="en">releaseLoad</skos:prefLabel>
+                <skos:notation>hasReleaseLoad</skos:notation>
+                <skos:scopeNote xml:lang="en">
+                    release load of acoustic release as defined in EMSO yellow pages.
+                </skos:scopeNote>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=46"/>
+                <dct:created>2015-06-23 14:46:11</dct:created>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=156">
+                <skos:prefLabel xml:lang="en">safeWorkingLoad</skos:prefLabel>
+                <skos:notation>hasSafeWorkingLoad</skos:notation>
+                <skos:scopeNote xml:lang="en">
+                    Safe working load as defined for acoustic release in emso yellow pages (http://www.esonetyellowpages.com/)
+                </skos:scopeNote>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=46"/>
+                <dct:created>2015-06-23 14:50:15</dct:created>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=65">
+                <skos:prefLabel xml:lang="en">scientist</skos:prefLabel>
+                <skos:notation>hasScientist</skos:notation>
+                <skos:historyNote xml:lang="en">
+                    deprecated use http://ubisi54.ifremer.fr/tematres/vocab/index.php?tema=70&/scientific-crew-member instead
+                </skos:historyNote>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=46"/>
+                <dct:created>2014-02-20 11:32:45</dct:created>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=48">
+                <skos:prefLabel xml:lang="en">serialNumber</skos:prefLabel>
+                <skos:notation>hasSerialNumber</skos:notation>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=46"/>
+                <dct:created>2014-02-04 18:00:03</dct:created>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=85">
+                <skos:prefLabel xml:lang="en">sismerEQU_CEQUI</skos:prefLabel>
+                <skos:notation>hasSismerEQU_CEQUI</skos:notation>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=46"/>
+                <dct:created>2014-02-20 17:42:53</dct:created>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=64">
+                <skos:prefLabel xml:lang="en">sismerNAV_NAVIRE</skos:prefLabel>
+                <skos:notation>hasSismerNAV_NAVIRE</skos:notation>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=46"/>
+                <dct:created>2014-02-20 11:11:19</dct:created>
+                <dct:modified>2014-02-20 11:31:22</dct:modified>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=147">
+                <skos:prefLabel xml:lang="en">TechSasId</skos:prefLabel>
+                <skos:notation>hasTechSasId</skos:notation>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=46"/>
+                <dct:created>2015-01-29 18:22:08</dct:created>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=83">
+                <skos:prefLabel xml:lang="en">theme</skos:prefLabel>
+                <skos:notation>hasTheme</skos:notation>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=46"/>
+                <dct:created>2014-02-20 14:54:38</dct:created>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=134">
+                <skos:prefLabel xml:lang="en">transmissionMode</skos:prefLabel>
+                <skos:notation>hasTransmissionMode</skos:notation>
+                <skos:scopeNote xml:lang="en">
+                    First created for JERICO project, description of Poseidon, pylos mooring.
+                </skos:scopeNote>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=46"/>
+                <dct:created>2015-01-06 08:56:10</dct:created>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=50">
+                <skos:prefLabel xml:lang="en">type</skos:prefLabel>
+                <skos:notation>hasType</skos:notation>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=46"/>
+                <dct:created>2014-02-04 18:00:03</dct:created>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=55">
+                <skos:prefLabel xml:lang="en">version</skos:prefLabel>
+                <skos:notation>hasVersion</skos:notation>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=46"/>
+                <dct:created>2014-02-04 18:00:03</dct:created>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=129">
+                <skos:prefLabel xml:lang="en">verticalReference</skos:prefLabel>
+                <skos:notation>hasVerticalReference</skos:notation>
+                <skos:scopeNote xml:lang="en">
+                    Used to identify how the platform is vertically 'bound'. Floating on sea_surface or lying on sea_bed. For reference values see  http://vocab.nerc.ac.uk/collection/L11/current/
+                </skos:scopeNote>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=46"/>
+                <dct:created>2014-12-05 10:49:56</dct:created>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=47">
+                <skos:prefLabel xml:lang="en">wmoPlatformNumber</skos:prefLabel>
+                <skos:notation>hasWmoPlatformNumber</skos:notation>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=46"/>
+                <dct:created>2014-02-04 18:00:03</dct:created>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=89">
+                <skos:prefLabel xml:lang="en">observedArea</skos:prefLabel>
+                <skos:notation>observesArea</skos:notation>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=46"/>
+                <dct:created>2014-03-03 10:12:58</dct:created>
+            </skos:Concept>
+        </skos:member>
+        <dct:created>2014-02-04 17:44:28</dct:created>
+    </skos:Collection>
+</rdf:RDF>

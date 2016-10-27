@@ -1,0 +1,546 @@
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:map="http://www.w3c.rl.ac.uk/2003/11/21-skos-mapping#" xmlns:dct="http://purl.org/dc/terms/" xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <skos:ConceptScheme rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/">
+        <dc:title>ifremer</dc:title>
+        <dc:creator>thomas loubrieu</dc:creator>
+        <dc:contributor/>
+        <dc:publisher/>
+        <dc:rights/>
+        <dc:subject/>
+        <dc:description>
+            <![CDATA[ ]]>
+        </dc:description>
+        <dc:date>2014-01-28</dc:date>
+        <dct:modified>2014-01-29 11:53:41</dct:modified>
+        <dc:language>en</dc:language>
+    </skos:ConceptScheme>
+    <skos:Collection rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=105">
+        <skos:prefLabel xml:lang="en">system's output quantities</skos:prefLabel>
+        <dc:title>system's output quantities</dc:title>
+        <skos:notation>systemOutputQuantities</skos:notation>
+        <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=171">
+                <skos:prefLabel xml:lang="en">12V tension</skos:prefLabel>
+                <skos:notation>12VTension</skos:notation>
+                <skos:scopeNote xml:lang="en">
+                    12V tension measured by UGP on EMSO-Azores (MOMAR).
+                </skos:scopeNote>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=105"/>
+                <dct:created>2016-01-26 11:55:54</dct:created>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=170">
+                <skos:prefLabel xml:lang="en">24V tension</skos:prefLabel>
+                <skos:notation>24VTension</skos:notation>
+                <skos:scopeNote xml:lang="en">24V tension measured by UGP on EMSO-Azores (MOMAR)</skos:scopeNote>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=105"/>
+                <dct:created>2016-01-26 11:53:53</dct:created>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=152">
+                <skos:prefLabel xml:lang="en">air temperature</skos:prefLabel>
+                <skos:notation>airTemperature</skos:notation>
+                <skos:scopeNote xml:lang="en">
+                    air temperature as measure by meteo-station on momar (to be detailed).
+                </skos:scopeNote>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=105"/>
+                <dct:created>2015-06-03 11:56:42</dct:created>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=121">
+                <skos:prefLabel xml:lang="en">altitude</skos:prefLabel>
+                <skos:notation>altitude</skos:notation>
+                <skos:scopeNote xml:lang="en">
+                    altitude of the reference point of the platform above the reference ellipsoïd
+                </skos:scopeNote>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=105"/>
+                <dct:created>2014-07-16 17:27:27</dct:created>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=153">
+                <skos:prefLabel xml:lang="en">atmospheric pressure</skos:prefLabel>
+                <skos:notation>atmosphericPressure</skos:notation>
+                <skos:scopeNote xml:lang="en">
+                    Atmospheric pressure as measured by a meteo-station on momar (at sea level). T o Be detailed.
+                </skos:scopeNote>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=105"/>
+                <dct:created>2015-06-03 11:58:43</dct:created>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=168">
+                <skos:prefLabel xml:lang="en">battery water detection</skos:prefLabel>
+                <skos:notation>batteryWaterDetection</skos:notation>
+                <skos:scopeNote xml:lang="en">
+                    battery water detection as measured by UGP system on EMSO-Azores (momar).
+                </skos:scopeNote>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=105"/>
+                <dct:created>2016-01-26 11:46:39</dct:created>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=108">
+                <skos:prefLabel xml:lang="en">conductivity</skos:prefLabel>
+                <skos:notation>conductivity</skos:notation>
+                <skos:scopeNote xml:lang="en">
+                    sea water conductivity measured by thermosalinogragh
+                </skos:scopeNote>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=105"/>
+                <dct:created>2014-07-16 16:43:13</dct:created>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=111">
+                <skos:prefLabel xml:lang="en">density</skos:prefLabel>
+                <skos:notation>density</skos:notation>
+                <skos:scopeNote xml:lang="en">
+                    sea water density computed by the thermosalinograph
+                </skos:scopeNote>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=105"/>
+                <dct:created>2014-07-16 16:54:42</dct:created>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=119">
+                <skos:prefLabel xml:lang="en">depth</skos:prefLabel>
+                <skos:notation>depth</skos:notation>
+                <skos:scopeNote xml:lang="en">
+                    heigh of the water column at the position of the ship
+                </skos:scopeNote>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=105"/>
+                <dct:created>2014-07-16 17:25:25</dct:created>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=130">
+                <skos:prefLabel xml:lang="en">draught</skos:prefLabel>
+                <skos:notation>draught</skos:notation>
+                <skos:scopeNote xml:lang="en">
+                    heigh of the water column between the surface and the bottom of the keelheigh of the water column between the surface and the bottom of the keel
+                </skos:scopeNote>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=105"/>
+                <dct:created>2014-12-09 09:52:40</dct:created>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=116">
+                <skos:prefLabel xml:lang="en">drift speed direction</skos:prefLabel>
+                <skos:notation>driftSpeedDirection</skos:notation>
+                <skos:scopeNote xml:lang="en">
+                    heading of the drift speed vector of the reference point of the ship. Drift speed vector = ground speed vector - surface speed vector
+                </skos:scopeNote>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=105"/>
+                <dct:created>2014-07-16 17:20:12</dct:created>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=115">
+                <skos:prefLabel xml:lang="en">drift speed module</skos:prefLabel>
+                <skos:notation>driftSpeedModule</skos:notation>
+                <skos:scopeNote xml:lang="en">
+                    estimated drift speed module of the reference point of the ship
+                </skos:scopeNote>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=105"/>
+                <dct:created>2014-07-16 17:15:48</dct:created>
+                <dct:modified>2014-07-16 17:16:57</dct:modified>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=169">
+                <skos:prefLabel xml:lang="en">electronic unit water detection</skos:prefLabel>
+                <skos:notation>electronicUnitWaterDetection</skos:notation>
+                <skos:scopeNote xml:lang="en">
+                    Water detection in electronic unit by UGP on EMSO-Azores (MOMAR)
+                </skos:scopeNote>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=105"/>
+                <dct:created>2016-01-26 11:49:18</dct:created>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=149">
+                <skos:prefLabel xml:lang="en">geoid height</skos:prefLabel>
+                <skos:notation>geoidHeight</skos:notation>
+                <skos:scopeNote xml:lang="en">
+                    geoid heigh (as measured from GPS on BOREL on EMSO Acore): to de detailed
+                </skos:scopeNote>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=105"/>
+                <dct:created>2015-06-03 11:28:50</dct:created>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=167">
+                <skos:prefLabel xml:lang="en">gps validity</skos:prefLabel>
+                <skos:notation>gpsValidity</skos:notation>
+                <skos:scopeNote xml:lang="en">validity for GPS measurement (cf momar).</skos:scopeNote>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=105"/>
+                <dct:created>2016-01-26 11:38:52</dct:created>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=118">
+                <skos:prefLabel xml:lang="en">ground speed direction</skos:prefLabel>
+                <skos:notation>groundSpeedDirection</skos:notation>
+                <skos:scopeNote xml:lang="en">
+                    heading ot the speed vector of the reference point of the ship relative to the surface of water
+                </skos:scopeNote>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=105"/>
+                <dct:created>2014-07-16 17:23:47</dct:created>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=117">
+                <skos:prefLabel xml:lang="en">ground speed module</skos:prefLabel>
+                <skos:notation>groundSpeedModule</skos:notation>
+                <skos:scopeNote xml:lang="en">
+                    speed of the reference point of the ship relative to the surface of water
+                </skos:scopeNote>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=105"/>
+                <dct:created>2014-07-16 17:22:43</dct:created>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=125">
+                <skos:prefLabel xml:lang="en">heading</skos:prefLabel>
+                <skos:notation>heading</skos:notation>
+                <skos:scopeNote xml:lang="en">true heading of the ship</skos:scopeNote>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=105"/>
+                <dct:created>2014-07-16 17:31:10</dct:created>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=122">
+                <skos:prefLabel xml:lang="en">heave</skos:prefLabel>
+                <skos:notation>heave</skos:notation>
+                <skos:scopeNote xml:lang="en">
+                    variation of vertical position of the vessel around a reference level. Positive values mean the vessel is above the reference level
+                </skos:scopeNote>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=105"/>
+                <dct:created>2014-07-16 17:28:20</dct:created>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=151">
+                <skos:prefLabel xml:lang="en">horizontal wind direction</skos:prefLabel>
+                <skos:notation>horizontalWindDirection</skos:notation>
+                <skos:scopeNote xml:lang="en">horizontal wind direction relative to North</skos:scopeNote>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=105"/>
+                <dct:created>2015-06-03 11:53:40</dct:created>
+                <dct:modified>2015-06-03 11:54:14</dct:modified>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=150">
+                <skos:prefLabel xml:lang="en">horizontal wind speed</skos:prefLabel>
+                <skos:notation>horizontalWindSpeed</skos:notation>
+                <skos:scopeNote xml:lang="en">
+                    Horizontal wind speed module as measured from meteo station in momar (to be detailed)
+                </skos:scopeNote>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=105"/>
+                <dct:created>2015-06-03 11:50:55</dct:created>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=173">
+                <skos:prefLabel xml:lang="en">inclinaison X</skos:prefLabel>
+                <skos:notation>inclinaisonX</skos:notation>
+                <skos:scopeNote xml:lang="en">
+                    inclinaison X measured by UGP for MESO-Azores (MOMAR).
+                </skos:scopeNote>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=105"/>
+                <dct:created>2016-01-26 12:03:58</dct:created>
+                <dct:modified>2016-01-26 13:42:36</dct:modified>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=174">
+                <skos:prefLabel xml:lang="en">inclinaison Y</skos:prefLabel>
+                <skos:notation>inclinaisonY</skos:notation>
+                <skos:scopeNote xml:lang="en">
+                    inclinaison Y measured by UGP on EMSO-Azores (MOMAR).
+                </skos:scopeNote>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=105"/>
+                <dct:created>2016-01-26 12:07:33</dct:created>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=106">
+                <skos:prefLabel xml:lang="en">in take temperature</skos:prefLabel>
+                <skos:notation>inTakeTemperature</skos:notation>
+                <skos:scopeNote xml:lang="en">
+                    sea water temperature measured at intake level on thermosalinographs or oxygen sensor (optode)
+                </skos:scopeNote>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=105"/>
+                <dct:created>2014-07-16 16:34:24</dct:created>
+                <dct:modified>2014-07-16 16:42:50</dct:modified>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=172">
+                <skos:prefLabel xml:lang="en">internal pressure</skos:prefLabel>
+                <skos:notation>internalPressure</skos:notation>
+                <skos:scopeNote xml:lang="en">
+                    internal pressure measured by UGP on EMSO-Azores (MOMAR).
+                </skos:scopeNote>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=105"/>
+                <dct:created>2016-01-26 11:58:51</dct:created>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=176">
+                <skos:prefLabel xml:lang="en">ironMass</skos:prefLabel>
+                <skos:notation>ironMass</skos:notation>
+                <skos:scopeNote xml:lang="en">
+                    Iron mass (for example in nano mole) as measured by chemini or IronMan instrument on EMSO-Azores.
+                </skos:scopeNote>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=105"/>
+                <dct:created>2016-02-03 16:44:26</dct:created>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=124">
+                <skos:prefLabel xml:lang="en">latitude</skos:prefLabel>
+                <skos:notation>latitude</skos:notation>
+                <skos:scopeNote xml:lang="en">
+                    latitude of the reference point of the ship, the platform, intrument or sensor bearing the property.
+                </skos:scopeNote>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=105"/>
+                <dct:created>2014-07-16 17:30:23</dct:created>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=131">
+                <skos:prefLabel xml:lang="en">longitude</skos:prefLabel>
+                <skos:notation>longitude</skos:notation>
+                <skos:scopeNote xml:lang="en">
+                    longitude of the reference point of the ship, platform, instrument or sensor bearing the property.
+                </skos:scopeNote>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=105"/>
+                <dct:created>2014-12-09 10:09:22</dct:created>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=165">
+                <skos:prefLabel xml:lang="en">nephelometric turbidity reference</skos:prefLabel>
+                <skos:notation>nephelometricTurbidityReference</skos:notation>
+                <skos:scopeNote xml:lang="en">
+                    created for wetlab sensor on EMSO-Azores, seamon east. relevant doc found at http://or.water.usgs.gov/grapher/fnu.html
+                </skos:scopeNote>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=105"/>
+                <dct:created>2015-11-30 12:14:07</dct:created>
+                <dct:modified>2015-11-30 12:14:44</dct:modified>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=166">
+                <skos:prefLabel xml:lang="en">nephelometric turbidity signal</skos:prefLabel>
+                <skos:notation>nephelometricTurbiditySignal</skos:notation>
+                <skos:scopeNote xml:lang="en">
+                    created for wetlab sensor on EMSO-Azores, node Seamon East. Relevant documentation found at http://or.water.usgs.gov/grapher/fnu.html
+                </skos:scopeNote>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=105"/>
+                <dct:created>2015-11-30 12:17:33</dct:created>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=164">
+                <skos:prefLabel xml:lang="en">oxygen mass concentration</skos:prefLabel>
+                <skos:notation>oxygenMassConcentration</skos:notation>
+                <skos:scopeNote xml:lang="en">
+                    as measured by Anderaa Optode on EMSO Azores (Seamon East)As measured by Andereaa Optode on EMSO Azores (Seamon East)
+                </skos:scopeNote>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=105"/>
+                <dct:created>2015-07-28 10:32:10</dct:created>
+                <dct:modified>2015-07-28 10:32:35</dct:modified>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=163">
+                <skos:prefLabel xml:lang="en">oxygen saturation</skos:prefLabel>
+                <skos:notation>oxygenSaturation</skos:notation>
+                <skos:scopeNote xml:lang="en">
+                    as measured by Anderaa Optode on EMSO Azores (Seamon East)
+                </skos:scopeNote>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=105"/>
+                <dct:created>2015-07-28 10:30:29</dct:created>
+                <dct:modified>2015-07-28 10:31:06</dct:modified>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=123">
+                <skos:prefLabel xml:lang="en">pitch</skos:prefLabel>
+                <skos:notation>pitch</skos:notation>
+                <skos:scopeNote xml:lang="en">
+                    roll around the Y axis of the vessel. Positive values mean the front is above the back
+                </skos:scopeNote>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=105"/>
+                <dct:created>2014-07-16 17:29:21</dct:created>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=120">
+                <skos:prefLabel xml:lang="en">roll</skos:prefLabel>
+                <skos:notation>roll</skos:notation>
+                <skos:scopeNote xml:lang="en">
+                    roll around the X axis of the vessel. Positive values mean the left is above the right
+                </skos:scopeNote>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=105"/>
+                <dct:created>2014-07-16 17:26:16</dct:created>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=109">
+                <skos:prefLabel xml:lang="en">salinity</skos:prefLabel>
+                <skos:notation>salinity</skos:notation>
+                <skos:scopeNote xml:lang="en">
+                    Amount of salt in sea water computed by thermosalinograph
+                </skos:scopeNote>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=105"/>
+                <dct:created>2014-07-16 16:47:00</dct:created>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=148">
+                <skos:prefLabel xml:lang="en">satellites number</skos:prefLabel>
+                <skos:notation>satellitesNumber</skos:notation>
+                <skos:scopeNote xml:lang="en">Number of satellites used by GPS for geo-location.</skos:scopeNote>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=105"/>
+                <dct:created>2015-06-03 11:26:21</dct:created>
+                <dct:modified>2015-06-03 11:27:38</dct:modified>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=178">
+                <skos:prefLabel xml:lang="en">sea water pressure</skos:prefLabel>
+                <skos:notation>seaWaterPressure</skos:notation>
+                <skos:scopeNote xml:lang="en">
+                    sea water pressure (defined initially for JPP intrument on Seamon West, MOMAR)
+                </skos:scopeNote>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=105"/>
+                <dct:created>2016-02-26 09:58:10</dct:created>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=107">
+                <skos:prefLabel xml:lang="en">sea water temperature</skos:prefLabel>
+                <skos:notation>seaWaterTemperature</skos:notation>
+                <skos:scopeNote xml:lang="en">
+                    sea water temperature measured by the thermosalinometre
+                </skos:scopeNote>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=105"/>
+                <dct:created>2014-07-16 16:40:03</dct:created>
+                <dct:modified>2015-06-03 11:56:21</dct:modified>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=175">
+                <skos:prefLabel xml:lang="en">snapshot</skos:prefLabel>
+                <skos:notation>snapshot</skos:notation>
+                <skos:scopeNote xml:lang="en">still image captured with a camera.</skos:scopeNote>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=105"/>
+                <dct:created>2016-02-03 16:33:37</dct:created>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=110">
+                <skos:prefLabel xml:lang="en">sound speed</skos:prefLabel>
+                <skos:notation>soundSpeed</skos:notation>
+                <skos:scopeNote xml:lang="en">sound speed in water computed by thermosalinograph</skos:scopeNote>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=105"/>
+                <dct:created>2014-07-16 16:51:46</dct:created>
+                <dct:modified>2014-07-16 17:17:47</dct:modified>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=114">
+                <skos:prefLabel xml:lang="en">surface speed direction</skos:prefLabel>
+                <skos:notation>surfaceSpeedDirection</skos:notation>
+                <skos:scopeNote xml:lang="en">
+                    heading ot the speed vector of the reference point of the ship relative to the surface of water
+                </skos:scopeNote>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=105"/>
+                <dct:created>2014-07-16 17:13:26</dct:created>
+                <dct:modified>2014-07-16 17:18:28</dct:modified>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=113">
+                <skos:prefLabel xml:lang="en">surface speed module</skos:prefLabel>
+                <skos:notation>surfaceSpeedModule</skos:notation>
+                <skos:scopeNote xml:lang="en">
+                    speed module of the reference point of the ship relative to the surface of water
+                </skos:scopeNote>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=105"/>
+                <dct:created>2014-07-16 17:10:35</dct:created>
+                <dct:modified>2014-07-16 17:19:18</dct:modified>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=112">
+                <skos:prefLabel xml:lang="en">time</skos:prefLabel>
+                <skos:notation>time</skos:notation>
+                <skos:scopeNote xml:lang="en">time onboard ship</skos:scopeNote>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=105"/>
+                <dct:created>2014-07-16 16:57:52</dct:created>
+            </skos:Concept>
+        </skos:member>
+        <skos:member>
+            <skos:Concept rdf:about="http://ubisi54.ifremer.fr/tematres/vocab/?tema=154">
+                <skos:prefLabel xml:lang="en">video</skos:prefLabel>
+                <skos:notation>video</skos:notation>
+                <skos:scopeNote xml:lang="en">video (as from momar SMOOVE), to be detailed</skos:scopeNote>
+                <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
+                <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=105"/>
+                <dct:created>2015-06-03 12:15:42</dct:created>
+            </skos:Concept>
+        </skos:member>
+        <dct:created>2014-07-16 16:33:43</dct:created>
+        <dct:modified>2014-07-16 16:37:34</dct:modified>
+    </skos:Collection>
+</rdf:RDF>

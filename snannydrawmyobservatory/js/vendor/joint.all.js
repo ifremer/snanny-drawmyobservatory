@@ -20364,7 +20364,11 @@ joint.dia.Cell = Backbone.Model.extend({
 		var clone = Backbone.Model.prototype.clone.apply(this, arguments);
 
 		// We don't want the clone to have the same ID as the original.
-		clone.set('id', joint.util.uuid(), {
+        var uuid = joint.util.uuid();
+        if(clone.attributes.custom !== undefined && clone.attributes.custom.imported) {
+            uuid = clone.id;
+        }
+		clone.set('id', uuid, {
 			silent: true
 		});
 		clone.set('embeds', '');
@@ -36117,6 +36121,50 @@ $('.inspector-container').append(inspector.render().el);
 */
 var lastIndexUse;
 
+var aOutputs = [];
+var aRoles = [];
+var aSMLRoles = [];
+
+loadXmls('/owncloud/apps/snannydrawmyobservatory/tematres/outputs.xml', aOutputs);
+loadXmls('/owncloud/apps/snannydrawmyobservatory/tematres/contact-roles.xml', aRoles);
+loadXmls('/owncloud/apps/snannydrawmyobservatory/tematres/sml-roles.xml', aSMLRoles);
+
+function loadXmls(url, output) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.open('GET', url);
+
+    xhttp.onreadystatechange = function () {
+        if(this.readyState == 4 && this.status == 200) {
+            parseXmlToJsonOutput(this.responseXML, output);
+        }
+    };
+    xhttp.send();
+}
+
+function parseXmlToJsonOutput(xmlDoc, output) {
+    if(xmlDoc.hasChildNodes()) {
+        for(var i=0; i < xmlDoc.children.length; i++){
+            if(xmlDoc.children[i].tagName !== 'skos:Concept' ){
+                parseXmlToJsonOutput(xmlDoc.children[i], output);
+            } else {
+                var link = xmlDoc.children[i].attributes[0].value;
+                var lbl = getLabelInXml(xmlDoc.children[i]);
+                output.push({label: lbl, value: link});
+            }
+        }
+    }
+}
+
+function getLabelInXml(xmlDoc){
+    if(xmlDoc.hasChildNodes()){
+        for(var i=0; i<xmlDoc.children.length; i++){
+            if(xmlDoc.children[i].tagName === 'skos:prefLabel'){
+                return xmlDoc.children[i].innerHTML;
+            }
+        }
+    }
+}
+
 joint.ui.Inspector = Backbone.View.extend({
 
 	className: 'inspector',
@@ -36688,7 +36736,7 @@ joint.ui.Inspector = Backbone.View.extend({
 			// We are updating only one specific attribute
 
 			console.log("-------"+attrPath);			
-			if (attrPath == "custom/classifier/0/name") {
+			if (attrPath.startsWith("custom/classifier/") && attrPath.endsWith("/name")) {
 				$attr.on('focus', _.bind(function() {
 
 					var availableTags = [
@@ -36714,8 +36762,78 @@ joint.ui.Inspector = Backbone.View.extend({
 
 				}, this));
 
-
 			}
+            if(attrPath.startsWith("custom/identifier/") && attrPath.endsWith("/name")){
+                $attr.on('focus', _.bind(function() {
+
+                    $attr.autocomplete({
+                        source: aSMLRoles,
+                        select: function(event, ui) {
+                            $("input[data-attribute='"+attrPath+"']").val(ui.item.label);
+                            return false;
+                        }
+                    });
+
+                    console.log("Autocomplete" + $attr);
+                }, this));
+                $attr.on('focusout', _.bind(function() {
+
+                    this.updateCell($attr, attrPath);
+
+                }, this));
+            }
+			if(attrPath.startsWith("custom/contact/") && attrPath.endsWith("/role")) {
+                $attr.on('focus', _.bind(function() {
+
+                    $attr.autocomplete({
+                        source: aRoles,
+                        select: function(event, ui) {
+                            $("input[data-attribute='"+attrPath+"']").val(ui.item.label);
+                            return false;
+                        }
+                    });
+
+                    console.log("Autocomplete" + $attr);
+                }, this));
+                $attr.on('focusout', _.bind(function() {
+
+                    this.updateCell($attr, attrPath);
+
+                }, this));
+            }
+            if(attrPath.startsWith("custom/output/") && attrPath.endsWith("/name")) {
+                $attr.on('focus', _.bind(function() {
+
+                    $attr.autocomplete({
+                        source: aOutputs,
+                        select: function(event, ui) {
+                            $("input[data-attribute='"+attrPath+"']").val(ui.item.label);
+                            var attrPathURI = attrPath.replace('name', 'URI');
+                            $("input[data-attribute='"+attrPathURI+"']").attr("value", ui.item.value);
+                            return false;
+                        }
+                    });
+
+                    console.log("Autocomplete" + $attr);
+                }, this));
+                $attr.on('focusout', _.bind(function() {
+
+                    var currentName = $attr[0].value;
+                    var attrPathURI = attrPath.replace('name', 'URI');
+                    var output = aOutputs.find(function(outputs){
+                        return outputs.label === currentName;
+                    });
+                    if( output === undefined) {
+                        $("input[data-attribute='"+attrPath+"']").val(currentName);
+                        $("input[data-attribute='"+attrPathURI+"']").attr("value", "");
+                    } else {
+                        $("input[data-attribute='"+attrPathURI+"']").attr("value", output.value);
+                    }
+
+                    this.updateCell($attr, attrPath);
+
+                }, this));
+            }
 			if (attrPath == "custom/event/0/date" || attrPath == "custom/startTime" || attrPath == "custom/endTime") {
 				$attr.on('focus', _.bind(function() {
 
@@ -36953,8 +37071,6 @@ joint.ui.Inspector = Backbone.View.extend({
 
 
 			this.updateCell($auto, path);
-
-
 
 		}
 
@@ -49921,7 +50037,7 @@ joint.dia.Paper.prototype.openAsPNG = function(opt) {
 	var windowName = _.uniqueId('png_output');
 
 	this.toPNG(function(dataURL) {
-		console.log(dataURL);
+		//console.log(dataURL);
 		var imageWindow = window.open('', windowName, windowFeatures);
 		imageWindow.document.write('<img src="' + dataURL + '"/>');
 

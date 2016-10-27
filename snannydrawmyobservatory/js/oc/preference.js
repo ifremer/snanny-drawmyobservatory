@@ -9,6 +9,7 @@
 	 */
 	Preferences = {
 
+	    _readonly:false,
         _prefs:[],
 
         /**
@@ -35,12 +36,19 @@
         /**
         * Load preferences
         */
-		load: function() {
+		load: function(filename) {
+		    var url = '/apps/snannydrawmyobservatory/preferences/get';
+            if(filename !== undefined) {
+                url = url + '?file=' + filename;
+            }
 			return $.ajax({
-                url: OC.generateUrl('/apps/snannydrawmyobservatory/preferences/get'),
+                url: OC.generateUrl(url),
                 success: function(result) {
-                    if($.isArray(result)) {
-                        Preferences._prefs = result;
+                    if($.isArray(result.prefs)) {
+                        Preferences._prefs = result.prefs;
+                    }
+                    if(result.permission === 17){
+                        Preferences._readonly = true;
                     }
                 },
                 error: function() {
@@ -68,6 +76,10 @@
         */
         get: function(){
             return this._prefs;
+        },
+
+        getPermission: function () {
+            return this._readonly;
         }
 
 	};

@@ -242,6 +242,16 @@ var dataType = {
             item: {
                 type: 'object',
                 properties: {
+                    name: {
+                        type: 'text',
+                        label: 'name',
+                        index: 1,
+                        attrs: {
+                            label: {
+                                'data-tooltip': 'name'
+                            }
+                        }
+                    },
                     role: {
                         type: 'text',
                         label: 'role',
@@ -602,25 +612,6 @@ var InspectorDefs = {
                         index: 3
                     },
                 },
-                '.marker-source': {
-                    transform: {
-                        type: 'range',
-                        min: 1,
-                        max: 15,
-                        unit: 'x scale',
-                        defaultValue: 'scale(1)',
-                        valueRegExp: '(scale\\()(.*)(\\))',
-                        group: 'marker-source',
-                        label: 'source arrowhead size',
-                        index: 1
-                    },
-                    fill: {
-                        type: 'color',
-                        group: 'marker-source',
-                        label: 'soure arrowhead color',
-                        index: 5
-                    }
-                },
                 '.marker-target': {
                     transform: {
                         type: 'range',
@@ -670,10 +661,6 @@ var InspectorDefs = {
             'connection': {
                 label: 'Connection',
                 index: 2
-            },
-            'marker-source': {
-                label: 'Source marker',
-                index: 3
             },
             'marker-target': {
                 label: 'Target marker',

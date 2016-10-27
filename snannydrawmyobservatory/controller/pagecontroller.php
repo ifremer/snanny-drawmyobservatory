@@ -13,11 +13,13 @@ namespace OCA\SnannyDrawMyObservatory\Controller;
 
 use OC\AppFramework\Http;
 use OC\Files\Filesystem;
+use OC\Share\Share;
 use OCA\SnannyDrawMyObservatory\Util\ScriptUtil;
 use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http\JSONResponse;
 use OCP\AppFramework\Http\TemplateResponse;
 use OCP\IRequest;
+use OCP\IDb;
 
 class PageController extends Controller
 {
@@ -101,13 +103,15 @@ class PageController extends Controller
      */
     public function get($dir, $file)
     {
-        //Get the file without using file locking
-        $urn = \OC::$server->getConfig()->getSystemValue('datadirectory', \OC::$SERVERROOT . '/data/').\OC::$server->getUserFolder()->getFullPath($dir).'/'.$file;
-        if(file_exists($urn)){
-            $filecontents = $this->read($urn);
-            return new JSONResponse(['data' => ['filecontents' => $filecontents,'user' => \OC::$server->getUserSession()->getLoginName()]], 200);
+        \OCP\User::checkLoggedIn();
+        \OC::$server->getSession()->close();
+
+        $files_list = json_decode($file);
+        if(!is_array($files_list)) {
+            $files_list = array($file);
         }
-        return new JSONResponse(['data' => ['message' => 'Invalid file path supplied.'.$urn]], 200);
+
+        \OC_Files::get($dir, $files_list, $_SERVER['REQUEST_METHOD'] == 'HEAD');
     }
 
     /**
@@ -134,36 +138,42 @@ class PageController extends Controller
 
             $fileNames = array();
 
-            $path = $dir . '/' . $moeFileName;
-            Filesystem::file_put_contents($path, $graphic);
-            // List of smls
-            $smlToSave = json_decode($smls, true);
-
-            $tarFile = new \PharData($currentDir.'/'.$tmpTarFileName);
-            if($smlToSave){
-                foreach($smlToSave as $sml){
-                    $fileNames[] = $sml['filename'];
-                    $tarFile->addFromString($sml['filename'], $sml['data']);
-                }
+            if(strstr($filename, 'png')) {
+                $path = $dir . '/' . $filename;
+            } else {
+                $path = $dir . '/' . $moeFileName;
             }
-            Filesystem::getView()->fromTmpFile($currentDir.'/'.$tmpTarFileName, $dir.'/'.$tarFileName);
+            Filesystem::file_put_contents($path, $graphic);
+            if($smls) {
+                // List of smls
+                $smlToSave = json_decode($smls, true);
 
+                $tarFile = new \PharData($currentDir . '/' . $tmpTarFileName);
+                if ($smlToSave) {
+                    foreach ($smlToSave as $sml) {
+                        $fileNames[] = $sml['filename'];
+                        $tarFile->addFromString($sml['filename'], $sml['data']);
+                    }
+                }
+                Filesystem::getView()->fromTmpFile($currentDir . '/' . $tmpTarFileName, $dir . '/' . $tarFileName);
+            }
 
-            //Set exports
-            $cellsArr = json_decode($cells, true);
-            //Export cells
-            Filesystem::getView()->mkdir(self::DRAWMYOBSERVATORY_DIR);
-            foreach($cellsArr as $cell){
-                $exported = self::DRAWMYOBSERVATORY_DIR . '/' . $cell['attrs']['text']['text'] . '.moe';
-                Filesystem::file_put_contents($exported, '{"cells":'.json_encode($cell).'}');
-                $fileNames[] = $exported;
+            if($cells) {
+                //Set exports
+                $cellsArr = json_decode($cells, true);
+                //Export cells
+                Filesystem::getView()->mkdir(self::DRAWMYOBSERVATORY_DIR);
+                foreach ($cellsArr as $cell) {
+                    $exported = self::DRAWMYOBSERVATORY_DIR . '/' . $cell['attrs']['text']['text'] . '.moe';
+                    Filesystem::file_put_contents($exported, '{"cells":' . json_encode($cell) . '}');
+                    $fileNames[] = $exported;
+                }
             }
 
             if (Filesystem::file_exists($path)) {
                 return new JSONResponse(['status' => 'success', 'filename' => $filename, 'dir' => $dir, 'tarFile'=>$tarFileName, 'path' => $path, 'filenames'=>$fileNames, 'pathInfo'=>pathinfo($filename)]);
-            } else {
-                return new JSONResponse(['status' => 'error', 'message' => 'An error occured : unable to write file ' . $path . '. Please contact your administrator']);
             }
+            return new JSONResponse(['status' => 'error', 'message' => 'An error occured : unable to write file ' . $path . '. Please contact your administrator']);
         }
         return new JSONResponse(['status' => 'error', 'message' => 'An error occured : folder '.$dir.' doesn\'t exist. Please contact your administrator']);
     }
@@ -187,17 +197,28 @@ class PageController extends Controller
      * @NoAdminRequired
      * @NoCSRFRequired
      */
-    public function getPreferences()
+    public function getPreferences($file)
     {
+        $currentUser = \OCP\User::getDisplayName();
+
+        if($file) {
+            $share = \OC::$server->getDatabaseConnection()->executeQuery('SELECT * FROM *PREFIX*share WHERE file_target LIKE ?', array('%' . $file));
+            while ($row = $share->fetch()) {
+                if ($row != null && $currentUser == $row['share_with']) {
+                    $permission = $row['permissions'];
+                }
+            }
+        }
+
         $drawPath = self::DRAWMYOBSERVATORY_DIR.'/'.self::SENSOR_NANNY_DRAW_ITEM;
         if (Filesystem::file_exists(self::DRAWMYOBSERVATORY_DIR.'/'.self::SENSOR_NANNY_DRAW_ITEM)) {
             //Get the file without using file locking
             $urn = \OC::$server->getConfig()->getSystemValue('datadirectory', \OC::$SERVERROOT . '/data/') . \OC::$server->getUserFolder()->getFullPath($drawPath);
             if (file_exists($urn)) {
-                return new JSONResponse(json_decode($this->read($urn)));
+                return new JSONResponse(array('prefs' => json_decode($this->read($urn)), 'permission' => intval($permission)));
             }
         }
-        return new JSONResponse(array('msg' => 'not found!'), Http::STATUS_NOT_FOUND);
+        return new JSONResponse(array('msg' => 'not found!', 'permission' => intval($permission)), Http::STATUS_NOT_FOUND);
     }
 
 

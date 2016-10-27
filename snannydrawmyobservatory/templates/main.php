@@ -2,9 +2,9 @@
 	<div class="birt-report" id="birt-report" >
 		
 		<form  action="" id="birtForm" target="_blank" method=post >
-			<input type="text" name="json" id="json"  />
-			<input type="text" name="projectName" id="projectName"   />
-			<input type="text" name="overallImage" id="overallImage"  />
+			<input type="text" name="json" id="json" value="" >
+			<input type="text" name="projectName" id="projectName" value="" >
+			<input type="text" name="overallImage" id="overallImage" value="" >
 		</form>
 	</div>
 	
