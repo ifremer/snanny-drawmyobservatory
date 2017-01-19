@@ -157,7 +157,7 @@
                 <skos:prefLabel xml:lang="en">manager</skos:prefLabel>
                 <skos:notation>hasManager</skos:notation>
                 <skos:historyNote xml:lang="en">
-                    deprecated use http://ubisi54.ifremer.fr/tematres/vocab/index.php?tema=68&/scientific-manager instead
+                    <![CDATA[deprecated use http://ubisi54.ifremer.fr/tematres/vocab/index.php?tema=68&/scientific-manager instead]]>
                 </skos:historyNote>
                 <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
                 <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=46"/>
@@ -259,7 +259,7 @@
                 <skos:prefLabel xml:lang="en">scientist</skos:prefLabel>
                 <skos:notation>hasScientist</skos:notation>
                 <skos:historyNote xml:lang="en">
-                    deprecated use http://ubisi54.ifremer.fr/tematres/vocab/index.php?tema=70&/scientific-crew-member instead
+                    <![CDATA[deprecated use http://ubisi54.ifremer.fr/tematres/vocab/index.php?tema=70&/scientific-crew-member instead]]>
                 </skos:historyNote>
                 <skos:inScheme rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/"/>
                 <skos:broader rdf:resource="http://ubisi54.ifremer.fr/tematres/vocab/?tema=46"/>

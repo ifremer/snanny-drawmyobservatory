@@ -136,7 +136,7 @@ var dataType = {
                         type: 'text',
                         'readOnly': true,
                         label: 'name',
-                        index: 6,
+                        index: 1,
                         attrs: {
                             label: {
                                 'data-tooltip': 'label of the output channel'
@@ -147,7 +147,7 @@ var dataType = {
                         type: 'text',
                         inlined: true,
                         label: 'URI',
-                        index: 3,
+                        index: 2,
                         attrs: {
                             label: {
                                 'data-tooltip': 'identifier'

@@ -832,7 +832,6 @@ $(document).ready(function () {
             }, this));
 
             $("li.save").on('click', _.bind(function () {
-
                 var graphicData = JSON.stringify(this.graph.toJSON());
                 var model = this.graph.toJSON();
 
