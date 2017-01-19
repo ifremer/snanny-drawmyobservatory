@@ -36119,50 +36119,64 @@ var inspector = new joint.ui.Inspector({
 
 $('.inspector-container').append(inspector.render().el);
 */
-var lastIndexUse;
 
-var aOutputs = [];
-var aRoles = [];
-var aSMLRoles = [];
+var skosOutputs = [];
+var skosContactRoles = [];
+var skosSMLRoles = [];
+var skosEvents = [];
 
-loadXmls('/owncloud/apps/snannydrawmyobservatory/tematres/outputs.xml', aOutputs);
-loadXmls('/owncloud/apps/snannydrawmyobservatory/tematres/contact-roles.xml', aRoles);
-loadXmls('/owncloud/apps/snannydrawmyobservatory/tematres/sml-roles.xml', aSMLRoles);
+var autocompleteTematres = '/owncloud/apps/snannydrawmyobservatory/tematres/';
+var xpathURI = "//skos:member/skos:Concept/@rdf:about";
+var xpathPrefLabel = "//skos:member/skos:Concept/skos:prefLabel/text()";
 
-function loadXmls(url, output) {
+
+var autocompleteDescriptors = {'custom/output':{'path' : 'name', 'valField':'URI', 'datas' : skosOutputs}, 
+	'custom/identifier':{'path' : 'name', 'valField':'URI', 'datas' : skosSMLRoles},
+	'custom/classifier':{'path' : 'name', 'valField':'URI', 'datas' : skosSMLRoles}, 
+	'custom/contact':{'path' : 'role', 'datas' : skosContactRoles}, 
+	'custom/event':{'path' : 'description', 'datas' : skosEvents} 
+};
+
+loadXmls('outputs.xml', skosOutputs); // skosCollection = 105
+loadXmls('contact-roles.xml', skosContactRoles); // skosCollection = 67 
+loadXmls('sml-roles.xml', skosSMLRoles); // skosCollection = 46 
+loadXmls('events.xml', skosEvents); // skosCollection = 87
+
+
+
+function loadXmls(type, output) {
     var xhttp = new XMLHttpRequest();
-    xhttp.open('GET', url);
-
+    xhttp.open('GET', autocompleteTematres + type);
+	
     xhttp.onreadystatechange = function () {
         if(this.readyState == 4 && this.status == 200) {
-            parseXmlToJsonOutput(this.responseXML, output);
+			var xmlDoc = this.responseXML;
+			if(xmlDoc != null && xmlDoc.hasChildNodes()) {
+				var nsResolver = xmlDoc.createNSResolver( xmlDoc.ownerDocument == null ? xmlDoc.documentElement : xmlDoc.ownerDocument.documentElement);
+				var ids = xmlDoc.evaluate(xpathURI,xmlDoc, nsResolver, XPathResult.ANY_TYPE, null);
+				var labels = xmlDoc.evaluate(xpathPrefLabel,xmlDoc, nsResolver, XPathResult.ANY_TYPE, null);
+				
+				if(ids != null){
+					while(true){
+						var id = ids.iterateNext();
+						var label = labels.iterateNext();
+						if(id == null && label ==null){
+							console.log("end of loading "+type+" found "+output.length+" item(s)");
+							console.log(output);
+							return;
+						}
+						output.push({'label': label.nodeValue, 'value': id.nodeValue});
+					}
+				} else {
+					console.err("No skos:Concept found on tematres "+type);
+				}
+			}else{
+				console.err(type+" is not a valid xml file, unable to parse");
+			}
+			
         }
     };
     xhttp.send();
-}
-
-function parseXmlToJsonOutput(xmlDoc, output) {
-    if(xmlDoc.hasChildNodes()) {
-        for(var i=0; i < xmlDoc.children.length; i++){
-            if(xmlDoc.children[i].tagName !== 'skos:Concept' ){
-                parseXmlToJsonOutput(xmlDoc.children[i], output);
-            } else {
-                var link = xmlDoc.children[i].attributes[0].value;
-                var lbl = getLabelInXml(xmlDoc.children[i]);
-                output.push({label: lbl, value: link});
-            }
-        }
-    }
-}
-
-function getLabelInXml(xmlDoc){
-    if(xmlDoc.hasChildNodes()){
-        for(var i=0; i<xmlDoc.children.length; i++){
-            if(xmlDoc.children[i].tagName === 'skos:prefLabel'){
-                return xmlDoc.children[i].innerHTML;
-            }
-        }
-    }
 }
 
 joint.ui.Inspector = Backbone.View.extend({
@@ -36726,147 +36740,11 @@ joint.ui.Inspector = Backbone.View.extend({
 	updateCell: function($attr, attrPath) {
 
 		//set UUID in UUID cell in the inspector
-
-
 		var cell = this.getModel();
 
 		var byPath = {};
-
+		console.log("update cell "+cell+" "+attrPath);
 		if ($attr) {
-			// We are updating only one specific attribute
-
-			console.log("-------"+attrPath);			
-			if (attrPath.startsWith("custom/classifier/") && attrPath.endsWith("/name")) {
-				$attr.on('focus', _.bind(function() {
-
-					var availableTags = [
-
-						"transmission mode",
-						"vertical Reference",
-						"deployment status",
-						"BASIC",
-						"Scheme"
-					];
-					$attr.autocomplete({
-						source: availableTags
-					});
-
-					console.log("Autocomplete" + $attr);
-				}, this));
-				$attr.on('focusout', _.bind(function() {
-
-
-
-					this.updateCell($attr, attrPath);
-
-
-				}, this));
-
-			}
-            if(attrPath.startsWith("custom/identifier/") && attrPath.endsWith("/name")){
-                $attr.on('focus', _.bind(function() {
-
-                    $attr.autocomplete({
-                        source: aSMLRoles,
-                        select: function(event, ui) {
-                            $("input[data-attribute='"+attrPath+"']").val(ui.item.label);
-                            return false;
-                        }
-                    });
-
-                    console.log("Autocomplete" + $attr);
-                }, this));
-                $attr.on('focusout', _.bind(function() {
-
-                    this.updateCell($attr, attrPath);
-
-                }, this));
-            }
-			if(attrPath.startsWith("custom/contact/") && attrPath.endsWith("/role")) {
-                $attr.on('focus', _.bind(function() {
-
-                    $attr.autocomplete({
-                        source: aRoles,
-                        select: function(event, ui) {
-                            $("input[data-attribute='"+attrPath+"']").val(ui.item.label);
-                            return false;
-                        }
-                    });
-
-                    console.log("Autocomplete" + $attr);
-                }, this));
-                $attr.on('focusout', _.bind(function() {
-
-                    this.updateCell($attr, attrPath);
-
-                }, this));
-            }
-            if(attrPath.startsWith("custom/output/") && attrPath.endsWith("/name")) {
-                $attr.on('focus', _.bind(function() {
-
-                    $attr.autocomplete({
-                        source: aOutputs,
-                        select: function(event, ui) {
-                            $("input[data-attribute='"+attrPath+"']").val(ui.item.label);
-                            var attrPathURI = attrPath.replace('name', 'URI');
-                            $("input[data-attribute='"+attrPathURI+"']").attr("value", ui.item.value);
-                            return false;
-                        }
-                    });
-
-                    console.log("Autocomplete" + $attr);
-                }, this));
-                $attr.on('focusout', _.bind(function() {
-
-                    var currentName = $attr[0].value;
-                    var attrPathURI = attrPath.replace('name', 'URI');
-                    var output = aOutputs.find(function(outputs){
-                        return outputs.label === currentName;
-                    });
-                    if( output === undefined) {
-                        $("input[data-attribute='"+attrPath+"']").val(currentName);
-                        $("input[data-attribute='"+attrPathURI+"']").attr("value", "");
-                    } else {
-                        $("input[data-attribute='"+attrPathURI+"']").attr("value", output.value);
-                    }
-
-                    this.updateCell($attr, attrPath);
-
-                }, this));
-            }
-			if (attrPath == "custom/event/0/date" || attrPath == "custom/startTime" || attrPath == "custom/endTime") {
-				$attr.on('focus', _.bind(function() {
-
-				var dateFormatter = this.getFormattedDate;
-
-					$attr.datetimepicker({
-
-						timepicker: true,
-						format: 'Y-m-d H:i:00.0',
-						onChangeYear: function(currentTime, $input) {
-							var formattedDate = dateFormatter(currentTime);
-							$input.val(formattedDate);
-						},
-						onChangeMonth: function(currentTime, $input) {
-							var formattedDate = dateFormatter(currentTime);
-							$input.val(formattedDate);
-						}
-
-					});
-
-					console.log("datepicker");
-				}, this));
-				$attr.on('focusout', _.bind(function() {
-
-
-
-					this.updateCell($attr, attrPath);
-
-
-				}, this));
-
-
-			}
 			byPath[attrPath] = $attr;
 		} else {
 			// No parameters given. We are updating all attributes
@@ -37024,88 +36902,74 @@ joint.ui.Inspector = Backbone.View.extend({
 		var $attribute = $target.closest('[data-attribute]');
 		var path = $attribute.attr('data-attribute');
 		var options = this.getOptions($attribute);
-
+		
+		var index = -1;
 		//btn list add
 		// Take the index of the last list item and increase it by one.
-		var $lastListItem = $attribute.children('.list-items').children('.list-item').last();
-
-		var lastIndex = $lastListItem.length === 0 ? -1 : parseInt($lastListItem.attr('data-index'), 10);
-		var index = lastIndex + 1;
-
-        if(lastIndexUse !== undefined){
-            index = lastIndexUse + 1;
-        }
-
-        lastIndexUse = index;
+		var children = $attribute.children('.list-items').children('.list-item');
+		if(children.length > 0){
+			index = Math.max(parseInt(children.last().attr('data-index'), 10), parseInt(children.first().attr('data-index'), 10))
+		}
+		var index = index + 1;
 
 		var $listItem = $(joint.templates.inspector['list-item.html']({
 			index: index
 		}));
 
-
 		this.renderTemplate($listItem, options.item, path + '/' + index);
 
 		$target.parent().children('.list-items').prepend($listItem);
 
-
 		$listItem.find('input:first').focus();
 
 		this.trigger('render');
-
-
-		if (path == 'custom/classifier') {
-			var path = 'custom/classifier/' + index + '/name';
-			var $auto = this._byPath['custom/classifier/' + index + '/name'];
-
-			var availableTags = [
-
-				"transmission mode",
-				"vertical Reference",
-				"deployment status",
-				"BASIC",
-				"Scheme"
-			];
-			$auto.autocomplete({
-				source: availableTags
-			});
-
-
-			this.updateCell($auto, path);
-
+		this.applyAutoComplete(path, index);
+	},
+	
+	applyAutoComplete(path, index){
+		console.log("apply autocomplete on "+path+"/"+index);
+		var obj = autocompleteDescriptors[path];
+		if(obj != null){
+			var completePath = path +"/"+ index + '/'+obj.path;
+			var valPath = path +"/"+ index + '/'+obj.valField;
+			var $field = this._byPath[completePath];
+			
+			var ctx = this;
+			if($field != null){
+				$field.autocomplete({
+					source: obj.datas,
+					select: function(event, ui){
+						$field.val(ui.item.label);
+						ctx.updateCell($field, completePath);
+						if(obj.valField != null){
+							$val = $("input[data-attribute='"+valPath+"']");
+							$val.val(ui.item.value);
+							ctx.updateCell($val, valPath);
+						}
+						return false;
+					}
+				});
+			}else{
+				console.err('no field '+completePath);
+			}
 		}
-
+		
 		if (path == 'custom/event') {
 			var path = 'custom/event/' + index + '/date';
 			var $auto = this._byPath['custom/event/' + index + '/date'];
-
 			var dateFormatter = this.getFormattedDate;
-			$auto.datetimepicker(
-
-				{
-
-
-					timepicker: true,
-					format: 'Y-m-d H:i:00.0',
-					onChangeYear: function(currentTime, $input) {
-							var formattedDate = dateFormatter(currentTime);
-							$input.val(formattedDate);
-					},
-					onChangeMonth: function(currentTime, $input) {
-						var formattedDate = dateFormatter(currentTime);
-						$input.val(formattedDate);
-					}
-
-				}
+			$auto.datetimepicker({
+				timepicker: true,
+				format: 'Y-m-d H:i:00.0',
+				onChangeYear: function(currentTime, $input) {
+					var formattedDate = dateFormatter(currentTime);
+					$input.val(formattedDate);
+				},
+				onChangeMonth: function(currentTime, $input) {
+					var formattedDate = dateFormatter(currentTime);
+					$input.val(formattedDate);
+				}}
 			);
-
-
-			this.updateCell($auto, path);
-
-
-
-		}
-		if (this.options.live) {
-			this.updateCell();
 		}
 	},
 
