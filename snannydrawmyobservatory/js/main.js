@@ -1143,61 +1143,55 @@ $(document).ready(function () {
 
             });
 
-            if (location.search != "") {
+            var importedData = [];
+            var req = [];
 
-                var importedData = [];
-                var req = [];
+            $.when(OCA.Preferences.load(filename)).done(function () {
+                var prefs = OCA.Preferences.get();
+                if (prefs === null || prefs.length === 0) {
+                    $(".se-pre-con").fadeOut("fast");
+                } else {
+                    for (var i in prefs) {
+                        if (prefs[i] !== "") {
+                            req[i] = $.ajax({
+                                url: OC.generateUrl(APPS_URL + '/model/' + prefs[i]),
+                                success: function (a) {
+                                    debugger;
+                                    importedData.push($.parseJSON(a));
+                                },
 
-                $.when(OCA.Preferences.load(filename)).done(function () {
-                    var prefs = OCA.Preferences.get();
-                    if (prefs === null || prefs.length === 0) {
-                        $(".se-pre-con").fadeOut("fast");
-                    } else {
-                        for (var i in prefs) {
-                            if (prefs[i] !== "") {
-                                req[i] = $.ajax({
-                                    url: OC.generateUrl(APPS_URL + '/model/' + prefs[i]),
-                                    success: function (a) {
-                                        importedData.push($.parseJSON(a));
-                                    },
-
-                                    error: function () {
-                                        importedData.push("fail");
-                                    }
+                                error: function () {
+                                    importedData.push("fail");
+                                }
 
 
-                                });
-                            } else {
-                                importedData.push("fail");
-                            }
+                            });
+                        } else {
+                            importedData.push("fail");
                         }
-
-
-                        $.when.apply($, req).done(function () {
-                            for (var i in prefs) {
-                                importedData[i].cells.custom.imported = false;
-                            }
-                            for (var i in prefs) {
-                                Stencil.shapes.Imported.push(new joint.shapes.basic.Platform(importedData[i].cells));
-                            }
-                            rappid.initializeStencil();
-                            $(".se-pre-con").fadeOut("fast");
-                        });
-
-                        $.when.apply($, req).fail(function () {
-                            $(".se-pre-con").fadeOut("fast");
-                        });
                     }
-                    if(OCA.Preferences.getPermission()) {
-                        document.getElementsByClassName("save")[0].style.display= "none";
-                    }
-                })
-            } else {
 
-                rappid.initializeStencil();
-                $(".se-pre-con").fadeOut("fast");
 
-            }
+                    $.when.apply($, req).done(function () {
+                        for (var i in prefs) {
+                            importedData[i].cells.custom.imported = false;
+                        }
+                        for (var i in prefs) {
+                            Stencil.shapes.Imported.push(new joint.shapes.basic.Platform(importedData[i].cells));
+                        }
+                        rappid.initializeStencil();
+                        $(".se-pre-con").fadeOut("fast");
+                    });
+
+                    $.when.apply($, req).fail(function () {
+                        $(".se-pre-con").fadeOut("fast");
+                    });
+                }
+                if(OCA.Preferences.getPermission()) {
+                    document.getElementsByClassName("save")[0].style.display= "none";
+                }
+            })
+            
 
         },
         showSmlErrorDialog: function (message, elements) {

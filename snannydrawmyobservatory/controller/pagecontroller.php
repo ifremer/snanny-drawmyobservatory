@@ -212,11 +212,19 @@ class PageController extends Controller
 
         $drawPath = self::DRAWMYOBSERVATORY_DIR.'/'.self::SENSOR_NANNY_DRAW_ITEM;
         if (Filesystem::file_exists(self::DRAWMYOBSERVATORY_DIR.'/'.self::SENSOR_NANNY_DRAW_ITEM)) {
+
+
             //Get the file without using file locking
-            $urn = \OC::$server->getConfig()->getSystemValue('datadirectory', \OC::$SERVERROOT . '/data/') . \OC::$server->getUserFolder()->getFullPath($drawPath);
-            if (file_exists($urn)) {
-                return new JSONResponse(array('prefs' => json_decode($this->read($urn)), 'permission' => intval($permission)));
+            $urn = \OC::$server->getConfig()->getSystemValue('datadirectory', \OC::$SERVERROOT . '/data/') . \OC::$server->getUserFolder()->getFullPath(self::DRAWMYOBSERVATORY_DIR.'/');
+            $files = scandir($urn);
+            $result = array();
+            foreach ($files as $key => $value) {
+                if(strrpos($value, '.moe') === strlen($value)-4){
+                        array_push($result,  $value);
+                }
             }
+            return new JSONResponse(array('prefs' => $result, 'permission' => intval($permission)));
+            
         }
         return new JSONResponse(array('msg' => 'not found!', 'permission' => intval($permission)), Http::STATUS_NOT_FOUND);
     }
