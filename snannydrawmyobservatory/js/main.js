@@ -819,7 +819,7 @@ $(document).ready(function () {
 
 
                     $("#json").attr("value", model);
-                    $("#projectName").attr("value", filename);l
+                    $("#projectName").attr("value", filename);
                     $("#overallImage").attr("value", imageURL);
                     $('#birtForm').attr("action", birtserverLink);
                     $('#birtForm').submit();
@@ -1156,7 +1156,6 @@ $(document).ready(function () {
                             req[i] = $.ajax({
                                 url: OC.generateUrl(APPS_URL + '/model/' + prefs[i]),
                                 success: function (a) {
-                                    debugger;
                                     importedData.push($.parseJSON(a));
                                 },
 
