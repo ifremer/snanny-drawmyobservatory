@@ -20091,12 +20091,14 @@ joint.dia.Cell = Backbone.Model.extend({
 	initialize: function(options) {
 
 		if (!options || !options.id) {
-
 			this.set('id', joint.util.uuid(), {
 				silent: true
 			});
+		}else if(options && options.id){
+			this.set('id', options.id, {
+				silent: true
+			});	
 		}
-
 		this._transitionIds = {};
 
 		// Collect ports defined in `attrs` and keep collecting whenever `attrs` object changes.
@@ -20362,11 +20364,10 @@ joint.dia.Cell = Backbone.Model.extend({
 		opt = opt || {};
 
 		var clone = Backbone.Model.prototype.clone.apply(this, arguments);
-
 		// We don't want the clone to have the same ID as the original.
         var uuid = joint.util.uuid();
-        if(clone.attributes.custom !== undefined && clone.attributes.custom.imported) {
-            uuid = clone.id;
+        if(clone.attributes.uuid !== undefined && clone.attributes.uuid[0]) {
+            uuid = clone.attributes.uuid[0];
         }
 		clone.set('id', uuid, {
 			silent: true
@@ -20702,6 +20703,7 @@ joint.dia.CellView = Backbone.View.extend({
 		// The global unique id makes sure that the same view can be rendered on e.g. different machines and
 		// still be associated to the same object among all those clients. This is necessary for real-time
 		// collaboration mechanism.
+		debugger;
 		this.options.id = this.options.id || joint.util.guid(this);
 	},
 
@@ -37633,55 +37635,6 @@ joint.ui.FreeTransform = Backbone.View.extend({
 
 	update: function() {
 		this.options.cell.get('type')
-			/*
-    	
-    	if( this.options.cell.get('type')=='basic.Sensor' || this.options.cell.get('type')=='basic.Platform')
-    		{
-    		
-    		
-    		var resultId = $.grep(this.options.cell.get('custom').identifier, function(e){return (e.Ref=="SensorType") || (e.Ref=="PlatformType") });
-    		var resultOut = $.grep(this.options.cell.get('custom').output, function(e){return (e.Ref=="SensorType") || (e.Ref=="PlatformType")});
-    		var resultClass = $.grep(this.options.cell.get('custom').classifier, function(e){return (e.Ref=="SensorType") || (e.Ref=="PlatformType")});
-    		console.log(resultId.length);
-    		if(resultId.length>0)
-    			{
-    		for( var i in resultId);
-    			{
-    			console.log("here here");
-    			$( 'input[value="' + resultId[i].name+ '"]' ).prop('disabled', true);
-				$( 'input[value="'+resultId[i].name+'"]' ).css({'background-color' : '#D4D0C8'});
-
-    			$( 'input[value="'+resultId[i].URI+'"]' ).prop('disabled', true);
-    			$( 'input[value="'+resultId[i].URI+'"]' ).css({'background-color' : '#D4D0C8'});
-    			}
-    			}
-    		if(resultOut.length>0)
-			{
-    		for( var i in resultOut)
-			{
-    			$( 'input[value="'+resultOut[i].name+'"]' ).prop('disabled', true);
-				$( 'input[value="'+resultOut[i].name+'"]' ).css({'background-color' : '#D4D0C8'});
-
-    			$( 'input[value="'+resultOut[i].URI+'"]' ).prop('disabled', true);
-    			$( 'input[value="'+resultOut[i].URI+'"]' ).css({'background-color' : '#D4D0C8'});
-			}
-			}
-    		if(resultClass.length>0)
-			{
-    		for( var i in resultClass)
-			{
-    			$( 'input[value="'+resultClass[i].name+'"]' ).prop('disabled', true);
-				$( 'input[value="'+resultClass[i].name+'"]' ).css({'background-color' : '#D4D0C8'});
-
-    			$( 'input[value="'+resultClass[i].URI+'"]' ).prop('disabled', true);
-    			$( 'input[value="'+resultClass[i].URI+'"]' ).css({'background-color' : '#D4D0C8'});
-			
-			
-			}
-			}
-    		}*/
-
-
 
 		var viewportCTM = this.options.paper.viewport.getCTM();
 
