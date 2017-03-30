@@ -3,7 +3,7 @@
     <!-- Description --> 
     <gml:description>{{description}}</gml:description>
     <!-- Name --> 
-    <gml:name >{{#attrs}}{{#text}}{{text}}{{/text}}{{/attrs}}</gml:name>
+    <gml:name>{{#attrs}}{{#text}}{{text}}{{/text}}{{/attrs}}</gml:name>
     <!-- keywords--> 
     <sml:keywords>
         <sml:KeywordList>
