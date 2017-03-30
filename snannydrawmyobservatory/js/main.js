@@ -819,7 +819,7 @@ $(document).ready(function () {
 
 
                     $("#json").attr("value", model);
-                    $("#projectName").attr("value", filename);l
+                    $("#projectName").attr("value", filename);
                     $("#overallImage").attr("value", imageURL);
                     $('#birtForm').attr("action", birtserverLink);
                     $('#birtForm').submit();
@@ -861,7 +861,7 @@ $(document).ready(function () {
                             var existResult = this.smlExist(cell.attrs.text.name, cell.id, cell.from, cell.to, directory, filename);
                             if (existResult.exist) {
                                 oneOrMoreExist = true;
-                                for(var i in existResult.elements) {
+                                for (var i in existResult.elements) {
                                     finalElements.push(existResult.elements[i]);
                                 }
 
@@ -1156,22 +1156,19 @@ $(document).ready(function () {
                             req[i] = $.ajax({
                                 url: OC.generateUrl(APPS_URL + '/model/' + prefs[i]),
                                 success: function (a) {
-                                    debugger;
                                     importedData.push($.parseJSON(a));
                                 },
 
                                 error: function () {
                                     importedData.push("fail");
                                 }
-
-
                             });
                         } else {
                             importedData.push("fail");
                         }
                     }
 
-
+                    
                     $.when.apply($, req).done(function () {
                         for (var i in prefs) {
                             importedData[i].cells.custom.imported = false;
@@ -1187,11 +1184,11 @@ $(document).ready(function () {
                         $(".se-pre-con").fadeOut("fast");
                     });
                 }
-                if(OCA.Preferences.getPermission()) {
-                    document.getElementsByClassName("save")[0].style.display= "none";
+                if (OCA.Preferences.getPermission()) {
+                    document.getElementsByClassName("save")[0].style.display = "none";
                 }
             })
-            
+
 
         },
         showSmlErrorDialog: function (message, elements) {
