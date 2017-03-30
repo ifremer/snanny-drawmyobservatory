@@ -20703,7 +20703,6 @@ joint.dia.CellView = Backbone.View.extend({
 		// The global unique id makes sure that the same view can be rendered on e.g. different machines and
 		// still be associated to the same object among all those clients. This is necessary for real-time
 		// collaboration mechanism.
-		debugger;
 		this.options.id = this.options.id || joint.util.guid(this);
 	},
 
