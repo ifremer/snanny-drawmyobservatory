@@ -133,7 +133,7 @@ var dataType = {
                 type: 'object',
                 properties: {
                     name: {
-                        type: 'text',
+                        type: 'autocomplete',
                         'readOnly': true,
                         label: 'name',
                         index: 1,
@@ -169,7 +169,7 @@ var dataType = {
                 type: 'object',
                 properties: {
                     name: {
-                        type: 'text',
+                        type: 'autocomplete',
                         label: 'name',
                         readOnly: true,
                         index: 1,
@@ -179,7 +179,7 @@ var dataType = {
                             }
                         }
                     },
-                    URI: {
+                    value: {
                         type: 'text',
                         inlined: true,
                         label: 'value',
@@ -189,6 +189,10 @@ var dataType = {
                                 'data-tooltip': 'value'
                             }
                         }
+                    },
+                    URI: {
+                        type: 'hidden',
+                        index: 3
                     }
 
 
@@ -204,7 +208,7 @@ var dataType = {
                 type: 'object',
                 properties: {
                     name: {
-                        type: 'text',
+                        type: 'autocomplete',
                         label: 'name',
                         index: 1,
                         attrs: {
@@ -213,7 +217,7 @@ var dataType = {
                             }
                         }
                     },
-                    URI: {
+                    value: {
                         type: 'text',
                         inlined: true,
                         label: 'value',
@@ -223,9 +227,11 @@ var dataType = {
                                 'data-tooltip': 'value'
                             }
                         }
+                    },
+                    URI: {
+                        type: 'hidden',
+                        index: 3
                     }
-
-
                 }
             },
             group: 'classifier',
@@ -253,7 +259,7 @@ var dataType = {
                         }
                     },
                     role: {
-                        type: 'text',
+                        type: 'autocomplete',
                         label: 'role',
                         index: 1,
                         attrs: {
@@ -328,7 +334,7 @@ var dataType = {
                 type: 'object',
                 properties: {
                     date: {
-                        type: 'text',
+                        type: 'date',
                         label: 'Date',
                         index: 1,
                         attrs: {
@@ -338,7 +344,7 @@ var dataType = {
                         }
                     },
                     description: {
-                        type: 'text',
+                        type: 'autocomplete',
                         label: 'Description',
                         index: 2,
                         attrs: {
@@ -361,7 +367,7 @@ var dataType = {
             }
         },
         startTime: {
-            type: 'text',
+            type: 'date',
             label: 'from',
             index: 1,
             group: 'validPeriod',
@@ -372,7 +378,7 @@ var dataType = {
             }
         },
         endTime: {
-            type: 'text',
+            type: 'date',
             label: 'to',
             group: 'validPeriod',
             index: 2,

@@ -94,11 +94,9 @@
                         var endDate = new Date(formattedEndTime);
                         cells[i].to = endDate.getTime() / 1000;
                     }
-
-
+                    
                     var template = Handlebars.compile(handlebarTemplate);
                     var generated = template(cells[i]);
-
                     var generatedDecode = $('<textarea />').html(generated).text();
                     var filename = cells[i].attrs.text.text + ".xml";
                     result.push({'filename': filename, 'data': generatedDecode});

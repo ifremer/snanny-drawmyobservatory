@@ -35953,6 +35953,106 @@ this["joint"]["templates"]["inspector"]["text.html"] = Handlebars.template(funct
 	return buffer;
 });
 
+this["joint"]["templates"]["inspector"]["date.html"] = this["joint"]["templates"]["inspector"]["text.html"];
+
+this["joint"]["templates"]["inspector"]["autocomplete.html"] = Handlebars.template(function(Handlebars, depth0, helpers, partials, data) {
+    this.compilerInfo = [4, '>= 1.0.0'];
+    helpers = this.merge(helpers, Handlebars.helpers);
+    data = data || {};
+    var buffer = "",
+        stack1, functionType = "function",
+        escapeExpression = this.escapeExpression;
+
+
+    buffer += "<label>";
+    if (stack1 = helpers.label) {
+        stack1 = stack1.call(depth0, {
+            hash: {},
+            data: data
+        });
+    } else {
+        stack1 = depth0.label;
+        stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
+    }
+    buffer += escapeExpression(stack1) + ":</label>\n<input type=\"text\" class=\"text\" data-type=\"";
+    if (stack1 = helpers.type) {
+        stack1 = stack1.call(depth0, {
+            hash: {},
+            data: data
+        });
+    } else {
+        stack1 = depth0.type;
+        stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
+    }
+    buffer += escapeExpression(stack1) + "\" data-attribute=\"";
+    if (stack1 = helpers.attribute) {
+        stack1 = stack1.call(depth0, {
+            hash: {},
+            data: data
+        });
+    } else {
+        stack1 = depth0.attribute;
+        stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
+    }
+    var identifier = escapeExpression(stack1);
+
+    buffer += identifier + "\" value=\"";
+    if (stack1 = helpers.value) {
+        stack1 = stack1.call(depth0, {
+            hash: {},
+            data: data
+        });
+    } else {
+        stack1 = depth0.value;
+        stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
+    }
+    buffer += escapeExpression(stack1) + "\" /><button class=\"autocomplete-down\"'><img src=\"/owncloud/apps/snannydrawmyobservatory/img/down.png\"></button>\n";
+    return buffer;
+});
+
+this["joint"]["templates"]["inspector"]["hidden.html"] = Handlebars.template(function(Handlebars, depth0, helpers, partials, data) {
+    this.compilerInfo = [4, '>= 1.0.0'];
+    helpers = this.merge(helpers, Handlebars.helpers);
+    data = data || {};
+    var buffer = "",
+        stack1, functionType = "function",
+        escapeExpression = this.escapeExpression;
+
+
+    buffer += "<input type=\"hidden\" class=\"text\" data-type=\"";
+    if (stack1 = helpers.type) {
+        stack1 = stack1.call(depth0, {
+            hash: {},
+            data: data
+        });
+    } else {
+        stack1 = depth0.type;
+        stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
+    }
+    buffer += escapeExpression(stack1) + "\" data-attribute=\"";
+    if (stack1 = helpers.attribute) {
+        stack1 = stack1.call(depth0, {
+            hash: {},
+            data: data
+        });
+    } else {
+        stack1 = depth0.attribute;
+        stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
+    }
+    buffer += escapeExpression(stack1) + "\" value=\"";
+    if (stack1 = helpers.value) {
+        stack1 = stack1.call(depth0, {
+            hash: {},
+            data: data
+        });
+    } else {
+        stack1 = depth0.value;
+        stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
+    }
+    buffer += escapeExpression(stack1) + "\" />\n";
+    return buffer;
+});
+
 this["joint"]["templates"]["inspector"]["textarea.html"] = Handlebars.template(function(Handlebars, depth0, helpers, partials, data) {
 	this.compilerInfo = [4, '>= 1.0.0'];
 	helpers = this.merge(helpers, Handlebars.helpers);
@@ -36133,7 +36233,7 @@ var xpathPrefLabel = "//skos:member/skos:Concept/skos:prefLabel/text()";
 
 var autocompleteDescriptors = {'custom/output':{'path' : 'name', 'valField':'URI', 'datas' : skosOutputs}, 
 	'custom/identifier':{'path' : 'name', 'valField':'URI', 'datas' : skosSMLRoles},
-	'custom/classifier':{'path' : 'name', 'valField':'URI', 'datas' : skosSMLRoles}, 
+	'custom/classifier':{'path' : 'name', 'valField':'URI', 'datas' : skosSMLRoles},
 	'custom/contact':{'path' : 'role', 'datas' : skosContactRoles}, 
 	'custom/event':{'path' : 'description', 'datas' : skosEvents} 
 };
@@ -36550,6 +36650,7 @@ joint.ui.Inspector = Backbone.View.extend({
 
 				$input.children('.object-properties').append($objectProperty);
 
+
 			}, this);
 		}
 
@@ -36561,37 +36662,32 @@ joint.ui.Inspector = Backbone.View.extend({
 
 			$el.append($field);
 		}
+        var ctx = this;
+        setTimeout(function(){
+        if(options.type === 'autocomplete'){
 
-		if(path == "custom/startTime" || path == "custom/endTime") {
-			var $attr = $($input[2]);
-			$attr.datetimepicker({
+            ctx.applyAutoComplete(path);
 
-						timepicker: true,
-						format: 'Y-m-d H:i:00.0'
 
-					});
-			$attr.on('focus', _.bind(function() {
+        }
 
-					var dateFormatter = this.getFormattedDate;
-					$attr.datetimepicker({
-
-						timepicker: true,
-						format: 'Y-m-d H:i:00.0',
-						onChangeYear: function(currentTime, $input) {
-							var formattedDate = dateFormatter(currentTime);
-							$input.val(formattedDate);
-						},
-						onChangeMonth: function(currentTime, $input) {
-							var formattedDate = dateFormatter(currentTime);
-							$input.val(formattedDate);
-						}
-
-					});
-
-					console.log("datepicker");
-				}, this));
-
-		}
+        if(options.type === 'date'){
+            var $auto = ctx._byPath[path];
+            var dateFormatter = this.getFormattedDate;
+            $auto.datetimepicker({
+                timepicker: true,
+                format: 'Y-m-d H:i:00.0',
+                onChangeYear: function(currentTime, $input) {
+                    var formattedDate = dateFormatter(currentTime);
+                    $input.val(formattedDate);
+                },
+                onChangeMonth: function(currentTime, $input) {
+                    var formattedDate = dateFormatter(currentTime);
+                    $input.val(formattedDate);
+                }}
+            );
+        }
+        }, 1000);
 	},
 
 	updateInputPosition: function() {
@@ -36924,24 +37020,30 @@ joint.ui.Inspector = Backbone.View.extend({
 		$listItem.find('input:first').focus();
 
 		this.trigger('render');
-		this.applyAutoComplete(path, index);
 	},
 	
-	applyAutoComplete(path, index){
-		console.log("apply autocomplete on "+path+"/"+index);
-		var obj = autocompleteDescriptors[path];
+	applyAutoComplete(path){
+		console.log("apply autocomplete on "+path);
+        var items = path.split("/");
+        var customPath = items[0]+"/"+items[1];
+        var obj = autocompleteDescriptors[customPath];
 		if(obj != null){
-			var completePath = path +"/"+ index + '/'+obj.path;
-			var valPath = path +"/"+ index + '/'+obj.valField;
-			var $field = this._byPath[completePath];
+
+			var valPath = customPath + "/"+items[2]+'/'+obj.valField;
+			var $field = this._byPath[path];
 			
 			var ctx = this;
 			if($field != null){
+                var button = $field.context.nextElementSibling;
+                $(button).bind("click", function(){
+                    $field.autocomplete('search', '');
+                });
 				$field.autocomplete({
+                    minLength: 0,
 					source: obj.datas,
 					select: function(event, ui){
 						$field.val(ui.item.label);
-						ctx.updateCell($field, completePath);
+						ctx.updateCell($field, path);
 						if(obj.valField != null){
 							$val = $("input[data-attribute='"+valPath+"']");
 							$val.val(ui.item.value);
@@ -36951,26 +37053,8 @@ joint.ui.Inspector = Backbone.View.extend({
 					}
 				});
 			}else{
-				console.err('no field '+completePath);
+				console.err('no field '+path);
 			}
-		}
-		
-		if (path == 'custom/event') {
-			var path = 'custom/event/' + index + '/date';
-			var $auto = this._byPath['custom/event/' + index + '/date'];
-			var dateFormatter = this.getFormattedDate;
-			$auto.datetimepicker({
-				timepicker: true,
-				format: 'Y-m-d H:i:00.0',
-				onChangeYear: function(currentTime, $input) {
-					var formattedDate = dateFormatter(currentTime);
-					$input.val(formattedDate);
-				},
-				onChangeMonth: function(currentTime, $input) {
-					var formattedDate = dateFormatter(currentTime);
-					$input.val(formattedDate);
-				}}
-			);
 		}
 	},
 

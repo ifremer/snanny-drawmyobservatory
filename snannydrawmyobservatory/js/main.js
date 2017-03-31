@@ -3,13 +3,6 @@ var APPS_URL = '/apps/' + APP_NAME;
 var API_APPS_NAME = 'snannyowncloudapi';
 var API_APPS_URL = '/apps/' + API_APPS_NAME;
 var DL_APPS_URL = 'apps/files/ajax/download.php';
-
-var choice = -1;
-var pathChoosen = "";
-var typedName = "";
-
-var userPreferences = "";
-var rendered = false;
 var tooltipManager;
 
 function getParameterByName(name) {
@@ -20,7 +13,6 @@ function getParameterByName(name) {
 }
 
 var filename = getParameterByName('filename');
-var filecontents = undefined;
 var action = getParameterByName('action');
 var directory = getParameterByName('dir');
 
@@ -625,41 +617,22 @@ $(document).ready(function () {
 
 
             this.validator.validate('change:source change:target remove', _.bind(function (err, command, next) {
-                var loops = false //link loops allowed / denied
-                    ,
-                    paperPin = true //allow link to pin to paper
-                    ,
-                    type = 'type' // attribute name in the cell the rules working with
+                var type = 'type' // attribute name in the cell the rules working with
 
 
                 if (this.graph.getCell(command.data.id) == undefined) {
-
-
                     var link = command.data.attributes || this.graph.getCell(command.data.id).toJSON();
-
                     if (link.type == 'link') {
-
                         var sourceId = link.source.id,
                             targetId = link.target.id;
-
-
                         if (sourceId && targetId) {
-
-
                             if (this.graph.getCell(targetId) != undefined)
                                 this.graph.getCell(targetId).get('ref').splice(this.graph.getCell(targetId).get('ref').indexOf(sourceId), 1);
-
                         }
-
-
                     }
                 }
             }, this));
-
-
             this.validator.on('invalid', function (message) {
-
-
             });
         },
         toJSON: function () {
