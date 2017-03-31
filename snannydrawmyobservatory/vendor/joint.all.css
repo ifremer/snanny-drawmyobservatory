@@ -1010,6 +1010,17 @@ unmatched elements opaque instead of completely invisible which is the default.
    right: -50%;   
 }
 
+.inspector .autocomplete-down {
+    float: right;
+    line-height: 20px;
+    padding: 0px;
+    background: none;
+    position: absolute;
+    border: none;
+    right: 16px;
+    margin-top: -25px;
+}
+
 .inspector .btn-list-add,
 .inspector .btn-list-del {
    background: transparent;

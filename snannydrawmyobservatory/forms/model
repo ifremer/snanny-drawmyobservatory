@@ -22,9 +22,9 @@
                 </sml:Term>
             </sml:identifier>{{#custom}}{{#identifier}}{{^Ref}}
             <sml:identifier>
-                <sml:Term>
+                <sml:Term definition="{{URI}}">
                     <sml:label>{{name}}</sml:label>
-                    <sml:value>{{URI}}</sml:value>
+                    <sml:value>{{value}}</sml:value>
                 </sml:Term>
             </sml:identifier>{{/Ref}}{{/identifier}}{{/custom}}
         </sml:IdentifierList>
@@ -34,9 +34,9 @@
     <sml:classification>
         <sml:ClassifierList>{{/if}}{{/custom}}{{#custom}}{{#classifier}}{{^Ref}}
             <sml:classifier>
-                <sml:Term>
+                <sml:Term definition="{{URI}}">
                     <sml:label>{{name}}</sml:label>
-                    <sml:value>{{URI}}</sml:value>
+                    <sml:value>{{value}}</sml:value>
                 </sml:Term>
             </sml:classifier>{{/Ref}}{{/classifier}} {{/custom}} {{#custom}} {{#if classifier}}
         </sml:ClassifierList>
