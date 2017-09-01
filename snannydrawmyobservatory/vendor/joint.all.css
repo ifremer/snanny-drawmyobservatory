@@ -1015,10 +1015,15 @@ unmatched elements opaque instead of completely invisible which is the default.
     line-height: 20px;
     padding: 0px;
     background: none;
-    position: absolute;
+    position: relative;
     border: none;
-    right: 16px;
-    margin-top: -25px;
+    right: 0px;
+    margin-top: -31px;
+}
+
+.inspector .autocomplete-down img {
+   height: 10px;
+   width: 10px;
 }
 
 .inspector .btn-list-add,

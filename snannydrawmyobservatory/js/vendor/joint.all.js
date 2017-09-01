@@ -37022,7 +37022,7 @@ joint.ui.Inspector = Backbone.View.extend({
 		this.trigger('render');
 	},
 	
-	applyAutoComplete(path){
+	applyAutoComplete: function(path){
 		console.log("apply autocomplete on "+path);
         var items = path.split("/");
         var customPath = items[0]+"/"+items[1];
@@ -37038,18 +37038,44 @@ joint.ui.Inspector = Backbone.View.extend({
                 $(button).bind("click", function(){
                     $field.autocomplete('search', '');
                 });
+
+                function updateFieldLabel(item){
+                    $field.val(item.label);
+                    ctx.updateCell($field, path);
+                }
+
 				$field.autocomplete({
                     minLength: 0,
+                    appendTo: $field.parent(),
 					source: obj.datas,
-					select: function(event, ui){
-						$field.val(ui.item.label);
-						ctx.updateCell($field, path);
-						if(obj.valField != null){
-							$val = $("input[data-attribute='"+valPath+"']");
-							$val.val(ui.item.value);
-							ctx.updateCell($val, valPath);
-						}
-						return false;
+                    select : function(event, ui){
+                        updateFieldLabel(ui.item);
+                        return false;
+                    },
+                    focus : function(event){
+                        event.preventDefault();
+                    },
+                    change: function(event, ui){
+                        var item = ui.item;
+                        if(ui.item === null) {
+                            //look for an existing item
+                            //filter can be replaced by find but find has limited browser compatibility
+                            var value = this.value;
+                            var items =  obj.datas.filter(function(e){
+                                return value === e.label;
+                            });
+                            item = items.length > 0 ? items[0] : null;
+                        }
+
+                        if(item !== null){
+                            updateFieldLabel(item);
+                        }
+
+                        if(obj.valField != null){
+                            $val = $("input[data-attribute='"+valPath+"']");
+                            $val.val(item !== null ? item.value : "");
+                            ctx.updateCell($val, valPath);
+                        }
 					}
 				});
 			}else{
