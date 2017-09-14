@@ -240,11 +240,11 @@ $(document).ready(function () {
                         content += "<h3>" + cell.get('attrs').text.name + "</h3>";
                     }
                     if (cell.get('custom').classifier[1]) {
-                        content += "<p>" + cell.get('custom').classifier[1].URI + "</p>";
+                        content += "<p>" + cell.get('custom').classifier[1].value + "</p>";
 
                     }
                     if (cell.get('custom').identifier[0]) {
-                        content += '<a href="' + emsoYellowPage + '/sensor.php?id=' + cell.get('custom').identifier[0].URI + '" target="_blank">more information...</a>';
+                        content += '<a href="' + emsoYellowPage + '/sensor.php?id=' + cell.get('custom').identifier[0].value + '" target="_blank">more information...</a>';
                     }
                     tooltipManager.register('.stencil [model-id="' + cell.id + '"]', cell.id, content);
                 });
@@ -586,7 +586,7 @@ $(document).ready(function () {
                 if (link.type != 'link' && link.type != 'basic.Sensor' && link.type != 'basic.Platform') {
 
 
-                    joint.dia.Cell.prototype.prop.call(this.graph.getCell(link.id), "attrs/text/text", link.custom.classifier[0].URI, undefined);
+                    joint.dia.Cell.prototype.prop.call(this.graph.getCell(link.id), "attrs/text/text", link.custom.classifier[0].value, undefined);
 
                 }
 

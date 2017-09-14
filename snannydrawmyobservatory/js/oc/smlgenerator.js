@@ -61,7 +61,7 @@
                     cells[i].modelType = "plop";
                     cells[i].smlTypeOfUrl = smlTypeOfUrl;
                     if (cells[i].modelType = cells[i].custom.classifier[0] && cells[i].custom.classifier[0].name === "model" && cells[i].custom.identifier[0]) {
-                        cells[i].modelType = cells[i].custom.identifier[0].URI;
+                        cells[i].modelType = cells[i].custom.identifier[0].value;
                     }
 
                     cells[i].custom.classifier = cells[i].custom.classifier.filter(function (el) {
