@@ -699,7 +699,6 @@ $(document).ready(function () {
             $('#btn-exportJSON').on('click', _.bind(this.toJSON, this));
             $('li.odt').on('click', _.bind(function () {
                 var model = this.graph.toJSON();
-                //console.log(model.cells);
                 for (var i = 0; i < model.cells.length; i++) {
                     if (model.cells[i].type == 'link') {
                         model.cells.splice(i, 1);
@@ -710,7 +709,6 @@ $(document).ready(function () {
                 }
 
                 for (var i = 0; i < model.cells.length; i++) {
-                    //  console.log(model.cells[i].attrs.image["xlink:href"])
                     var imageExtension = model.cells[i].attrs.image["xlink:href"];
                     imageExtension = imageExtension.split(".");
                     if (imageExtension[1] === "png") {
@@ -722,29 +720,22 @@ $(document).ready(function () {
 
                 for (var i in model.cells) {
 
-                    //  console.log(model.cells[i])
                     if (model.cells[i].type != "link") {
 
                         var elem = model.cells[i].id;
                         if (this.graph.getCell(elem).attr('text').text == '') {
                             this.graph.getCell(elem).attr('text').text = "UNNAMEDElement" + i;
                             model.cells[i].attrs.text.text = "UNNAMEDElement" + i;
-                            //console.log("namme"+model.cells[i].attrs.text.text);
 
                         }
+
                         for (var j in model.cells[i].ref) {
                             var ref = model.cells[i].ref[j];
 
                             if (this.graph.getCell(ref) != null)
                                 model.cells[i].ref[j] = this.graph.getCell(ref).attr('text').text;
-                            //console.log("ref"+model.cells[i].ref[j]);
-
                         }
-
-
                     }
-
-
                 }
 
                 model = JSON.stringify(model);
@@ -752,15 +743,16 @@ $(document).ready(function () {
                 var callback = function (dataURL) {
 
                     var imageURL = DL_APPS_URL + '?dir=' + directory + '&files=' + filename + '.png';
+                    var defer = $.Deferred();
+
                     OCA.DrawMyObservatory.FileSave.save({
                         dir: directory,
                         filename: filename + '.png',
                         callback: function (data) {
                             //Envoi des données à un service qui créer le .moe et met en place un tar
-                            var defer = $.Deferred();
+
                             if (data) {
                                 var self = this;
-
                                 $.ajax({
                                     url: OC.generateUrl(APPS_URL + '/save'),
                                     type: 'POST',
@@ -775,32 +767,30 @@ $(document).ready(function () {
                                         OCA.Preferences.save();
                                         if (response.status === 'success') {
                                             OCA.TemplateUtil.showNotificationMessage('File export to ODT', 'Confirmation');
-                                            filename = response.filename;
                                         }
                                     },
                                     error: function (jqXHR, textStatus, errorThrown) {
-                                        defer.resolve({
+                                        defer.reject({
                                             status: 'error',
                                             message: 'An error occured : ' + errorThrown
                                         });
                                     }
                                 });
                             }
-                            return defer.promise();
                         }
                     });
 
-
-                    $("#json").attr("value", model);
-                    $("#projectName").attr("value", filename);
-                    $("#overallImage").attr("value", imageURL);
-                    $('#birtForm').attr("action", birtserverLink);
-                    $('#birtForm').submit();
-                }
-
+                    //calling birt server
+                    defer.promise().done(function(response){
+                        $("#json").attr("value", model);
+                        $("#projectName").attr("value", response.filename);
+                        $("#overallImage").attr("value", imageURL);
+                        $('#birtForm').attr("action", birtserverLink);
+                        $('#birtForm').submit();
+                    });
+                };
 
                 this.paper.toPNG(callback);
-
 
             }, this));
 
