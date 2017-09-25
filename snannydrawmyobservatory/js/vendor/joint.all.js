@@ -36686,6 +36686,35 @@ joint.ui.Inspector = Backbone.View.extend({
                     $input.val(formattedDate);
                 }}
             );
+
+            var currentModel = ctx.getModel();
+            var parentTree = [];
+            //build parent tree structure
+            _.each(currentModel.collection.models,function(item){
+                if(item.attributes.type === 'link'){
+                    parentTree[item.attributes.source.id] = item.attributes.target.id;
+                }
+            });
+
+            var applyPlaceholder = function(id){
+                var parentId = parentTree[id];
+                if(parentId !== undefined){
+                    var parentNode = currentModel.collection._byId[parentId];
+                    //FIXME : any better way to perform this instead of eval ??
+                    var value = eval("parentNode.attributes."+path.replace("/","."));
+                    if(value !== '' && $auto.val() === ''){
+                        //look for defined parent date
+                        $auto.attr('placeholder', value);
+                    } else {
+                        //no value set for the parent, look for grandparents
+                        applyPlaceholder(parentId);
+                    }
+                }
+            };
+
+            $auto.attr('placeholder', '');
+            applyPlaceholder(currentModel.id);
+
         }
         }, 1000);
 	},
