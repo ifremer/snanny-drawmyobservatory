@@ -2,8 +2,14 @@
    border: 1px solid #1d2d44;
    border-top: 1px solid #4f4f4f;
    color: #bcbcbc;
-   text-shadow: 0 -1px 0 #000;
+   /*text-shadow: 0 -1px 0 #000;*/
    background-color: #1d2d44;
+}
+
+
+.inspector-container input:invalid {
+   background-color: rgba(255,0,0,0.4);
+   box-shadow: 0 0 2px 1px red;
 }
 
 .uuid {
