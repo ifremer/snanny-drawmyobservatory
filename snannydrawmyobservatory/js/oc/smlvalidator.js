@@ -23,6 +23,7 @@
                     if(name === undefined) {
                         name = cell.attrs.text.text;
                     }
+                    //Checking start / end date
                     var startTime = cell.custom.startTime;
                     var endTime = cell.custom.endTime;
                     if (startTime === undefined) {
@@ -35,13 +36,33 @@
                     if (!isValid) {
                         currentMessage += 'Both or none of the dates of the period must be filled\n';
                     }
-                    result.valid = result.valid && isValid;
                     if (startTime.length > 0 && endTime.length > 0) {
                         currentMessage += validTimes(startTime, endTime);
                     }
+
+                    //Checking event date
+                    for(var i=0; i < cell.custom.event.length; i++){
+                        var event = cell.custom.event[i];
+                        var eventTime = Date.parse(event.date);
+                        if(isNaN(eventTime)) {
+                            currentMessage += 'Date format is invalid for event '+ event.description+'.\n';
+                        } else if(Date.now() >= eventTime){
+                            currentMessage += 'Date for event ' + event.description + ' should be posterior to current date.\n';
+                        }
+                    }
+
+                    //Checking output names
+                    for(var j=0; i < cell.custom.output.length; j++){
+                        var output = cell.custom.output[j];
+                        if(output.name.match(/[\w\-. ]+/) === null){
+                            currentMessage += 'Output name '+ output.name + ' is incorrect. Only alphanumeric, dash, underscore and point characters.\n';
+                        }
+                    }
+
                     if(currentMessage.length > 0) {
                         result.message += name + ' : \n';
                         result.message += currentMessage + '\n';
+                        result.valid = false;
                     }
                 }
 

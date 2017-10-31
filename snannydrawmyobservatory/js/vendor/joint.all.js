@@ -35954,6 +35954,7 @@ this["joint"]["templates"]["inspector"]["text.html"] = Handlebars.template(funct
 });
 
 this["joint"]["templates"]["inspector"]["date.html"] = this["joint"]["templates"]["inspector"]["text.html"];
+this["joint"]["templates"]["inspector"]["uri.html"] = this["joint"]["templates"]["inspector"]["text.html"];
 
 this["joint"]["templates"]["inspector"]["autocomplete.html"] = Handlebars.template(function(Handlebars, depth0, helpers, partials, data) {
     this.compilerInfo = [4, '>= 1.0.0'];
@@ -36006,7 +36007,13 @@ this["joint"]["templates"]["inspector"]["autocomplete.html"] = Handlebars.templa
         stack1 = depth0.value;
         stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1;
     }
-    buffer += escapeExpression(stack1) + "\" /><button class=\"autocomplete-down\"'><img src=\"/owncloud/apps/snannydrawmyobservatory/img/down.png\"></button>\n";
+    buffer += escapeExpression(stack1) +"\" ";
+
+    //pattern matching
+    if(!_.isUndefined(depth0.pattern)){
+        buffer += "pattern=\"" + escapeExpression(depth0.pattern) + "\"";
+    }
+    buffer += "/><button class=\"autocomplete-down\"'><img src=\"/owncloud/apps/snannydrawmyobservatory/img/down.png\"></button>\n";
     return buffer;
 });
 
@@ -36591,7 +36598,8 @@ joint.ui.Inspector = Backbone.View.extend({
 			type: options.type,
 			label: options.label || path,
 			attribute: path,
-			value: value
+			value: value,
+            pattern : options.pattern
 		});
 
 		var $input = $(inputHtml);
@@ -36665,10 +36673,7 @@ joint.ui.Inspector = Backbone.View.extend({
         var ctx = this;
         setTimeout(function(){
         if(options.type === 'autocomplete'){
-
             ctx.applyAutoComplete(path);
-
-
         }
 
         if(options.type === 'date'){
@@ -36676,6 +36681,7 @@ joint.ui.Inspector = Backbone.View.extend({
             var dateFormatter = this.getFormattedDate;
             $auto.datetimepicker({
                 timepicker: true,
+                validateOnBlur: true,
                 format: 'Y-m-d H:i:00.0',
                 onChangeYear: function(currentTime, $input) {
                     var formattedDate = dateFormatter(currentTime);
@@ -36686,6 +36692,13 @@ joint.ui.Inspector = Backbone.View.extend({
                     $input.val(formattedDate);
                 }}
             );
+
+            if(!_.isUndefined(options.attrs.min)){
+                $auto.datetimepicker({
+                    minDate: options.attrs.min.date,
+                    minTime: options.attrs.min.time
+                });
+            }
 
             var currentModel = ctx.getModel();
             var parentTree = [];
@@ -37006,8 +37019,10 @@ joint.ui.Inspector = Backbone.View.extend({
 			case 'toggle':
 				value = targetElement.checked;
 				break;
+            case 'uri':
+                value = encodeURIComponent(value);
+                break;
 			default:
-				value = value;
 				break;
 		}
 		return value;
@@ -37073,6 +37088,14 @@ joint.ui.Inspector = Backbone.View.extend({
                     ctx.updateCell($field, path);
                 }
 
+                function updateValFieldLabel(item){
+                    if(obj.valField !== null){
+                        var $val = $("input[data-attribute='"+valPath+"']");
+                        $val.val(item !== null ? item.value : "");
+                        ctx.updateCell($val, valPath);
+                    }
+                }
+
                 //fuzzy search
                 var fuzzyhound = new FuzzySearch({source: obj.datas, keys: "label", output_map: "root"});
                 function autocompleteQuery(request, response){
@@ -37117,6 +37140,7 @@ joint.ui.Inspector = Backbone.View.extend({
                     delay: 0,
                     select : function(event, ui){
                         updateFieldLabel(ui.item);
+                        updateValFieldLabel(ui.item);
                         return false;
                     },
                     focus : function(event){
@@ -37134,15 +37158,18 @@ joint.ui.Inspector = Backbone.View.extend({
                             item = items.length > 0 ? items[0] : null;
                         }
 
+                        //if the input is invalid (html5 controls), we replace by the last valid value
+                        if (!ctx.options.validateInput(this, path)){
+                            var oldValue = joint.util.getByPath(ctx.getModel().attributes, path, '/');
+                            $(this).val(oldValue);
+                            return;
+                        }
+
                         if(item !== null){
                             updateFieldLabel(item);
                         }
 
-                        if(obj.valField != null){
-                            $val = $("input[data-attribute='"+valPath+"']");
-                            $val.val(item !== null ? item.value : "");
-                            ctx.updateCell($val, valPath);
-                        }
+                        updateValFieldLabel(item);
 					}
 				}).data("ui-autocomplete")._renderItem = autocompleteRender;
 			}else{

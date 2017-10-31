@@ -136,6 +136,7 @@ var dataType = {
                         type: 'autocomplete',
                         'readOnly': true,
                         label: 'name',
+                        pattern: '[\\w\\-. ]+',
                         index: 1,
                         attrs: {
                             label: {
@@ -144,7 +145,7 @@ var dataType = {
                         }
                     },
                     URI: {
-                        type: 'text',
+                        type: 'uri',
                         inlined: true,
                         label: 'URI',
                         index: 2,
@@ -280,7 +281,7 @@ var dataType = {
                         }
                     },
                     URI: {
-                        type: 'text',
+                        type: 'uri',
                         inlined: true,
                         label: 'URI',
                         index: 2,
@@ -340,6 +341,10 @@ var dataType = {
                         attrs: {
                             label: {
                                 'data-tooltip': 'Date'
+                            },
+                            min: {
+                                date: 0,
+                                time: 0
                             }
                         }
                     },
