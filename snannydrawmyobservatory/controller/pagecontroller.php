@@ -57,7 +57,7 @@ class PageController extends Controller
         ScriptUtil::loadScripts($this->appName,
             array('vendor/modernizr-2.8.2.min',
                 'vendor/mustache.min', 'vendor/jszip-2.4.0-3.min', 'vendor/FileSaver.min',
-                'vendor/Blob', 'vendor/joint', 'vendor/joint.all',  'inspector',)
+                'vendor/Blob', 'vendor/joint', 'vendor/joint.all',  'inspector', 'FuzzySearch.min')
         );
 
         ScriptUtil::loadScriptsFromRep($this->appName, 'types',
@@ -88,7 +88,7 @@ class PageController extends Controller
         \OCP\Util::addScript('core', 'placeholder'); 
         \OCP\Util::addScript('core', 'jquery.avatar');              
         \OCP\Util::addScript('core', 'jquery.ocdialog');         
-        \OCP\Util::addScript('core', 'octemplate');            
+        \OCP\Util::addScript('core', 'octemplate');
         \OC_Util::addScript($this->appName, 'vendor/jquery.datetimepicker.full.min');
         \OC_Util::addVendorScript('core', 'handlebars/handlebars');
 

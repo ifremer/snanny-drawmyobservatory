@@ -37073,10 +37073,48 @@ joint.ui.Inspector = Backbone.View.extend({
                     ctx.updateCell($field, path);
                 }
 
+                //fuzzy search
+                var fuzzyhound = new FuzzySearch({source: obj.datas, keys: "label", output_map: "root"});
+                function autocompleteQuery(request, response){
+                    var term = request.term.toLowerCase();
+
+                    if(term !== ''){
+                        //filter all data containing the desired lowered term
+                        var filtered = obj.datas.filter(function(e){
+                            return e.label.toLowerCase().indexOf(term) !== -1;
+                        });
+
+                        if(filtered.length > 0){
+                            response(filtered);
+                        } else {
+                            //no data found ? let's do a fuzzy search and return only the element with the higher score
+                            var search = fuzzyhound.search(term);
+                            if(search.length > 0){
+                                var item = _.clone(search[0].item); //clone : keep original data mutation
+                                item.fuzzy = true;
+                                response([item]);
+                            } else {
+                                //no data found
+                                response([]);
+                            }
+                        }
+                    } else {
+                        //empty search return all data
+                        response(obj.datas);
+                    }
+                }
+
+                function autocompleteRender(ul, item){
+                    var text = _.isUndefined(item.fuzzy) ? item.label : "Did you mean : "+item.label+" ?";
+                    return $("<li>").attr("data-value", item.value)
+                        .append($("<a>").text(text)).appendTo(ul);
+                }
+
 				$field.autocomplete({
                     minLength: 0,
                     appendTo: $field.parent(),
-					source: obj.datas,
+					source: autocompleteQuery,
+                    delay: 0,
                     select : function(event, ui){
                         updateFieldLabel(ui.item);
                         return false;
@@ -37106,7 +37144,7 @@ joint.ui.Inspector = Backbone.View.extend({
                             ctx.updateCell($val, valPath);
                         }
 					}
-				});
+				}).data("ui-autocomplete")._renderItem = autocompleteRender;
 			}else{
 				console.err('no field '+path);
 			}
