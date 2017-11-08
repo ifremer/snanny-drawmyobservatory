@@ -59,6 +59,11 @@
                         }
                     }
 
+                    //checking numbers field
+                    if(isNaN(cell.custom.depth)){
+                        currentMessage += 'Invalid numeric value for depth value\n';
+                    }
+
                     if(currentMessage.length > 0) {
                         result.message += name + ' : \n';
                         result.message += currentMessage + '\n';

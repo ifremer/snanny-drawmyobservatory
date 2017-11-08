@@ -304,8 +304,6 @@ var dataType = {
                 }
             }
         },
-
-
         latitude: {
             type: 'text',
             label: 'latitude',
@@ -326,6 +324,29 @@ var dataType = {
             attrs: {
                 label: {
                     'data-tooltip': 'longitude in decimal'
+                }
+            }
+        },
+        referential: {
+            type: 'select',
+            label: 'referential',
+            group: 'position',
+            options: ['surface', 'sea floor'],
+            index : 3,
+            attrs: {
+                label: {
+                    'data-tooltip': 'depth referential'
+                }
+            }
+        },
+        depth : {
+            type: 'number',
+            label: 'depth value',
+            group: 'position',
+            index: 4,
+            attrs: {
+                label: {
+                    'data-tooltip': 'depth value'
                 }
             }
         },

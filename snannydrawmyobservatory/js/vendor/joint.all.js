@@ -36930,7 +36930,7 @@ joint.ui.Inspector = Backbone.View.extend({
 					// For objects, all is handled in the actual inputs.
 					break;
 
-				default:
+                default:
 
 					if (!this.options.validateInput($attribute[0], path)) return;
 
@@ -36941,6 +36941,21 @@ joint.ui.Inspector = Backbone.View.extend({
 						var oldValue = joint.util.getByPath(cell.attributes, path, '/') || options.defaultValue;
 						value = oldValue.replace(new RegExp(options.valueRegExp), '$1' + value + '$3');
 					}
+
+					//special cases
+                    //TODO : make those transformations generic
+					if (path === 'custom/depth') {
+					    //if the referential is the surface, the Z distance should be negative
+                        if(this._byPath['custom/referential'].val() === 'surface'){
+                            value = value > 0 ? value*-1 : value;
+                        } else {
+                            value = value < 0 ? value*-1 : value;
+                        }
+                        //update depth value
+                        $attribute.val(value);
+                    } else if (path === 'custom/referential'){
+					    this.updateCell(this._byPath['custom/depth'],'custom/depth');
+                    }
 
 					if (options.parent && options.parent.type === 'list') {
 
