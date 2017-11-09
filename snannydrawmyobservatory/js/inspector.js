@@ -343,6 +343,7 @@ var dataType = {
             type: 'number',
             label: 'depth value',
             group: 'position',
+            defaultValue : 0,
             index: 4,
             attrs: {
                 label: {
